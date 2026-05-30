@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>懿起成长 · 小学生学习乐园</title>
+
+  <!-- 图标 & 主题 -->
+  <link rel="icon" href="LOGO.jpg" />
+  <link rel="apple-touch-icon" href="LOGO.jpg" />
+  <meta name="theme-color" content="#ff8a3d" />
+
+  <!-- PWA：iOS 全屏（添加到主屏幕后无 Safari 地址栏） -->
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+  <meta name="apple-mobile-web-app-title" content="懿起成长" />
+  <link rel="manifest" href="manifest.json" />
+
+  <!-- HTML 本身不缓存，由 Service Worker 接管静态资源缓存 -->
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+  <meta http-equiv="Pragma" content="no-cache" />
+  <meta http-equiv="Expires" content="0" />
+
+  <link rel="stylesheet" href="styles.css?v=20260530b" />
+</head>
+<body>
+  <div id="app">
+
+    <!-- 顶部条 -->
+    <header class="topbar" id="topbar" hidden>
+      <button class="icon-btn" id="btnBack" title="返回">‹</button>
+      <div class="topbar-title">
+        <img src="LOGO.jpg" alt="logo" class="topbar-logo" />
+        <span>懿起成长</span>
+      </div>
+      <div class="topbar-right">
+        <span class="badge" id="badgeProfile"></span>
+        <button class="icon-btn" id="btnSettings" title="设置">⚙</button>
+      </div>
+    </header>
+
+    <!-- 欢迎页 -->
+    <section class="screen welcome" data-screen="welcome">
+      <div class="welcome-hero">
+        <img src="LOGO.jpg" alt="懿" class="welcome-logo" />
+        <h1 class="welcome-title">懿起成长</h1>
+        <p class="welcome-sub">和懿一起，每天进步一点点</p>
+      </div>
+
+      <div class="card welcome-card">
+        <div class="field">
+          <label class="field-label">小朋友叫什么名字？</label>
+          <input type="text" class="input-box" id="inpName" placeholder="例如：小明" maxlength="12" autocomplete="off" />
+        </div>
+
+        <div class="field">
+          <label class="field-label">小朋友是？</label>
+          <div class="gender-pick">
+            <button class="gender-btn" data-gender="boy">
+              <div class="avatar avatar-boy" aria-hidden="true"></div>
+              <div>男生</div>
+            </button>
+            <button class="gender-btn" data-gender="girl">
+              <div class="avatar avatar-girl" aria-hidden="true"></div>
+              <div>女生</div>
+            </button>
+          </div>
+        </div>
+
+        <div class="field">
+          <label class="field-label">几年级？</label>
+          <div class="grade-pick" id="gradePick">
+            <button class="chip" data-grade="1">一年级</button>
+            <button class="chip" data-grade="2">二年级</button>
+            <button class="chip" data-grade="3">三年级</button>
+            <button class="chip" data-grade="4">四年级</button>
+            <button class="chip" data-grade="5">五年级</button>
+            <button class="chip" data-grade="6">六年级</button>
+          </div>
+        </div>
+
+        <div class="field">
+          <label class="field-label">哪一册？</label>
+          <div class="vol-pick" id="volPick">
+            <button class="chip" data-vol="上">上册</button>
+            <button class="chip" data-vol="下">下册</button>
+          </div>
+        </div>
+
+        <button class="primary-btn" id="btnEnter">进入学习乐园 →</button>
+      </div>
+    </section>
+
+    <!-- 首页 -->
+    <section class="screen home" data-screen="home" hidden>
+      <div class="greeting">
+        <div class="avatar-big" id="avatarBig"></div>
+        <div>
+          <div class="hi-text" id="hiText">你好呀！</div>
+          <div class="hi-sub" id="hiSub">今天想学什么？</div>
+        </div>
+      </div>
+
+      <div class="subject-grid">
+        <button class="subject-card subject-math" data-go="math">
+          <div class="subject-emoji">🔢</div>
+          <div class="subject-name">数 学</div>
+          <div class="subject-desc">口算 · 应用题</div>
+        </button>
+        <button class="subject-card subject-chinese" data-go="chinese">
+          <div class="subject-emoji">📖</div>
+          <div class="subject-name">语 文</div>
+          <div class="subject-desc">拼音 · 识字 · 古诗</div>
+        </button>
+        <button class="subject-card subject-english" data-go="english">
+          <div class="subject-emoji">🔤</div>
+          <div class="subject-name">英 语</div>
+          <div class="subject-desc">单词 · 口语</div>
+        </button>
+        <button class="subject-card subject-plan" data-go="plan">
+          <div class="subject-emoji">🍅</div>
+          <div class="subject-name">计 划</div>
+          <div class="subject-desc">任务单 · 番茄钟</div>
+        </button>
+        <button class="subject-card subject-errorbook" data-go="errorbook">
+          <div class="subject-emoji">📕</div>
+          <div class="subject-name">错题本</div>
+          <div class="subject-desc"><span id="ebHomeCount">0</span> 道待复习</div>
+        </button>
+      </div>
+
+      <div class="card stats-card">
+        <div class="stats-title">学习记录</div>
+        <div class="stats-row" id="statsRow">
+          <div class="stats-item"><div class="stats-num" id="statDays">0</div><div class="stats-label">坚持天数</div></div>
+          <div class="stats-item"><div class="stats-num" id="statSessions">0</div><div class="stats-label">练习次数</div></div>
+          <div class="stats-item"><div class="stats-num" id="statStars">0</div><div class="stats-label">⭐ 小星星</div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 英语类型选择 -->
+    <section class="screen english-cat" data-screen="english-cat" hidden>
+      <h2 class="screen-title">英语 · 选择类型</h2>
+      <div class="english-cat-grid">
+        <button class="cat-card cat-jingban" data-cat="jingban">
+          <div class="cat-icon">📚</div>
+          <div class="cat-name">京版教材</div>
+          <div class="cat-desc">按年级册次同步</div>
+        </button>
+        <button class="cat-card cat-ket" data-cat="ket">
+          <div class="cat-icon">🅰️</div>
+          <div class="cat-name">KET 备考</div>
+          <div class="cat-desc">主题词库 + 口语</div>
+        </button>
+        <button class="cat-card cat-pet" data-cat="pet">
+          <div class="cat-icon">🅱️</div>
+          <div class="cat-name">PET 备考</div>
+          <div class="cat-desc">进阶词库 + 句型</div>
+        </button>
+        <button class="cat-card cat-daily" data-cat="daily">
+          <div class="cat-icon">🗽</div>
+          <div class="cat-name">美国常用口语</div>
+          <div class="cat-desc">日常表达万句</div>
+        </button>
+      </div>
+    </section>
+
+    <!-- 错题本 -->
+    <section class="screen errorbook" data-screen="errorbook" hidden>
+      <h2 class="screen-title">📕 错题本</h2>
+      <div class="card eb-card">
+        <div class="eb-stats" id="ebStats">还没有错题哦～</div>
+        <div class="eb-filter">
+          <button class="chip eb-tab active" data-eb="all">全部</button>
+          <button class="chip eb-tab" data-eb="math">数学</button>
+          <button class="chip eb-tab" data-eb="chinese">语文</button>
+          <button class="chip eb-tab" data-eb="english">英语</button>
+        </div>
+        <div class="eb-actions">
+          <button class="primary-btn" id="ebPractice">开始练习错题</button>
+          <button class="ghost-btn" id="ebClear">清空错题本</button>
+        </div>
+      </div>
+      <div class="card">
+        <div class="eb-list" id="ebList"></div>
+      </div>
+    </section>
+
+    <!-- 章节列表 -->
+    <section class="screen chapter-list" data-screen="chapter" hidden>
+      <h2 class="screen-title" id="chapterTitle">选择章节</h2>
+      <div class="chapter-grid" id="chapterGrid"></div>
+    </section>
+
+    <!-- 练习页 -->
+    <section class="screen practice" data-screen="practice" hidden>
+      <div class="practice-head">
+        <div class="practice-title" id="practiceTitle"></div>
+        <div class="progress">
+          <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+          <div class="progress-text" id="progressText">1 / 20</div>
+        </div>
+      </div>
+      <div class="question-area" id="questionArea"></div>
+      <div class="practice-foot">
+        <button class="ghost-btn" id="btnSkip">跳过</button>
+        <button class="primary-btn" id="btnSubmit">提交</button>
+      </div>
+    </section>
+
+    <!-- 结果页 -->
+    <section class="screen result" data-screen="result" hidden>
+      <div class="result-hero" id="resultHero"></div>
+      <div class="card result-card">
+        <div class="result-row"><span>答对题数</span><strong id="resCorrect">0</strong></div>
+        <div class="result-row"><span>答错题数</span><strong id="resWrong">0</strong></div>
+        <div class="result-row"><span>正确率</span><strong id="resRate">0%</strong></div>
+        <div class="result-row"><span>用时</span><strong id="resTime">0 秒</strong></div>
+      </div>
+      <div class="card" id="reviewCard">
+        <div class="review-title">错题回顾</div>
+        <div class="review-list" id="reviewList"></div>
+      </div>
+      <div class="result-actions">
+        <button class="ghost-btn" id="btnAgain">再来一组</button>
+        <button class="primary-btn" id="btnHome">回到首页</button>
+      </div>
+    </section>
+
+    <!-- 学习计划 + 番茄钟 -->
+    <section class="screen plan" data-screen="plan" hidden>
+      <h2 class="screen-title">🍅 学习计划 · 番茄钟</h2>
+
+      <div class="card pomo-card">
+        <div class="pomo-task" id="pomoTask">还没选任务，从下面的任务单点【启动】，或直接开始番茄钟</div>
+        <div class="pomo-time" id="pomoTime">25:00</div>
+        <div class="pomo-state" id="pomoState">学习时间</div>
+        <div class="pomo-actions">
+          <button class="primary-btn pomo-btn" id="pomoStart">▶ 开始</button>
+          <button class="ghost-btn pomo-btn" id="pomoPause">⏸ 暂停</button>
+          <button class="ghost-btn pomo-btn" id="pomoReset">↻ 重置</button>
+        </div>
+        <div class="pomo-presets">
+          <button class="chip pomo-mode" data-mode="study">学习 <span id="pmStudy">25</span>分</button>
+          <button class="chip pomo-mode" data-mode="short">短休 <span id="pmShort">5</span>分</button>
+          <button class="chip pomo-mode" data-mode="long">长休 <span id="pmLong">15</span>分</button>
+        </div>
+        <div class="pomo-settings">
+          <label>学习 <input type="number" id="pmStudySet" min="1" max="120"> 分</label>
+          <label>短休 <input type="number" id="pmShortSet" min="1" max="60"> 分</label>
+          <label>长休 <input type="number" id="pmLongSet" min="1" max="120"> 分</label>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="task-title">📋 今日任务单</div>
+        <div class="task-table-wrap">
+          <table class="task-table">
+            <thead>
+              <tr>
+                <th class="col-no">序号</th>
+                <th class="col-name">任务名称</th>
+                <th class="col-time">预估时间</th>
+                <th class="col-run">启动</th>
+                <th class="col-done">完成</th>
+              </tr>
+            </thead>
+            <tbody id="taskTbody"></tbody>
+          </table>
+        </div>
+        <div class="task-foot">
+          <button class="ghost-btn" id="btnClearTasks">清空全部</button>
+          <div class="task-hint">填写后会自动保存 · 点【启动】会按预估时间开始番茄钟</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 设置 -->
+    <section class="screen settings" data-screen="settings" hidden>
+      <h2 class="screen-title">设置</h2>
+
+      <div class="card">
+        <div class="settings-section">基本信息</div>
+        <div class="setting-row setting-row-stack">
+          <label>头像</label>
+          <div class="avatar-upload">
+            <div class="avatar-preview" id="avatarPreview" aria-label="头像预览"></div>
+            <div class="avatar-upload-actions">
+              <button type="button" class="ghost-btn" id="btnUploadAvatar">📷 上传图片</button>
+              <button type="button" class="ghost-btn" id="btnRemoveAvatar">移除</button>
+              <input type="file" id="fileAvatar" accept="image/*" hidden />
+            </div>
+          </div>
+        </div>
+        <div class="setting-row">
+          <label>名字</label>
+          <input type="text" id="inpNameSet" maxlength="12" placeholder="未填写" style="width: 160px;" />
+        </div>
+        <div class="setting-row">
+          <label>性别</label>
+          <div class="seg" id="segGender">
+            <button data-val="boy">男生</button>
+            <button data-val="girl">女生</button>
+          </div>
+        </div>
+        <div class="setting-row">
+          <label>年级</label>
+          <select id="selGrade">
+            <option value="1">一年级</option><option value="2">二年级</option>
+            <option value="3">三年级</option><option value="4">四年级</option>
+            <option value="5">五年级</option><option value="6">六年级</option>
+          </select>
+        </div>
+        <div class="setting-row">
+          <label>册别</label>
+          <div class="seg" id="segVol">
+            <button data-val="上">上册</button>
+            <button data-val="下">下册</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="settings-section">数学</div>
+        <div class="setting-row">
+          <label>口算题数</label>
+          <input type="number" id="numMathOral" min="1" max="100" />
+        </div>
+        <div class="setting-row">
+          <label>应用题数</label>
+          <input type="number" id="numMathApp" min="0" max="50" />
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="settings-section">英语</div>
+        <div class="setting-row">
+          <label>单词数</label>
+          <input type="number" id="numEngWord" min="1" max="100" />
+        </div>
+        <div class="setting-row">
+          <label>口语句数</label>
+          <input type="number" id="numEngSent" min="0" max="50" />
+        </div>
+        <div class="setting-row">
+          <label>题型</label>
+          <select id="selEngMode">
+            <option value="mix">英汉混合</option>
+            <option value="e2c">英译汉</option>
+            <option value="c2e">汉译英</option>
+          </select>
+        </div>
+        <div class="setting-row setting-row-stack">
+          <div class="setting-hint">
+            进入"英语"后可选择：京版教材 / KET 备考 / PET 备考 / 美国常用口语。
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="settings-section">语文</div>
+        <div class="setting-row">
+          <label>每次题数</label>
+          <input type="number" id="numChineseQ" min="1" max="50" />
+        </div>
+      </div>
+
+      <div class="card danger">
+        <button class="ghost-btn danger-btn" id="btnReset">清空学习记录</button>
+      </div>
+
+      <div class="settings-actions">
+        <button class="ghost-btn" id="btnSettingsCancel">取消</button>
+        <button class="primary-btn" id="btnSettingsConfirm">✓ 确认保存</button>
+      </div>
+    </section>
+
+  </div>
+
+  <script src="js/data.js?v=20260530b"></script>
+  <script src="js/math.js?v=20260530b"></script>
+  <script src="js/english.js?v=20260530b"></script>
+  <script src="js/chinese.js?v=20260530b"></script>
+  <script src="js/plan.js?v=20260530b"></script>
+  <script src="js/app.js?v=20260530b"></script>
+
+  <script>
+    // 注册 Service Worker：离线可用、桌面图标启动更快
+    if ("serviceWorker" in navigator) {
+      window.addEventListener("load", function () {
+        navigator.serviceWorker.register("sw.js").catch(function () { /* 忽略注册失败，在线仍可用 */ });
+      });
+    }
+  </script>
+</body>
+</html>
