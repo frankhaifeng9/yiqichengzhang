@@ -1,11 +1,14 @@
 /* 懿起成长 · Service Worker：离线缓存 */
-const VERSION = "20260530b";
+const VERSION = "20260530j";
 const CACHE = "yqcz-" + VERSION;
 const ASSETS = [
   "./",
   "./index.html",
   "./manifest.json",
   "./LOGO.jpg",
+  "./apple-touch-icon.png",
+  "./icon-192.png",
+  "./icon-512.png",
   "./styles.css?v=" + VERSION,
   "./js/data.js?v=" + VERSION,
   "./js/math.js?v=" + VERSION,

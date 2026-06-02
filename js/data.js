@@ -110,7 +110,7 @@ DATA.math["2下"] = [
 ];
 
 DATA.math["3上"] = [
-  { id: "m3u1", name: "万以内的加法和减法", range: [100, 9999], ops: ["+", "-"], step: 1,
+  { id: "m3u1", name: "万以内的加法和减法", range: [100, 999], ops: ["+", "-"],
     apps: [
       { text: "甲乙两地相距 1235 米，小明走了 768 米。还差多少米？", expr: "1235-768", answer: 467, unit: "米" },
       { text: "学校三年级共 285 人，四年级 326 人。两个年级共多少人？", expr: "285+326", answer: 611, unit: "人" },
@@ -554,8 +554,13 @@ DATA.chinese["6下"] = [
 /* ---------- 英语：京版 + KET/PET + 万句口语 ---------- */
 function W(en, zh, type) { return { en, zh, type: type || "word" }; }
 
+/* ============================================================
+   京版小学英语（北京版 / 北京出版社）1-6 年级·上下册
+   每年级 3-4 个单元，每单元 15 词 + 5-6 个句子
+   ============================================================ */
+
 DATA.english["1上"] = [
-  { id: "e1u1", name: "Unit 1: Hello",
+  { id: "e1u1", name: "Unit 1: Hello!",
     words: [
       W("hello","你好"), W("hi","嗨"), W("I","我"), W("you","你"),
       W("am","是"), W("are","是"), W("good","好的"), W("morning","早上"),
@@ -563,11 +568,11 @@ DATA.english["1上"] = [
       W("meet","遇见"), W("teacher","老师"), W("student","学生")
     ],
     sentences: [
-      { en: "Hello, what's your name?", zh: "你好，你叫什么名字？" },
+      { en: "Hello! What's your name?", zh: "你好！你叫什么名字？" },
       { en: "My name is Ann.", zh: "我叫安。" },
       { en: "Nice to meet you.", zh: "很高兴见到你。" },
       { en: "Good morning, teacher.", zh: "老师早上好。" },
-      { en: "How are you?", zh: "你好吗？" }
+      { en: "How are you? I am fine.", zh: "你好吗？我很好。" }
     ]
   },
   { id: "e1u2", name: "Unit 2: Numbers",
@@ -584,11 +589,41 @@ DATA.english["1上"] = [
       { en: "One, two, three, go!", zh: "一二三，开始！" },
       { en: "I am six years old.", zh: "我六岁了。" }
     ]
+  },
+  { id: "e1u3", name: "Unit 3: My Body",
+    words: [
+      W("head","头"), W("hand","手"), W("foot","脚"), W("eye","眼睛"),
+      W("ear","耳朵"), W("nose","鼻子"), W("mouth","嘴"), W("face","脸"),
+      W("arm","胳膊"), W("leg","腿"), W("hair","头发"), W("tooth","牙齿"),
+      W("body","身体"), W("touch","摸"), W("show","展示")
+    ],
+    sentences: [
+      { en: "Touch your nose.", zh: "摸摸你的鼻子。" },
+      { en: "Show me your hands.", zh: "把你的手给我看。" },
+      { en: "This is my head.", zh: "这是我的头。" },
+      { en: "I have two eyes.", zh: "我有两只眼睛。" },
+      { en: "Stand up and clap your hands.", zh: "起立，拍拍手。" }
+    ]
+  },
+  { id: "e1u4", name: "Unit 4: My School Things",
+    words: [
+      W("pen","钢笔"), W("pencil","铅笔"), W("ruler","尺子"), W("book","书"),
+      W("bag","书包"), W("eraser","橡皮"), W("crayon","蜡笔"), W("desk","课桌"),
+      W("chair","椅子"), W("box","盒子"), W("this","这个"), W("that","那个"),
+      W("here","这里"), W("there","那里"), W("please","请")
+    ],
+    sentences: [
+      { en: "This is my pen.", zh: "这是我的钢笔。" },
+      { en: "What's this? It's a ruler.", zh: "这是什么？这是一把尺子。" },
+      { en: "Put your book on the desk.", zh: "把书放在课桌上。" },
+      { en: "Show me your pencil, please.", zh: "请把你的铅笔给我看看。" },
+      { en: "My bag is here.", zh: "我的书包在这里。" }
+    ]
   }
 ];
 
 DATA.english["1下"] = [
-  { id: "e1d1", name: "Unit 1: Family",
+  { id: "e1d1", name: "Unit 1: My Family",
     words: [
       W("father","爸爸"), W("mother","妈妈"), W("dad","爸爸"), W("mom","妈妈"),
       W("brother","哥哥/弟弟"), W("sister","姐姐/妹妹"), W("baby","宝宝"),
@@ -602,6 +637,51 @@ DATA.english["1下"] = [
       { en: "Who is that?", zh: "那是谁？" },
       { en: "She is my sister.", zh: "她是我的姐姐。" },
       { en: "We are a happy family.", zh: "我们是一个快乐的家庭。" }
+    ]
+  },
+  { id: "e1d2", name: "Unit 2: Fruits",
+    words: [
+      W("apple","苹果"), W("banana","香蕉"), W("orange","橙子"), W("pear","梨"),
+      W("peach","桃"), W("grape","葡萄"), W("watermelon","西瓜"), W("strawberry","草莓"),
+      W("mango","芒果"), W("fruit","水果"), W("eat","吃"), W("sweet","甜的"),
+      W("sour","酸的"), W("big","大的"), W("small","小的")
+    ],
+    sentences: [
+      { en: "I like apples.", zh: "我喜欢苹果。" },
+      { en: "Do you like bananas?", zh: "你喜欢香蕉吗？" },
+      { en: "This banana is sweet.", zh: "这根香蕉是甜的。" },
+      { en: "Have a pear, please.", zh: "请吃个梨。" },
+      { en: "An apple a day keeps the doctor away.", zh: "一天一苹果，医生远离我。" }
+    ]
+  },
+  { id: "e1d3", name: "Unit 3: Toys",
+    words: [
+      W("toy","玩具"), W("ball","球"), W("kite","风筝"), W("car","小汽车"),
+      W("doll","洋娃娃"), W("plane","飞机"), W("train","火车"), W("boat","船"),
+      W("teddy","玩具熊"), W("balloon","气球"), W("new","新的"), W("old","旧的"),
+      W("nice","好的"), W("have","有"), W("give","给")
+    ],
+    sentences: [
+      { en: "I have a new kite.", zh: "我有一个新风筝。" },
+      { en: "What is this? It's a toy car.", zh: "这是什么？这是一辆玩具车。" },
+      { en: "Give me the ball, please.", zh: "请把球给我。" },
+      { en: "I like my teddy bear.", zh: "我喜欢我的玩具熊。" },
+      { en: "Let's play with the kite.", zh: "我们一起玩风筝吧。" }
+    ]
+  },
+  { id: "e1d4", name: "Unit 4: My Friends",
+    words: [
+      W("friend","朋友"), W("boy","男孩"), W("girl","女孩"), W("he","他"),
+      W("she","她"), W("we","我们"), W("they","他们"), W("classmate","同学"),
+      W("tall","高的"), W("short","矮的/短的"), W("kind","友善的"), W("clever","聪明的"),
+      W("together","一起"), W("welcome","欢迎"), W("goodbye","再见")
+    ],
+    sentences: [
+      { en: "This is my friend, Lily.", zh: "这是我的朋友丽丽。" },
+      { en: "He is my classmate.", zh: "他是我的同学。" },
+      { en: "She is a nice girl.", zh: "她是个好女孩。" },
+      { en: "Let's play together.", zh: "我们一起玩吧。" },
+      { en: "Goodbye, see you tomorrow.", zh: "再见，明天见。" }
     ]
   }
 ];
@@ -622,7 +702,7 @@ DATA.english["2上"] = [
       { en: "Look at the rainbow.", zh: "看那道彩虹。" }
     ]
   },
-  { id: "e2u2", name: "Unit 2: School",
+  { id: "e2u2", name: "Unit 2: My School",
     words: [
       W("school","学校"), W("book","书"), W("pen","笔"), W("pencil","铅笔"),
       W("bag","包"), W("desk","桌子"), W("chair","椅子"), W("class","班级"),
@@ -635,6 +715,36 @@ DATA.english["2上"] = [
       { en: "Where is my pencil?", zh: "我的铅笔在哪？" },
       { en: "Let's read together.", zh: "我们一起读。" },
       { en: "I love my classroom.", zh: "我爱我的教室。" }
+    ]
+  },
+  { id: "e2u3", name: "Unit 3: Shapes",
+    words: [
+      W("shape","形状"), W("circle","圆形"), W("square","正方形"), W("triangle","三角形"),
+      W("rectangle","长方形"), W("star","星形"), W("heart","心形"), W("oval","椭圆形"),
+      W("round","圆的"), W("draw","画"), W("see","看见"), W("big","大的"),
+      W("small","小的"), W("long","长的"), W("short","短的")
+    ],
+    sentences: [
+      { en: "Draw a circle, please.", zh: "请画一个圆。" },
+      { en: "I can see a star.", zh: "我能看到一颗星星。" },
+      { en: "What shape is the sun?", zh: "太阳是什么形状？" },
+      { en: "The window is a rectangle.", zh: "窗户是长方形的。" },
+      { en: "My pencil box is square.", zh: "我的铅笔盒是正方形的。" }
+    ]
+  },
+  { id: "e2u4", name: "Unit 4: My Clothes",
+    words: [
+      W("clothes","衣服"), W("T-shirt","T恤"), W("shirt","衬衫"), W("coat","外套"),
+      W("dress","裙子"), W("skirt","短裙"), W("pants","裤子"), W("shoes","鞋子"),
+      W("hat","帽子"), W("cap","鸭舌帽"), W("scarf","围巾"), W("sock","袜子"),
+      W("wear","穿"), W("new","新的"), W("nice","漂亮的")
+    ],
+    sentences: [
+      { en: "Put on your coat.", zh: "穿上你的外套。" },
+      { en: "I like the red T-shirt.", zh: "我喜欢这件红T恤。" },
+      { en: "Whose shoes are these?", zh: "这是谁的鞋？" },
+      { en: "She is wearing a yellow dress.", zh: "她穿着一条黄色的裙子。" },
+      { en: "Take off your hat in class.", zh: "上课时摘下帽子。" }
     ]
   }
 ];
@@ -654,6 +764,51 @@ DATA.english["2下"] = [
       { en: "The dog is running.", zh: "小狗在跑。" },
       { en: "Pandas are from China.", zh: "熊猫来自中国。" }
     ]
+  },
+  { id: "e2d2", name: "Unit 2: At the Zoo",
+    words: [
+      W("zoo","动物园"), W("giraffe","长颈鹿"), W("zebra","斑马"), W("deer","鹿"),
+      W("kangaroo","袋鼠"), W("wolf","狼"), W("fox","狐狸"), W("snake","蛇"),
+      W("frog","青蛙"), W("turtle","乌龟"), W("animal","动物"), W("tail","尾巴"),
+      W("neck","脖子"), W("jump","跳"), W("run","跑")
+    ],
+    sentences: [
+      { en: "Let's go to the zoo.", zh: "我们去动物园吧。" },
+      { en: "The giraffe has a long neck.", zh: "长颈鹿有长长的脖子。" },
+      { en: "The kangaroo can jump high.", zh: "袋鼠跳得很高。" },
+      { en: "I can see a zebra.", zh: "我能看到一只斑马。" },
+      { en: "How many monkeys are there?", zh: "有多少只猴子？" }
+    ]
+  },
+  { id: "e2d3", name: "Unit 3: My House",
+    words: [
+      W("house","房子"), W("room","房间"), W("door","门"), W("window","窗户"),
+      W("bedroom","卧室"), W("kitchen","厨房"), W("bathroom","浴室"), W("living room","客厅"),
+      W("bed","床"), W("sofa","沙发"), W("TV","电视"), W("table","桌子"),
+      W("clean","干净的"), W("in","在……里"), W("on","在……上")
+    ],
+    sentences: [
+      { en: "This is my house.", zh: "这是我的家。" },
+      { en: "My bedroom is small.", zh: "我的卧室很小。" },
+      { en: "The cat is on the sofa.", zh: "猫在沙发上。" },
+      { en: "Where is the book? It's in the bag.", zh: "书在哪？在书包里。" },
+      { en: "Let's clean the kitchen.", zh: "我们来打扫厨房吧。" }
+    ]
+  },
+  { id: "e2d4", name: "Unit 4: Food I Like",
+    words: [
+      W("rice","米饭"), W("noodles","面条"), W("bread","面包"), W("egg","鸡蛋"),
+      W("milk","牛奶"), W("juice","果汁"), W("water","水"), W("meat","肉"),
+      W("chicken","鸡肉"), W("fish","鱼"), W("soup","汤"), W("hot","热的"),
+      W("cold","冷的"), W("hungry","饿的"), W("thirsty","渴的")
+    ],
+    sentences: [
+      { en: "I am hungry. I want some rice.", zh: "我饿了，我想要一些米饭。" },
+      { en: "Would you like some juice?", zh: "你想要一些果汁吗？" },
+      { en: "I like noodles for lunch.", zh: "我午餐喜欢吃面条。" },
+      { en: "The soup is hot.", zh: "这汤是热的。" },
+      { en: "Please drink some water.", zh: "请喝点水。" }
+    ]
   }
 ];
 
@@ -671,6 +826,36 @@ DATA.english["3上"] = [
       { en: "I brush my teeth every day.", zh: "我每天刷牙。" },
       { en: "Do your homework first.", zh: "先做作业。" },
       { en: "Time to go to bed.", zh: "该睡觉了。" }
+    ]
+  },
+  { id: "e3u2", name: "Unit 2: Telling Time",
+    words: [
+      W("time","时间"), W("clock","钟"), W("watch","手表"), W("hour","小时"),
+      W("minute","分钟"), W("o'clock","点钟"), W("half","半"), W("past","过"),
+      W("quarter","一刻"), W("morning","早上"), W("afternoon","下午"), W("evening","晚上"),
+      W("night","夜晚"), W("early","早的"), W("late","晚的")
+    ],
+    sentences: [
+      { en: "What time is it?", zh: "现在几点了？" },
+      { en: "It's seven o'clock.", zh: "现在七点整。" },
+      { en: "It's half past eight.", zh: "现在八点半。" },
+      { en: "I go to school in the morning.", zh: "我早上去上学。" },
+      { en: "Good night! Sleep well.", zh: "晚安！睡个好觉。" }
+    ]
+  },
+  { id: "e3u3", name: "Unit 3: My Hobbies",
+    words: [
+      W("hobby","爱好"), W("sing","唱歌"), W("dance","跳舞"), W("draw","画画"),
+      W("paint","画画"), W("swim","游泳"), W("skate","滑冰"), W("ski","滑雪"),
+      W("read","阅读"), W("music","音乐"), W("piano","钢琴"), W("violin","小提琴"),
+      W("game","游戏"), W("favorite","最喜欢的"), W("can","会")
+    ],
+    sentences: [
+      { en: "I can sing and dance.", zh: "我会唱歌也会跳舞。" },
+      { en: "What's your hobby?", zh: "你的爱好是什么？" },
+      { en: "She likes playing the piano.", zh: "她喜欢弹钢琴。" },
+      { en: "Can you swim? Yes, I can.", zh: "你会游泳吗？是的，我会。" },
+      { en: "Drawing is my favorite hobby.", zh: "画画是我最喜欢的爱好。" }
     ]
   }
 ];
@@ -691,11 +876,43 @@ DATA.english["3下"] = [
       { en: "I love snowy days.", zh: "我喜欢下雪天。" },
       { en: "It's cold outside.", zh: "外面很冷。" }
     ]
+  },
+  { id: "e3d2", name: "Unit 2: Four Seasons",
+    words: [
+      W("season","季节"), W("spring","春天"), W("summer","夏天"),
+      W("autumn","秋天"), W("fall","秋天"), W("winter","冬天"),
+      W("flower","花"), W("leaf","叶子"), W("tree","树"), W("ice","冰"),
+      W("plant","种"), W("fly","放(风筝)/飞"), W("kite","风筝"),
+      W("beach","沙滩"), W("snowman","雪人")
+    ],
+    sentences: [
+      { en: "Which season do you like?", zh: "你喜欢哪个季节？" },
+      { en: "I like spring best.", zh: "我最喜欢春天。" },
+      { en: "We fly kites in spring.", zh: "春天我们放风筝。" },
+      { en: "In winter we make snowmen.", zh: "冬天我们堆雪人。" },
+      { en: "Leaves turn yellow in autumn.", zh: "秋天树叶变黄了。" }
+    ]
+  },
+  { id: "e3d3", name: "Unit 3: Going Out",
+    words: [
+      W("park","公园"), W("zoo","动物园"), W("museum","博物馆"),
+      W("library","图书馆"), W("cinema","电影院"), W("supermarket","超市"),
+      W("hospital","医院"), W("street","街道"), W("road","路"),
+      W("bus","公共汽车"), W("car","小汽车"), W("bike","自行车"),
+      W("walk","走"), W("ride","骑"), W("by","乘")
+    ],
+    sentences: [
+      { en: "Let's go to the park.", zh: "我们去公园吧。" },
+      { en: "How do you go to school?", zh: "你怎么去上学？" },
+      { en: "I go by bus.", zh: "我坐公共汽车去。" },
+      { en: "The library is next to the park.", zh: "图书馆在公园旁边。" },
+      { en: "Don't run on the street.", zh: "不要在街上跑。" }
+    ]
   }
 ];
 
 DATA.english["4上"] = [
-  { id: "e4u1", name: "KET Unit: People & Jobs",
+  { id: "e4u1", name: "Unit 1: People & Jobs",
     words: [
       W("doctor","医生"), W("nurse","护士"), W("teacher","老师"),
       W("driver","司机"), W("farmer","农民"), W("worker","工人"),
@@ -710,11 +927,44 @@ DATA.english["4上"] = [
       { en: "The cook makes delicious food.", zh: "厨师做美味的食物。" },
       { en: "Police officers help people.", zh: "警察帮助人们。" }
     ]
+  },
+  { id: "e4u2", name: "Unit 2: Sports",
+    words: [
+      W("sport","体育"), W("football","足球"), W("basketball","篮球"),
+      W("tennis","网球"), W("baseball","棒球"), W("badminton","羽毛球"),
+      W("ping-pong","乒乓球"), W("run","跑"), W("jump","跳"),
+      W("swim","游泳"), W("ride","骑"), W("team","队"),
+      W("player","运动员"), W("win","赢"), W("lose","输")
+    ],
+    sentences: [
+      { en: "I like playing basketball.", zh: "我喜欢打篮球。" },
+      { en: "He can play football very well.", zh: "他足球踢得很好。" },
+      { en: "Let's play ping-pong after school.", zh: "放学后我们打乒乓球吧。" },
+      { en: "Our team won the game.", zh: "我们队赢了比赛。" },
+      { en: "Sports keep us healthy.", zh: "运动让我们保持健康。" }
+    ]
+  },
+  { id: "e4u3", name: "Unit 3: Months & Festivals",
+    words: [
+      W("month","月份"), W("January","一月"), W("February","二月"),
+      W("March","三月"), W("April","四月"), W("May","五月"),
+      W("June","六月"), W("birthday","生日"), W("festival","节日"),
+      W("Spring Festival","春节"), W("Christmas","圣诞节"),
+      W("Mid-Autumn","中秋"), W("Children's Day","儿童节"),
+      W("present","礼物"), W("party","聚会")
+    ],
+    sentences: [
+      { en: "When is your birthday?", zh: "你的生日是什么时候？" },
+      { en: "My birthday is in May.", zh: "我的生日在五月。" },
+      { en: "Happy New Year!", zh: "新年快乐！" },
+      { en: "Children love the Spring Festival.", zh: "孩子们喜欢春节。" },
+      { en: "I got a present from Mom.", zh: "我收到妈妈的一份礼物。" }
+    ]
   }
 ];
 
 DATA.english["4下"] = [
-  { id: "e4d1", name: "KET Unit: Food & Drinks",
+  { id: "e4d1", name: "Unit 1: Food & Drinks",
     words: [
       W("rice","米饭"), W("noodle","面条"), W("bread","面包"),
       W("milk","牛奶"), W("juice","果汁"), W("water","水"),
@@ -729,11 +979,43 @@ DATA.english["4下"] = [
       { en: "Eat more vegetables.", zh: "多吃蔬菜。" },
       { en: "Can I have some water, please?", zh: "请给我一些水好吗？" }
     ]
+  },
+  { id: "e4d2", name: "Unit 2: In the City",
+    words: [
+      W("city","城市"), W("Beijing","北京"), W("Shanghai","上海"),
+      W("park","公园"), W("square","广场"), W("street","街道"),
+      W("bank","银行"), W("post office","邮局"), W("hospital","医院"),
+      W("station","车站"), W("subway","地铁"), W("taxi","出租车"),
+      W("turn","转弯"), W("left","左边"), W("right","右边")
+    ],
+    sentences: [
+      { en: "Welcome to Beijing!", zh: "欢迎来北京！" },
+      { en: "Where is the post office?", zh: "邮局在哪里？" },
+      { en: "Turn left at the corner.", zh: "在拐角处向左转。" },
+      { en: "The subway is fast.", zh: "地铁很快。" },
+      { en: "Let's take a taxi.", zh: "我们打车吧。" }
+    ]
+  },
+  { id: "e4d3", name: "Unit 3: Shopping",
+    words: [
+      W("shop","商店"), W("store","商店"), W("buy","买"), W("sell","卖"),
+      W("money","钱"), W("yuan","元"), W("price","价格"),
+      W("cheap","便宜的"), W("expensive","贵的"), W("size","尺码"),
+      W("big","大"), W("small","小"), W("try","试"),
+      W("want","想要"), W("pay","付款")
+    ],
+    sentences: [
+      { en: "How much is it?", zh: "多少钱？" },
+      { en: "It's twenty yuan.", zh: "二十块钱。" },
+      { en: "Can I try it on?", zh: "我能试一下吗？" },
+      { en: "This T-shirt is too big.", zh: "这件T恤太大了。" },
+      { en: "I'll take it. Here's the money.", zh: "我买了，钱给你。" }
+    ]
   }
 ];
 
 DATA.english["5上"] = [
-  { id: "e5u1", name: "PET Unit: Travel",
+  { id: "e5u1", name: "Unit 1: Travel",
     words: [
       W("travel","旅行"), W("trip","旅程"), W("airport","机场"),
       W("station","车站"), W("ticket","票"), W("passport","护照"),
@@ -748,11 +1030,43 @@ DATA.english["5上"] = [
       { en: "How long is the journey?", zh: "旅程有多长？" },
       { en: "I bought a souvenir for you.", zh: "我给你买了一个纪念品。" }
     ]
+  },
+  { id: "e5u2", name: "Unit 2: My Hometown",
+    words: [
+      W("hometown","家乡"), W("country","国家"), W("village","村庄"),
+      W("mountain","山"), W("river","河"), W("lake","湖"),
+      W("sea","海"), W("forest","森林"), W("field","田地"),
+      W("beautiful","美丽的"), W("quiet","安静的"), W("busy","繁忙的"),
+      W("near","近的"), W("far","远的"), W("live","居住")
+    ],
+    sentences: [
+      { en: "I live in Beijing.", zh: "我住在北京。" },
+      { en: "My hometown is beautiful.", zh: "我的家乡很美。" },
+      { en: "There is a river near my home.", zh: "我家附近有一条河。" },
+      { en: "We climbed the mountain last Sunday.", zh: "上周日我们爬了山。" },
+      { en: "How far is it from here?", zh: "离这儿有多远？" }
+    ]
+  },
+  { id: "e5u3", name: "Unit 3: Healthy Habits",
+    words: [
+      W("healthy","健康的"), W("health","健康"), W("habit","习惯"),
+      W("exercise","锻炼"), W("vegetable","蔬菜"), W("fruit","水果"),
+      W("sleep","睡觉"), W("rest","休息"), W("clean","干净的"),
+      W("doctor","医生"), W("medicine","药"), W("ill","生病的"),
+      W("tired","累的"), W("strong","强壮的"), W("often","经常")
+    ],
+    sentences: [
+      { en: "I exercise every morning.", zh: "我每天早上锻炼。" },
+      { en: "Eat more fruit and vegetables.", zh: "多吃水果和蔬菜。" },
+      { en: "Wash your hands before meals.", zh: "饭前要洗手。" },
+      { en: "I feel tired and need a rest.", zh: "我很累，需要休息。" },
+      { en: "Good habits keep us healthy.", zh: "好习惯使我们健康。" }
+    ]
   }
 ];
 
 DATA.english["5下"] = [
-  { id: "e5d1", name: "PET Unit: Environment",
+  { id: "e5d1", name: "Unit 1: Environment",
     words: [
       W("environment","环境"), W("pollution","污染"), W("recycle","回收"),
       W("plastic","塑料"), W("waste","垃圾"), W("protect","保护"),
@@ -767,11 +1081,43 @@ DATA.english["5下"] = [
       { en: "Many animals are endangered.", zh: "许多动物处于濒危状态。" },
       { en: "Let's save the planet together.", zh: "让我们一起拯救地球。" }
     ]
+  },
+  { id: "e5d2", name: "Unit 2: My School Life",
+    words: [
+      W("subject","科目"), W("Chinese","语文"), W("math","数学"),
+      W("English","英语"), W("science","科学"), W("art","美术"),
+      W("PE","体育"), W("music","音乐"), W("history","历史"),
+      W("lesson","课"), W("library","图书馆"), W("playground","操场"),
+      W("interesting","有趣的"), W("difficult","难的"), W("easy","容易的")
+    ],
+    sentences: [
+      { en: "What's your favorite subject?", zh: "你最喜欢什么科目？" },
+      { en: "My favorite subject is English.", zh: "我最喜欢的科目是英语。" },
+      { en: "Math is interesting but a little difficult.", zh: "数学很有趣，但有点难。" },
+      { en: "We have four lessons in the morning.", zh: "上午我们有四节课。" },
+      { en: "Let's go to the playground.", zh: "我们去操场吧。" }
+    ]
+  },
+  { id: "e5d3", name: "Unit 3: Story Time",
+    words: [
+      W("story","故事"), W("read","阅读"), W("book","书"), W("page","页"),
+      W("title","题目"), W("writer","作者"), W("hero","英雄"),
+      W("queen","女王"), W("king","国王"), W("prince","王子"),
+      W("princess","公主"), W("monster","怪兽"), W("once","曾经"),
+      W("then","然后"), W("finally","最终")
+    ],
+    sentences: [
+      { en: "I like reading stories before bed.", zh: "我喜欢睡前看故事。" },
+      { en: "Once upon a time, there was a princess.", zh: "从前有一位公主。" },
+      { en: "Who is the hero of this story?", zh: "这个故事的主角是谁？" },
+      { en: "The book has 120 pages.", zh: "这本书有120页。" },
+      { en: "Finally, they lived happily ever after.", zh: "最终，他们从此过上了幸福的生活。" }
+    ]
   }
 ];
 
 DATA.english["6上"] = [
-  { id: "e6u1", name: "PET Unit: Technology",
+  { id: "e6u1", name: "Unit 1: Technology",
     words: [
       W("computer","电脑"), W("internet","互联网"), W("website","网站"),
       W("email","电子邮件"), W("password","密码"), W("download","下载"),
@@ -786,11 +1132,43 @@ DATA.english["6上"] = [
       { en: "Could you send me an email?", zh: "你可以给我发邮件吗？" },
       { en: "Which app should I download?", zh: "我应该下载哪个软件？" }
     ]
+  },
+  { id: "e6u2", name: "Unit 2: Countries & Cultures",
+    words: [
+      W("country","国家"), W("China","中国"), W("America","美国"),
+      W("England","英国"), W("Canada","加拿大"), W("Australia","澳大利亚"),
+      W("Japan","日本"), W("France","法国"), W("language","语言"),
+      W("culture","文化"), W("flag","国旗"), W("capital","首都"),
+      W("famous","著名的"), W("people","人们"), W("food","食物")
+    ],
+    sentences: [
+      { en: "I come from China.", zh: "我来自中国。" },
+      { en: "Beijing is the capital of China.", zh: "北京是中国的首都。" },
+      { en: "People in England speak English.", zh: "英国人说英语。" },
+      { en: "The Great Wall is very famous.", zh: "长城非常著名。" },
+      { en: "Different countries have different cultures.", zh: "不同的国家有不同的文化。" }
+    ]
+  },
+  { id: "e6u3", name: "Unit 3: Animals & Nature",
+    words: [
+      W("nature","自然"), W("animal","动物"), W("wild","野生的"),
+      W("forest","森林"), W("desert","沙漠"), W("river","河流"),
+      W("ocean","海洋"), W("mountain","山"), W("tree","树"),
+      W("flower","花"), W("insect","昆虫"), W("bee","蜜蜂"),
+      W("butterfly","蝴蝶"), W("dolphin","海豚"), W("whale","鲸鱼")
+    ],
+    sentences: [
+      { en: "Dolphins are smart animals.", zh: "海豚是聪明的动物。" },
+      { en: "Bees make honey from flowers.", zh: "蜜蜂用花朵酿蜜。" },
+      { en: "We should protect wild animals.", zh: "我们应该保护野生动物。" },
+      { en: "There are tall trees in the forest.", zh: "森林里有高高的树木。" },
+      { en: "Nature is full of wonders.", zh: "大自然充满了奇迹。" }
+    ]
   }
 ];
 
 DATA.english["6下"] = [
-  { id: "e6d1", name: "PET Unit: Dreams & Goals",
+  { id: "e6d1", name: "Unit 1: Dreams & Goals",
     words: [
       W("dream","梦想"), W("goal","目标"), W("future","未来"),
       W("plan","计划"), W("hope","希望"), W("succeed","成功"),
@@ -804,6 +1182,38 @@ DATA.english["6下"] = [
       { en: "Don't give up on your dreams.", zh: "不要放弃你的梦想。" },
       { en: "Believe in yourself.", zh: "相信你自己。" },
       { en: "Success needs hard work.", zh: "成功需要努力。" }
+    ]
+  },
+  { id: "e6d2", name: "Unit 2: My Middle School",
+    words: [
+      W("middle school","中学"), W("primary","小学的"), W("graduate","毕业"),
+      W("classmate","同学"), W("uniform","校服"), W("schoolbag","书包"),
+      W("textbook","课本"), W("notebook","笔记本"), W("homework","作业"),
+      W("exam","考试"), W("teacher","老师"), W("subject","科目"),
+      W("ready","准备好的"), W("nervous","紧张的"), W("excited","激动的")
+    ],
+    sentences: [
+      { en: "I'll go to middle school soon.", zh: "我快要上中学了。" },
+      { en: "I'm a little nervous but excited.", zh: "我有点紧张，但也很激动。" },
+      { en: "We'll wear school uniforms.", zh: "我们要穿校服。" },
+      { en: "I'll miss my primary school teachers.", zh: "我会想念小学老师的。" },
+      { en: "I'm ready for the new life.", zh: "我已经为新生活做好准备了。" }
+    ]
+  },
+  { id: "e6d3", name: "Unit 3: Memories & Friends",
+    words: [
+      W("memory","回忆"), W("friend","朋友"), W("friendship","友谊"),
+      W("forget","忘记"), W("remember","记得"), W("together","一起"),
+      W("laugh","笑"), W("cry","哭"), W("share","分享"),
+      W("help","帮助"), W("kind","友善的"), W("happy","快乐的"),
+      W("forever","永远"), W("photo","照片"), W("smile","微笑")
+    ],
+    sentences: [
+      { en: "We had a lot of fun together.", zh: "我们一起度过了很多快乐时光。" },
+      { en: "I'll never forget my best friend.", zh: "我永远不会忘记我最好的朋友。" },
+      { en: "Friends share everything.", zh: "朋友之间分享一切。" },
+      { en: "Let's take a photo together.", zh: "我们一起拍张照吧。" },
+      { en: "Good memories last forever.", zh: "美好的回忆永远长存。" }
     ]
   }
 ];
@@ -926,7 +1336,7 @@ DATA.math["3下"].push(
 );
 
 DATA.math["4上"].push(
-  { id: "m4u3", name: "大数的认识", range: [10000, 999999], ops: ["+", "-"], step: 10000,
+  { id: "m4u3", name: "大数的认识", range: [10, 99], ops: ["+", "-"],
     apps: [
       { text: "10 万 + 20 万 = 多少万？", expr: "10+20", answer: 30, unit: "万" },
       { text: "1 亿里有多少个万？", expr: "10000", answer: 10000, unit: "万" },
@@ -1013,7 +1423,7 @@ DATA.math["6上"].push(
 );
 
 DATA.math["6下"].push(
-  { id: "m6d3", name: "百分数（折扣与利率）", range: [10, 1000], ops: ["×"], percent: true,
+  { id: "m6d3", name: "百分数（折扣与利率）", range: [10, 200], ops: ["×"], secondRange: [2, 9], percent: true,
     apps: [
       { text: "商品原价 500，打 9 折后多少元？", expr: "500×0.9", answer: 450, unit: "元" },
       { text: "1000 元存 2 年利率 3%，利息？", expr: "1000×0.03×2", answer: 60, unit: "元" },
@@ -1135,7 +1545,7 @@ DATA.math["2下"].push(
 );
 
 DATA.math["4上"].push(
-  { id: "m4u5", name: "公顷和平方千米", range: [1, 100], ops: ["×", "÷"], secondRange: [2, 100],
+  { id: "m4u5", name: "公顷和平方千米", range: [1, 100], ops: ["×", "÷"], secondRange: [2, 12],
     apps: [
       { text: "一个公园占地 8 公顷，合多少平方米？", expr: "8×10000", answer: 80000, unit: "平方米" },
       { text: "一块地 30000 平方米，合多少公顷？", expr: "30000÷10000", answer: 3, unit: "公顷" },
@@ -10840,7 +11250,7 @@ DATA.math["3下"].push(
 );
 
 DATA.math["4上"].push(
-  { id: "m4u8", name: "亿以内数的认识", range: [10000, 999999], ops: ["+", "-"], step: 10000,
+  { id: "m4u8", name: "亿以内数的认识", range: [10, 99], ops: ["+", "-"],
     apps: [
       { text: "一万五千读作（）。答案写 15000。", expr: "15000", answer: 15000, unit: "" },
       { text: "98765 中 9 在什么位？答案 1 表示万位。", expr: "1", answer: 1, unit: "" },
@@ -10972,7 +11382,7 @@ DATA.math["6下"].push(
       { text: "甲乙合做 8 天可完成 4/5，再一起几天完成？", expr: "(1-4/5)÷(4/5÷8)", answer: 2, unit: "天" },
       { text: "一段路甲修 24 天乙 36 天，合修几天？", expr: "1÷(1/24+1/36)", answer: 14.4, unit: "天" }
     ]},
-  { id: "m6d6", name: "总复习：四则混合", range: [10, 1000], ops: ["+", "-", "×", "÷"], mixed: true,
+  { id: "m6d6", name: "总复习：四则混合", range: [10, 99], ops: ["+", "-", "×", "÷"], secondRange: [2, 12], mixed: true,
     apps: [
       { text: "(120+80)÷4×3 = ?", expr: "(120+80)÷4×3", answer: 150, unit: "" },
       { text: "560÷(40-12)×5 = ?", expr: "560÷(40-12)×5", answer: 100, unit: "" },
@@ -11340,6 +11750,1458 @@ DATA.chinese["6下"].push(
       { q: "本文阐明什么道理？", answer: "事在人为", accept: ["事在人为", "为则难易转化", "勤奋能克服困难"] },
       { q: "“则”的意思：", answer: "就", accept: ["就", "那么"] },
       { q: "“学之”指：", answer: "学习它", accept: ["学习它", "去学习", "学它"] }
+    ]}
+);
+
+/* ============================================================
+   京版英语扩充：把每学期补到 6 单元
+   每单元 15 词 + 5 句，保持京版风格
+   ============================================================ */
+
+DATA.english["1上"].push(
+  { id: "e1u5", name: "Unit 5: My Pets",
+    words: [
+      W("pet","宠物"), W("cat","小猫"), W("dog","小狗"), W("rabbit","兔子"),
+      W("fish","鱼"), W("bird","鸟"), W("hamster","仓鼠"), W("turtle","乌龟"),
+      W("name","名字"), W("cute","可爱的"), W("little","小的"), W("big","大的"),
+      W("eat","吃"), W("drink","喝"), W("run","跑")
+    ],
+    sentences: [
+      { en: "I have a little dog.", zh: "我有一只小狗。" },
+      { en: "His name is Lucky.", zh: "它的名字叫Lucky。" },
+      { en: "The cat is so cute.", zh: "这只猫真可爱。" },
+      { en: "My fish can swim.", zh: "我的鱼会游泳。" },
+      { en: "I love my pet.", zh: "我爱我的宠物。" }
+    ]
+  },
+  { id: "e1u6", name: "Unit 6: Numbers 11-20",
+    words: [
+      W("eleven","十一"), W("twelve","十二"), W("thirteen","十三"),
+      W("fourteen","十四"), W("fifteen","十五"), W("sixteen","十六"),
+      W("seventeen","十七"), W("eighteen","十八"), W("nineteen","十九"),
+      W("twenty","二十"), W("year","岁/年"), W("old","年长的"),
+      W("age","年龄"), W("class","班"), W("Grade","年级")
+    ],
+    sentences: [
+      { en: "I am seven years old.", zh: "我七岁。" },
+      { en: "There are twenty students.", zh: "这里有二十个学生。" },
+      { en: "How old are you?", zh: "你几岁了？" },
+      { en: "I'm in Grade One.", zh: "我读一年级。" },
+      { en: "Eleven plus nine is twenty.", zh: "十一加九等于二十。" }
+    ]
+  }
+);
+
+DATA.english["1下"].push(
+  { id: "e1d5", name: "Unit 5: Action Verbs",
+    words: [
+      W("run","跑"), W("jump","跳"), W("walk","走"), W("swim","游泳"),
+      W("sing","唱"), W("dance","跳舞"), W("read","读"), W("write","写"),
+      W("draw","画"), W("play","玩"), W("eat","吃"), W("drink","喝"),
+      W("sit","坐"), W("stand","站"), W("clap","拍手")
+    ],
+    sentences: [
+      { en: "I can run fast.", zh: "我能跑得很快。" },
+      { en: "Let's sing a song.", zh: "我们一起唱歌吧。" },
+      { en: "Please sit down.", zh: "请坐下。" },
+      { en: "Stand up and clap.", zh: "起立，拍拍手。" },
+      { en: "She can dance.", zh: "她会跳舞。" }
+    ]
+  },
+  { id: "e1d6", name: "Unit 6: Days of the Week",
+    words: [
+      W("Monday","星期一"), W("Tuesday","星期二"), W("Wednesday","星期三"),
+      W("Thursday","星期四"), W("Friday","星期五"), W("Saturday","星期六"),
+      W("Sunday","星期日"), W("week","星期/周"), W("day","天"),
+      W("today","今天"), W("yesterday","昨天"), W("tomorrow","明天"),
+      W("weekend","周末"), W("school","学校"), W("home","家")
+    ],
+    sentences: [
+      { en: "Today is Monday.", zh: "今天是星期一。" },
+      { en: "What day is it tomorrow?", zh: "明天星期几？" },
+      { en: "I like Sundays.", zh: "我喜欢星期天。" },
+      { en: "We go to school from Monday to Friday.", zh: "我们周一到周五去学校。" },
+      { en: "Have a nice weekend!", zh: "周末愉快！" }
+    ]
+  }
+);
+
+DATA.english["2上"].push(
+  { id: "e2u5", name: "Unit 5: My Room",
+    words: [
+      W("room","房间"), W("bed","床"), W("desk","书桌"), W("chair","椅子"),
+      W("lamp","台灯"), W("clock","钟"), W("shelf","架子"), W("door","门"),
+      W("window","窗户"), W("wall","墙"), W("floor","地板"), W("toy","玩具"),
+      W("near","靠近"), W("under","在……下面"), W("behind","在……后面")
+    ],
+    sentences: [
+      { en: "This is my room.", zh: "这是我的房间。" },
+      { en: "My bed is near the window.", zh: "我的床靠近窗户。" },
+      { en: "The toy is under the desk.", zh: "玩具在书桌下面。" },
+      { en: "I have a small lamp.", zh: "我有一盏小台灯。" },
+      { en: "Where is the clock? On the wall.", zh: "钟在哪？在墙上。" }
+    ]
+  },
+  { id: "e2u6", name: "Unit 6: Feelings",
+    words: [
+      W("happy","快乐的"), W("sad","难过的"), W("angry","生气的"),
+      W("tired","累的"), W("hungry","饿的"), W("thirsty","渴的"),
+      W("scared","害怕的"), W("excited","兴奋的"), W("bored","无聊的"),
+      W("surprised","惊讶的"), W("feel","感觉"), W("smile","微笑"),
+      W("cry","哭"), W("laugh","笑"), W("OK","好的")
+    ],
+    sentences: [
+      { en: "I'm happy today.", zh: "我今天很开心。" },
+      { en: "Are you tired?", zh: "你累了吗？" },
+      { en: "Don't be sad.", zh: "不要难过。" },
+      { en: "I'm a little hungry.", zh: "我有点饿了。" },
+      { en: "Are you OK? Yes, I'm fine.", zh: "你还好吗？是的，我很好。" }
+    ]
+  }
+);
+
+DATA.english["2下"].push(
+  { id: "e2d5", name: "Unit 5: Drinks & Meals",
+    words: [
+      W("breakfast","早餐"), W("lunch","午餐"), W("dinner","晚餐"),
+      W("tea","茶"), W("coffee","咖啡"), W("juice","果汁"),
+      W("milk","牛奶"), W("water","水"), W("cup","杯子"),
+      W("glass","玻璃杯"), W("plate","盘子"), W("bowl","碗"),
+      W("spoon","勺子"), W("hungry","饿的"), W("yummy","好吃的")
+    ],
+    sentences: [
+      { en: "I have milk for breakfast.", zh: "我早餐喝牛奶。" },
+      { en: "Would you like some tea?", zh: "你想喝点茶吗？" },
+      { en: "Lunch is ready.", zh: "午餐准备好了。" },
+      { en: "The cake is yummy.", zh: "蛋糕真好吃。" },
+      { en: "Pass me the bowl, please.", zh: "请把碗递给我。" }
+    ]
+  },
+  { id: "e2d6", name: "Unit 6: In the Park",
+    words: [
+      W("park","公园"), W("tree","树"), W("flower","花"), W("grass","草"),
+      W("bench","长椅"), W("kite","风筝"), W("ball","球"), W("swing","秋千"),
+      W("slide","滑梯"), W("bike","自行车"), W("run","跑"), W("fly","放飞"),
+      W("happy","开心"), W("nice","美好的"), W("Sunday","星期日")
+    ],
+    sentences: [
+      { en: "Let's go to the park.", zh: "我们去公园吧。" },
+      { en: "The flowers are beautiful.", zh: "花儿真美。" },
+      { en: "I can ride a bike.", zh: "我会骑自行车。" },
+      { en: "Look! He is flying a kite.", zh: "看！他在放风筝。" },
+      { en: "I love sunny Sundays.", zh: "我喜欢阳光明媚的星期天。" }
+    ]
+  }
+);
+
+DATA.english["3上"].push(
+  { id: "e3u4", name: "Unit 4: At School",
+    words: [
+      W("subject","科目"), W("Chinese","语文"), W("math","数学"),
+      W("English","英语"), W("art","美术"), W("music","音乐"),
+      W("PE","体育"), W("lesson","课"), W("class","班级/课"),
+      W("library","图书馆"), W("gym","体育馆"), W("playground","操场"),
+      W("teacher","老师"), W("learn","学习"), W("favorite","最喜欢的")
+    ],
+    sentences: [
+      { en: "What's your favorite subject?", zh: "你最喜欢的科目是什么？" },
+      { en: "I like English very much.", zh: "我非常喜欢英语。" },
+      { en: "We have four lessons in the morning.", zh: "我们上午有四节课。" },
+      { en: "The library is on the second floor.", zh: "图书馆在二楼。" },
+      { en: "Let's play on the playground.", zh: "我们去操场玩吧。" }
+    ]
+  },
+  { id: "e3u5", name: "Unit 5: My Family Members",
+    words: [
+      W("uncle","叔叔"), W("aunt","阿姨"), W("cousin","表/堂兄弟姐妹"),
+      W("son","儿子"), W("daughter","女儿"), W("parent","父母"),
+      W("grandparent","祖父母"), W("husband","丈夫"), W("wife","妻子"),
+      W("family","家庭"), W("young","年轻的"), W("old","年长的"),
+      W("kind","善良的"), W("busy","忙的"), W("love","爱")
+    ],
+    sentences: [
+      { en: "My uncle is a doctor.", zh: "我叔叔是医生。" },
+      { en: "I love my grandparents.", zh: "我爱我的祖父母。" },
+      { en: "She has two cousins.", zh: "她有两个表兄弟。" },
+      { en: "My parents are very busy.", zh: "我父母很忙。" },
+      { en: "We are a big happy family.", zh: "我们是一个幸福的大家庭。" }
+    ]
+  },
+  { id: "e3u6", name: "Unit 6: Big Numbers",
+    words: [
+      W("thirty","三十"), W("forty","四十"), W("fifty","五十"),
+      W("sixty","六十"), W("seventy","七十"), W("eighty","八十"),
+      W("ninety","九十"), W("hundred","百"), W("number","数字"),
+      W("add","加"), W("count","数"), W("yuan","元"),
+      W("phone","电话"), W("first","第一"), W("last","最后")
+    ],
+    sentences: [
+      { en: "My phone number is 138 8888 8888.", zh: "我的电话号码是138 8888 8888。" },
+      { en: "There are one hundred students.", zh: "有一百名学生。" },
+      { en: "It costs fifty yuan.", zh: "它要五十元。" },
+      { en: "Count from one to one hundred.", zh: "从1数到100。" },
+      { en: "She is the first in line.", zh: "她排在第一个。" }
+    ]
+  }
+);
+
+DATA.english["3下"].push(
+  { id: "e3d4", name: "Unit 4: Holidays",
+    words: [
+      W("holiday","假期"), W("festival","节日"), W("Spring Festival","春节"),
+      W("Christmas","圣诞节"), W("New Year","新年"), W("birthday","生日"),
+      W("present","礼物"), W("card","卡片"), W("celebrate","庆祝"),
+      W("happy","快乐的"), W("party","聚会"), W("invite","邀请"),
+      W("dumpling","饺子"), W("firework","烟花"), W("family","家人")
+    ],
+    sentences: [
+      { en: "Happy Spring Festival!", zh: "春节快乐！" },
+      { en: "We eat dumplings on New Year's Eve.", zh: "除夕夜我们吃饺子。" },
+      { en: "I'll invite my friends to my party.", zh: "我会邀请我的朋友们来聚会。" },
+      { en: "Christmas is in December.", zh: "圣诞节在12月。" },
+      { en: "Here is a present for you.", zh: "这是给你的礼物。" }
+    ]
+  },
+  { id: "e3d5", name: "Unit 5: At the Restaurant",
+    words: [
+      W("restaurant","餐厅"), W("menu","菜单"), W("order","点餐"),
+      W("waiter","服务员"), W("waitress","女服务员"), W("fork","叉子"),
+      W("knife","刀"), W("napkin","餐巾"), W("dish","菜"),
+      W("noodles","面条"), W("soup","汤"), W("salad","沙拉"),
+      W("delicious","美味的"), W("bill","账单"), W("thank","谢谢")
+    ],
+    sentences: [
+      { en: "Can I see the menu, please?", zh: "请给我看一下菜单。" },
+      { en: "I'd like a bowl of noodles.", zh: "我想要一碗面条。" },
+      { en: "The soup is delicious.", zh: "这汤很好喝。" },
+      { en: "Excuse me, the bill, please.", zh: "请买单。" },
+      { en: "Thank you for your service.", zh: "谢谢你的服务。" }
+    ]
+  },
+  { id: "e3d6", name: "Unit 6: Music & Songs",
+    words: [
+      W("song","歌曲"), W("music","音乐"), W("sing","唱"),
+      W("piano","钢琴"), W("guitar","吉他"), W("drum","鼓"),
+      W("violin","小提琴"), W("listen","听"), W("loud","大声的"),
+      W("quiet","安静的"), W("rhythm","节奏"), W("voice","嗓音"),
+      W("favorite","最喜欢的"), W("dance","跳舞"), W("happy","欢快的")
+    ],
+    sentences: [
+      { en: "I love listening to music.", zh: "我喜欢听音乐。" },
+      { en: "Can you play the piano?", zh: "你会弹钢琴吗？" },
+      { en: "She has a beautiful voice.", zh: "她有一副好嗓子。" },
+      { en: "Let's sing a happy song.", zh: "我们一起唱首欢快的歌。" },
+      { en: "The music is too loud.", zh: "音乐声太大了。" }
+    ]
+  }
+);
+
+DATA.english["4上"].push(
+  { id: "e4u4", name: "Unit 4: Asking the Way",
+    words: [
+      W("way","路"), W("left","左"), W("right","右"), W("straight","直走"),
+      W("turn","转弯"), W("corner","拐角"), W("crossing","十字路口"),
+      W("light","灯"), W("bus stop","公交车站"), W("near","近"),
+      W("far","远"), W("between","在……之间"), W("opposite","对面"),
+      W("map","地图"), W("excuse","打扰")
+    ],
+    sentences: [
+      { en: "Excuse me, where is the bank?", zh: "打扰一下，银行在哪里？" },
+      { en: "Go straight and turn right.", zh: "直走然后向右转。" },
+      { en: "It's next to the bus stop.", zh: "就在公交车站旁边。" },
+      { en: "How far is it from here?", zh: "离这儿有多远？" },
+      { en: "Thank you for your help.", zh: "谢谢你的帮助。" }
+    ]
+  },
+  { id: "e4u5", name: "Unit 5: Past Activities",
+    words: [
+      W("yesterday","昨天"), W("last","上一个"), W("ago","以前"),
+      W("went","去（过去式）"), W("saw","看见（过去式）"),
+      W("had","有（过去式）"), W("did","做（过去式）"),
+      W("played","玩过"), W("watched","看过"), W("visited","拜访过"),
+      W("morning","早上"), W("afternoon","下午"), W("evening","晚上"),
+      W("weekend","周末"), W("fun","有趣的")
+    ],
+    sentences: [
+      { en: "I went to the park yesterday.", zh: "我昨天去了公园。" },
+      { en: "What did you do last weekend?", zh: "你上周末做什么了？" },
+      { en: "We watched a movie.", zh: "我们看了一部电影。" },
+      { en: "I visited my grandma last Sunday.", zh: "我上周日去看望了我奶奶。" },
+      { en: "It was so much fun.", zh: "真的太好玩了。" }
+    ]
+  },
+  { id: "e4u6", name: "Unit 6: At the Library",
+    words: [
+      W("library","图书馆"), W("book","书"), W("read","读"),
+      W("borrow","借"), W("return","归还"), W("quiet","安静"),
+      W("card","卡片"), W("page","页"), W("story","故事"),
+      W("magazine","杂志"), W("newspaper","报纸"), W("dictionary","字典"),
+      W("interesting","有趣的"), W("rule","规则"), W("keep","保持")
+    ],
+    sentences: [
+      { en: "Please keep quiet in the library.", zh: "在图书馆请保持安静。" },
+      { en: "I'd like to borrow this book.", zh: "我想借这本书。" },
+      { en: "When should I return it?", zh: "什么时候应该还书？" },
+      { en: "This story is very interesting.", zh: "这个故事很有趣。" },
+      { en: "Reading is a good habit.", zh: "阅读是一个好习惯。" }
+    ]
+  }
+);
+
+DATA.english["4下"].push(
+  { id: "e4d4", name: "Unit 4: Helping at Home",
+    words: [
+      W("help","帮助"), W("clean","打扫"), W("wash","洗"),
+      W("cook","做饭"), W("sweep","扫"), W("water","浇"),
+      W("plant","植物"), W("dish","盘子"), W("clothes","衣服"),
+      W("floor","地板"), W("kitchen","厨房"), W("garden","花园"),
+      W("homework","家务"), W("often","经常"), W("always","总是")
+    ],
+    sentences: [
+      { en: "I often help my mother at home.", zh: "我经常在家帮妈妈。" },
+      { en: "Can you wash the dishes?", zh: "你能洗碗吗？" },
+      { en: "I'm cleaning my room now.", zh: "我现在正在打扫我的房间。" },
+      { en: "Dad is cooking dinner.", zh: "爸爸正在做晚饭。" },
+      { en: "Let's water the flowers together.", zh: "我们一起浇花吧。" }
+    ]
+  },
+  { id: "e4d5", name: "Unit 5: Making a Plan",
+    words: [
+      W("plan","计划"), W("will","将要"), W("tomorrow","明天"),
+      W("next","下一个"), W("trip","旅行"), W("visit","参观"),
+      W("museum","博物馆"), W("zoo","动物园"), W("together","一起"),
+      W("time","时间"), W("place","地点"), W("weather","天气"),
+      W("idea","主意"), W("great","太棒了"), W("of course","当然")
+    ],
+    sentences: [
+      { en: "What will you do tomorrow?", zh: "你明天要做什么？" },
+      { en: "I'll visit the museum with my dad.", zh: "我要和爸爸一起去博物馆。" },
+      { en: "Sounds great! Can I join you?", zh: "听起来不错！我可以加入吗？" },
+      { en: "Of course! Let's meet at nine.", zh: "当然可以！我们九点见。" },
+      { en: "Don't forget to check the weather.", zh: "别忘了看看天气。" }
+    ]
+  },
+  { id: "e4d6", name: "Unit 6: My Birthday Party",
+    words: [
+      W("birthday","生日"), W("party","聚会"), W("cake","蛋糕"),
+      W("candle","蜡烛"), W("gift","礼物"), W("wish","愿望"),
+      W("balloon","气球"), W("invite","邀请"), W("guest","客人"),
+      W("sing","唱"), W("blow","吹"), W("share","分享"),
+      W("ready","准备好"), W("special","特别的"), W("forget","忘记")
+    ],
+    sentences: [
+      { en: "Today is my birthday.", zh: "今天是我的生日。" },
+      { en: "Welcome to my party!", zh: "欢迎来我的聚会！" },
+      { en: "Let's blow out the candles.", zh: "我们一起吹蜡烛吧。" },
+      { en: "Make a wish before you blow.", zh: "吹之前许个愿。" },
+      { en: "Thank you for the lovely gift.", zh: "谢谢你的精美礼物。" }
+    ]
+  }
+);
+
+DATA.english["5上"].push(
+  { id: "e5u4", name: "Unit 4: At the Hospital",
+    words: [
+      W("hospital","医院"), W("doctor","医生"), W("nurse","护士"),
+      W("patient","病人"), W("medicine","药"), W("ill","生病的"),
+      W("hurt","受伤"), W("headache","头痛"), W("fever","发烧"),
+      W("cough","咳嗽"), W("rest","休息"), W("temperature","体温"),
+      W("better","更好"), W("worry","担心"), W("careful","小心的")
+    ],
+    sentences: [
+      { en: "I have a bad cough.", zh: "我咳嗽得很厉害。" },
+      { en: "The doctor checked my temperature.", zh: "医生给我量了体温。" },
+      { en: "Take this medicine three times a day.", zh: "这药一天吃三次。" },
+      { en: "You should drink more water and rest.", zh: "你应该多喝水多休息。" },
+      { en: "Don't worry, you'll get better soon.", zh: "别担心，你很快就会好起来的。" }
+    ]
+  },
+  { id: "e5u5", name: "Unit 5: Free Time",
+    words: [
+      W("free","空闲的"), W("hobby","爱好"), W("collect","收集"),
+      W("stamp","邮票"), W("photo","照片"), W("movie","电影"),
+      W("hike","徒步"), W("camp","露营"), W("fish","钓鱼"),
+      W("paint","画画"), W("knit","编织"), W("magazine","杂志"),
+      W("relax","放松"), W("enjoy","享受"), W("usually","通常")
+    ],
+    sentences: [
+      { en: "What do you do in your free time?", zh: "空闲时间你做什么？" },
+      { en: "I enjoy collecting stamps.", zh: "我喜欢收集邮票。" },
+      { en: "We usually go hiking on weekends.", zh: "我们周末通常去远足。" },
+      { en: "She loves painting and reading.", zh: "她喜欢画画和阅读。" },
+      { en: "Free time helps me relax.", zh: "空闲时间帮我放松。" }
+    ]
+  },
+  { id: "e5u6", name: "Unit 6: Weekend Plans",
+    words: [
+      W("weekend","周末"), W("plan","计划"), W("Saturday","星期六"),
+      W("Sunday","星期日"), W("morning","早上"), W("afternoon","下午"),
+      W("evening","晚上"), W("shopping","购物"), W("picnic","野餐"),
+      W("party","聚会"), W("invite","邀请"), W("join","加入"),
+      W("busy","忙的"), W("free","空闲"), W("maybe","也许")
+    ],
+    sentences: [
+      { en: "What are your plans for the weekend?", zh: "你周末有什么计划？" },
+      { en: "We'll have a picnic in the park.", zh: "我们要在公园野餐。" },
+      { en: "Would you like to join us?", zh: "你想加入我们吗？" },
+      { en: "Sorry, I'm busy on Saturday.", zh: "抱歉，我周六很忙。" },
+      { en: "Maybe next time. Have fun!", zh: "也许下次吧。玩得开心！" }
+    ]
+  }
+);
+
+DATA.english["5下"].push(
+  { id: "e5d4", name: "Unit 4: Family Stories",
+    words: [
+      W("grandfather","祖父"), W("grandmother","祖母"), W("childhood","童年"),
+      W("memory","记忆"), W("story","故事"), W("village","村庄"),
+      W("old days","过去的日子"), W("young","年轻"), W("photo","照片"),
+      W("album","相册"), W("remember","记得"), W("smile","微笑"),
+      W("share","分享"), W("listen","听"), W("interesting","有趣的")
+    ],
+    sentences: [
+      { en: "Grandpa often tells me stories.", zh: "爷爷经常给我讲故事。" },
+      { en: "He grew up in a small village.", zh: "他在一个小村庄长大。" },
+      { en: "Look at this old family photo.", zh: "看这张老家庭照片。" },
+      { en: "Childhood memories are precious.", zh: "童年的回忆很珍贵。" },
+      { en: "I love listening to her stories.", zh: "我喜欢听她讲故事。" }
+    ]
+  },
+  { id: "e5d5", name: "Unit 5: Asking for Help",
+    words: [
+      W("help","帮助"), W("please","请"), W("could","能"),
+      W("favor","帮忙"), W("problem","问题"), W("trouble","麻烦"),
+      W("solve","解决"), W("answer","答案"), W("question","问题"),
+      W("kind","友善"), W("polite","礼貌的"), W("thank","谢谢"),
+      W("welcome","不客气"), W("sure","当然"), W("of course","当然")
+    ],
+    sentences: [
+      { en: "Could you do me a favor?", zh: "你能帮我个忙吗？" },
+      { en: "Sure, what's the problem?", zh: "当然，什么问题？" },
+      { en: "I can't solve this math question.", zh: "我解不出这道数学题。" },
+      { en: "Let me help you with it.", zh: "我来帮你。" },
+      { en: "Thanks a lot. You're so kind.", zh: "非常感谢。你真好心。" }
+    ]
+  },
+  { id: "e5d6", name: "Unit 6: Sports Day",
+    words: [
+      W("sports day","运动会"), W("race","比赛"), W("run","跑"),
+      W("jump","跳"), W("relay","接力"), W("winner","胜利者"),
+      W("champion","冠军"), W("team","队"), W("cheer","欢呼"),
+      W("medal","奖牌"), W("proud","骄傲的"), W("strong","强壮的"),
+      W("compete","竞争"), W("try","尝试"), W("best","最好")
+    ],
+    sentences: [
+      { en: "Our sports day is next Friday.", zh: "我们的运动会在下周五。" },
+      { en: "I'll join the relay race.", zh: "我要参加接力赛。" },
+      { en: "Cheer for our team!", zh: "为我们的队伍加油！" },
+      { en: "He won a gold medal.", zh: "他获得了一枚金牌。" },
+      { en: "Just try your best.", zh: "尽你最大的努力就行。" }
+    ]
+  }
+);
+
+DATA.english["6上"].push(
+  { id: "e6u4", name: "Unit 4: Famous People",
+    words: [
+      W("famous","著名的"), W("scientist","科学家"), W("writer","作家"),
+      W("artist","艺术家"), W("inventor","发明家"), W("hero","英雄"),
+      W("leader","领袖"), W("president","总统"), W("invent","发明"),
+      W("discover","发现"), W("create","创作"), W("admire","钦佩"),
+      W("achievement","成就"), W("history","历史"), W("respect","尊重")
+    ],
+    sentences: [
+      { en: "Einstein was a famous scientist.", zh: "爱因斯坦是位著名的科学家。" },
+      { en: "He discovered the theory of relativity.", zh: "他发现了相对论。" },
+      { en: "I admire her great achievements.", zh: "我钦佩她的伟大成就。" },
+      { en: "Who is your hero?", zh: "你的英雄是谁？" },
+      { en: "We should respect great people.", zh: "我们应该尊重伟人。" }
+    ]
+  },
+  { id: "e6u5", name: "Unit 5: Healthy Living",
+    words: [
+      W("healthy","健康的"), W("exercise","锻炼"), W("balanced","均衡的"),
+      W("diet","饮食"), W("vitamin","维生素"), W("calorie","卡路里"),
+      W("avoid","避免"), W("junk food","垃圾食品"), W("sleep","睡眠"),
+      W("stress","压力"), W("smile","微笑"), W("fresh","新鲜的"),
+      W("active","活跃的"), W("lifestyle","生活方式"), W("habit","习惯")
+    ],
+    sentences: [
+      { en: "Exercise is good for our health.", zh: "锻炼对健康有好处。" },
+      { en: "Eat a balanced diet every day.", zh: "每天均衡饮食。" },
+      { en: "Avoid too much junk food.", zh: "避免吃太多垃圾食品。" },
+      { en: "Enough sleep keeps you fresh.", zh: "充足的睡眠让你保持精神。" },
+      { en: "A healthy lifestyle starts with good habits.", zh: "健康的生活方式始于好习惯。" }
+    ]
+  },
+  { id: "e6u6", name: "Unit 6: Comparing Things",
+    words: [
+      W("bigger","更大的"), W("smaller","更小的"), W("taller","更高的"),
+      W("shorter","更矮的"), W("longer","更长的"), W("faster","更快的"),
+      W("slower","更慢的"), W("better","更好的"), W("worse","更差的"),
+      W("biggest","最大的"), W("tallest","最高的"), W("best","最好的"),
+      W("than","比"), W("most","最"), W("compare","比较")
+    ],
+    sentences: [
+      { en: "An elephant is bigger than a dog.", zh: "大象比狗大。" },
+      { en: "Tom is taller than Jack.", zh: "汤姆比杰克高。" },
+      { en: "This is the best book of all.", zh: "这是所有书中最好的一本。" },
+      { en: "Beijing is one of the biggest cities.", zh: "北京是最大的城市之一。" },
+      { en: "Which season do you like best?", zh: "你最喜欢哪个季节？" }
+    ]
+  }
+);
+
+DATA.english["6下"].push(
+  { id: "e6d4", name: "Unit 4: Saying Goodbye",
+    words: [
+      W("goodbye","再见"), W("graduate","毕业"), W("graduation","毕业典礼"),
+      W("miss","想念"), W("remember","记得"), W("forever","永远"),
+      W("teacher","老师"), W("classmate","同学"), W("school","学校"),
+      W("thank","感谢"), W("memory","回忆"), W("photo","照片"),
+      W("keep","保持"), W("touch","联系"), W("future","未来")
+    ],
+    sentences: [
+      { en: "We'll graduate from primary school soon.", zh: "我们快从小学毕业了。" },
+      { en: "I'll miss all my teachers.", zh: "我会想念所有的老师。" },
+      { en: "Let's keep in touch.", zh: "让我们保持联系。" },
+      { en: "Thank you for everything, teacher.", zh: "谢谢您所做的一切，老师。" },
+      { en: "We'll remember our school days forever.", zh: "我们会永远记得校园时光。" }
+    ]
+  },
+  { id: "e6d5", name: "Unit 5: Past & Future",
+    words: [
+      W("past","过去"), W("present","现在"), W("future","未来"),
+      W("change","改变"), W("technology","科技"), W("life","生活"),
+      W("compare","比较"), W("now","现在"), W("then","那时"),
+      W("modern","现代的"), W("ancient","古代的"), W("imagine","想象"),
+      W("hope","希望"), W("wonder","好奇"), W("amazing","令人惊叹的")
+    ],
+    sentences: [
+      { en: "Life is very different now.", zh: "现在的生活非常不同。" },
+      { en: "Imagine the world fifty years ago.", zh: "想象一下五十年前的世界。" },
+      { en: "Technology has changed our lives a lot.", zh: "科技极大地改变了我们的生活。" },
+      { en: "What will the future be like?", zh: "未来会是什么样子？" },
+      { en: "I hope the future will be even better.", zh: "我希望未来会更好。" }
+    ]
+  },
+  { id: "e6d6", name: "Unit 6: Talents & Performances",
+    words: [
+      W("talent","才能"), W("show","表演"), W("perform","演出"),
+      W("stage","舞台"), W("audience","观众"), W("dance","跳舞"),
+      W("sing","唱歌"), W("act","表演"), W("magic","魔术"),
+      W("instrument","乐器"), W("practice","练习"), W("confident","自信的"),
+      W("clap","拍手"), W("applause","掌声"), W("amazing","令人惊叹的")
+    ],
+    sentences: [
+      { en: "We'll have a talent show next week.", zh: "我们下周有一场才艺秀。" },
+      { en: "She'll perform a magic trick.", zh: "她要表演一个魔术。" },
+      { en: "Practice makes perfect.", zh: "熟能生巧。" },
+      { en: "Be confident on the stage.", zh: "在台上要自信。" },
+      { en: "The audience gave them a big applause.", zh: "观众报以热烈的掌声。" }
+    ]
+  }
+);
+
+/* ============================================================
+   数学补充：6 年级再加综合实践 / 总复习
+   ============================================================ */
+DATA.math["6上"].push(
+  { id: "m6u_zh1", name: "圆与百分数综合应用", range: [10, 100], ops: ["×", "÷"], percent: true,
+    apps: [
+      { text: "一个圆形花坛半径 4 米，扩大后半径增加 25%。新半径多少米？", expr: "4×(1+0.25)", answer: 5, unit: "米" },
+      { text: "圆形水池半径 5 米。圆周长多少米？（π取3.14）", expr: "2×3.14×5", answer: 31.4, unit: "米" },
+      { text: "圆面积公式：S=πr²，半径 6 厘米，面积多少？", expr: "3.14×6×6", answer: 113.04, unit: "平方厘米" },
+      { text: "商店打 7 折后售价 350 元。原价多少？", expr: "350÷0.7", answer: 500, unit: "元" },
+      { text: "一种商品涨价 20%，原价 80 元。现价多少？", expr: "80×(1+0.2)", answer: 96, unit: "元" }
+    ]},
+  { id: "m6u_zh2", name: "本学期整理与复习", range: [10, 200], ops: ["+", "-", "×", "÷"], mixed: true, secondRange: [2, 12],
+    apps: [
+      { text: "一袋面 25 千克，先用去 2/5，又用去 6 千克。还剩多少？", expr: "25-25×2/5-6", answer: 9, unit: "千克" },
+      { text: "果园里苹果树和梨树的比是 5:3，共 96 棵。苹果树多少棵？", expr: "96×5÷8", answer: 60, unit: "棵" },
+      { text: "六年级有男生 120 人，比女生多 20%。女生多少人？", expr: "120÷(1+0.2)", answer: 100, unit: "人" },
+      { text: "圆形钟面直径 30 cm。钟面面积？", expr: "3.14×15×15", answer: 706.5, unit: "平方厘米" },
+      { text: "一根绳子用去 3/8，剩下的比用去的多 10 米。绳子原长？", expr: "10÷(1-3/8-3/8)", answer: 40, unit: "米" }
+    ]}
+);
+
+DATA.math["6下"].push(
+  { id: "m6d_zh1", name: "百分数（二）综合应用", range: [10, 200], ops: ["×", "÷"], percent: true,
+    apps: [
+      { text: "一件商品先涨价 20% 再降价 20%，原价 100 元。现价多少？", expr: "100×1.2×0.8", answer: 96, unit: "元" },
+      { text: "本金 5000 元存 2 年，年利率 3.5%。到期利息多少？", expr: "5000×0.035×2", answer: 350, unit: "元" },
+      { text: "六年级共 240 人，及格率为 95%。及格人数？", expr: "240×0.95", answer: 228, unit: "人" },
+      { text: "服装店打 8 折出售，售价 240 元。原价多少？", expr: "240÷0.8", answer: 300, unit: "元" },
+      { text: "一种盐水含盐率 20%，水 80 克。盐多少克？", expr: "80×0.2÷0.8", answer: 20, unit: "克" }
+    ]},
+  { id: "m6d_zh2", name: "总复习：图形与几何", range: [1, 50], ops: ["×", "÷"], pi: true,
+    apps: [
+      { text: "正方体棱长 6 cm。表面积多少？", expr: "6×6×6", answer: 216, unit: "平方厘米" },
+      { text: "长方体长 8、宽 5、高 4 厘米。体积？", expr: "8×5×4", answer: 160, unit: "立方厘米" },
+      { text: "圆柱底面积 50 平方厘米，高 12 厘米。体积？", expr: "50×12", answer: 600, unit: "立方厘米" },
+      { text: "圆锥底面积 30、高 9。体积？", expr: "30×9÷3", answer: 90, unit: "立方厘米" },
+      { text: "梯形上底 6、下底 10、高 4 厘米。面积？", expr: "(6+10)×4÷2", answer: 32, unit: "平方厘米" }
+    ]}
+);
+
+/* ============================================================
+   语文补充：3上 与 6上 再加古诗 / 课文巩固
+   ============================================================ */
+DATA.chinese["3上"].push(
+  { id: "c3u_add1", name: "古诗：《菊花》", type: "gushi",
+    poem: { title: "菊花", author: "元稹", lines: ["秋丛绕舍似陶家，", "遍绕篱边日渐斜。", "不是花中偏爱菊，", "此花开尽更无花。"] },
+    items: [
+      { q: "《菊花》作者：", correct: "元稹", options: ["元稹", "王维", "白居易", "杜牧"] },
+      { q: "诗中“陶家”指：", correct: "陶渊明家", options: ["陶渊明家", "做陶器的人家", "姓陶的人家", "陶土做的房子"] },
+      { q: "“此花开尽更无花”的“更”意思是：", correct: "再", options: ["再", "更加", "替换", "改变"] },
+      { q: "诗人偏爱菊花是因为：", correct: "菊花开后再无花", options: ["菊花开后再无花", "颜色最美", "最便宜", "花期最早"] },
+      { q: "诗描写的季节：", correct: "秋", options: ["春", "夏", "秋", "冬"] }
+    ]
+  },
+  { id: "c3u_add2", name: "古诗：《浪淘沙》(刘禹锡)", type: "gushi",
+    poem: { title: "浪淘沙", author: "刘禹锡", lines: ["九曲黄河万里沙，", "浪淘风簸自天涯。", "如今直上银河去，", "同到牵牛织女家。"] },
+    items: [
+      { q: "《浪淘沙》作者：", correct: "刘禹锡", options: ["刘禹锡", "李白", "李贺", "苏轼"] },
+      { q: "“九曲”形容黄河：", correct: "弯曲多", options: ["弯曲多", "九条河", "深九尺", "走九天"] },
+      { q: "“浪淘风簸”意思是：", correct: "波浪冲刷、风浪颠簸", options: ["波浪冲刷、风浪颠簸", "下雨打雷", "山崩地裂", "风平浪静"] },
+      { q: "“牵牛织女”指：", correct: "传说中的牛郎织女", options: ["传说中的牛郎织女", "种田人和织布人", "天上的星座", "牛和女子"] },
+      { q: "全诗体现诗人怎样的胸怀？", correct: "想象奇特、气势宏大", options: ["想象奇特、气势宏大", "孤独愁苦", "凄凉悲伤", "平凡朴素"] }
+    ]
+  },
+  { id: "c3u_add3", name: "课文巩固：《不懂就要问》", type: "zishi",
+    items: [
+      { q: "课文主人公是：", correct: "孙中山", options: ["孙中山", "鲁迅", "毛泽东", "周恩来"] },
+      { q: "孙中山小时候在哪里读书？", correct: "私塾", options: ["私塾", "公立学校", "大学", "家里"] },
+      { q: "他遇到不懂的地方就：", correct: "向先生提问", options: ["向先生提问", "假装明白", "记下不问", "回家再说"] },
+      { q: "“糊里糊涂”的意思是：", correct: "不明白", options: ["不明白", "很聪明", "很专心", "很乖巧"] },
+      { q: "课文告诉我们：", correct: "学问学问，不懂就要问", options: ["学问学问，不懂就要问", "上课不能说话", "老师永远是对的", "读书不必动脑"] },
+      { q: "“先生”在课文里指：", correct: "老师", options: ["老师", "丈夫", "男士", "长辈"] }
+    ]
+  },
+  { id: "c3u_add5", name: "古诗：《小儿垂钓》", type: "gushi",
+    poem: { title: "小儿垂钓", author: "胡令能", lines: ["蓬头稚子学垂纶，", "侧坐莓苔草映身。", "路人借问遥招手，", "怕得鱼惊不应人。"] },
+    items: [
+      { q: "《小儿垂钓》作者：", correct: "胡令能", options: ["胡令能", "贺知章", "袁枚", "杜牧"] },
+      { q: "“蓬头稚子”指的是：", correct: "头发蓬乱的小孩", options: ["头发蓬乱的小孩", "穿蓬草衣的人", "蓬莱来的孩子", "头戴帽子的孩子"] },
+      { q: "“垂纶”意思是：", correct: "钓鱼", options: ["钓鱼", "织布", "采草", "捕鸟"] },
+      { q: "小孩为什么“遥招手”不出声？", correct: "怕惊跑鱼", options: ["怕惊跑鱼", "认识路人", "不会说话", "嗓子哑了"] },
+      { q: "“莓苔”指：", correct: "青苔", options: ["青苔", "莓子", "茅草", "树叶"] },
+      { q: "全诗表现的是：", correct: "小孩钓鱼的天真专注", options: ["小孩钓鱼的天真专注", "渔夫的辛苦", "路人的热情", "山林的幽静"] }
+    ]
+  },
+  { id: "c3u_add4", name: "课文巩固：《灰雀》", type: "zishi",
+    items: [
+      { q: "《灰雀》中喜爱灰雀的人物是：", correct: "列宁", options: ["列宁", "高尔基", "鲁迅", "斯大林"] },
+      { q: "灰雀失踪是因为：", correct: "被男孩捉走", options: ["被男孩捉走", "飞走了", "被猫吃了", "病死了"] },
+      { q: "男孩最后是否把灰雀放回？", correct: "放回了", options: ["放回了", "藏起来了", "送给了列宁", "卖掉了"] },
+      { q: "列宁对男孩的态度是：", correct: "尊重和信任", options: ["尊重和信任", "严厉批评", "命令对方", "假装不知"] },
+      { q: "课文告诉我们：", correct: "要诚实和爱护小动物", options: ["要诚实和爱护小动物", "不要养鸟", "要听老师的话", "要懂礼貌"] },
+      { q: "“婉转地歌唱”形容灰雀的：", correct: "叫声好听", options: ["叫声好听", "羽毛漂亮", "动作灵活", "颜色鲜艳"] }
+    ]
+  }
+);
+
+DATA.chinese["6上"].push(
+  { id: "c6u_add1", name: "课文巩固：《丁香结》", type: "zishi",
+    items: [
+      { q: "《丁香结》作者：", correct: "宗璞", options: ["宗璞", "老舍", "鲁迅", "巴金"] },
+      { q: "“丁香结”比喻的是：", correct: "人生中的愁绪/烦恼", options: ["人生中的愁绪/烦恼", "美好的相聚", "动听的音乐", "甜蜜的回忆"] },
+      { q: "课文写丁香花的颜色主要是：", correct: "白色和紫色", options: ["白色和紫色", "红色和黄色", "粉色和橘色", "黑色和金色"] },
+      { q: "文章表达的人生态度是：", correct: "坦然面对烦恼，热爱生活", options: ["坦然面对烦恼，热爱生活", "拒绝任何烦恼", "悲观伤感", "事事完美"] },
+      { q: "“参差”一词的意思：", correct: "长短或高低不齐", options: ["长短或高低不齐", "整整齐齐", "形状相同", "颜色一致"] },
+      { q: "文中提到的古诗句多围绕：", correct: "愁与丁香", options: ["愁与丁香", "山河壮丽", "战争胜利", "节日喜庆"] }
+    ]
+  },
+  { id: "c6u_add2", name: "课文巩固：《狼牙山五壮士》", type: "zishi",
+    items: [
+      { q: "“狼牙山五壮士”一共有几位？", correct: "5位", options: ["5位", "3位", "7位", "10位"] },
+      { q: "五壮士最后选择：", correct: "跳下悬崖", options: ["跳下悬崖", "被俘虏", "突围回部队", "投降"] },
+      { q: "五壮士保护的是：", correct: "群众和连队主力", options: ["群众和连队主力", "粮食仓库", "军用车辆", "首长"] },
+      { q: "课文表现了战士怎样的精神？", correct: "英勇顽强、视死如归", options: ["英勇顽强、视死如归", "贪生怕死", "胆小怕事", "好高骛远"] },
+      { q: "“屹立”意思是：", correct: "稳定地立着", options: ["稳定地立着", "倒下", "摇摇晃晃", "走来走去"] },
+      { q: "课文按什么顺序叙述？", correct: "事情发展顺序", options: ["事情发展顺序", "时间倒叙", "空间转换", "人物对话"] }
+    ]
+  }
+);
+
+/* ============================================================
+   数学补充：1上加"位置"；1-5 年级每学期再加"本学期总复习"
+   ============================================================ */
+DATA.math["1上"].push(
+  { id: "m1u_pos", name: "位置（上下前后）", range: [1, 10], ops: ["+", "-"],
+    apps: [
+      { text: "书架上一共有 3 层。最上面一层放 4 本书，最下面一层放 5 本书。两层共多少本？", expr: "4+5", answer: 9, unit: "本" },
+      { text: "教室里有 6 张桌子，第二排的前面是第一排。第一排有 2 张桌子，那么第二排有几张？", expr: "6-2", answer: 4, unit: "张" },
+      { text: "小明前面有 3 个人，后面有 5 个人。一共有几个人？", expr: "3+1+5", answer: 9, unit: "人" },
+      { text: "蛋糕上下两层共 10 块，上层比下层多 2 块。下层有几块？", expr: "(10-2)÷2", answer: 4, unit: "块" },
+      { text: "8 个气球，红色在上面 3 个，其余在下面。下面有几个？", expr: "8-3", answer: 5, unit: "个" }
+    ]},
+  { id: "m1u_zh", name: "本学期总复习", range: [1, 20], ops: ["+", "-"],
+    apps: [
+      { text: "小红有 8 颗糖，妈妈又给她 5 颗。一共多少颗？", expr: "8+5", answer: 13, unit: "颗" },
+      { text: "停车场有 16 辆车，开走了 7 辆。还剩几辆？", expr: "16-7", answer: 9, unit: "辆" },
+      { text: "树上有 6 只鸟，又飞来 4 只，飞走 3 只。现在有几只？", expr: "6+4-3", answer: 7, unit: "只" },
+      { text: "一根绳子 20 厘米，剪去 8 厘米，再剪去 5 厘米。还剩多少？", expr: "20-8-5", answer: 7, unit: "厘米" },
+      { text: "小芳读 10 本书，小明读的比她少 3 本。两人一共读多少本？", expr: "10+(10-3)", answer: 17, unit: "本" }
+    ]}
+);
+
+DATA.math["1下"].push(
+  { id: "m1d_zh", name: "本学期总复习", range: [10, 100], ops: ["+", "-"],
+    apps: [
+      { text: "妈妈带 50 元，买菜花了 28 元。还剩多少元？", expr: "50-28", answer: 22, unit: "元" },
+      { text: "停车场原有 36 辆车，开走 12 辆，又开来 8 辆。现在有几辆？", expr: "36-12+8", answer: 32, unit: "辆" },
+      { text: "全班 45 人，男生 23 人。女生几人？", expr: "45-23", answer: 22, unit: "人" },
+      { text: "图书馆借走 18 本书，还回 25 本，原有 60 本。现在有几本？", expr: "60-18+25", answer: 67, unit: "本" },
+      { text: "小明 7 岁，姐姐比他大 8 岁，妈妈比姐姐大 25 岁。妈妈几岁？", expr: "7+8+25", answer: 40, unit: "岁" }
+    ]}
+);
+
+DATA.math["2上"].push(
+  { id: "m2u_zh", name: "本学期总复习", range: [1, 100], ops: ["+", "-", "×"], secondRange: [2, 9],
+    apps: [
+      { text: "每盒装 8 块饼干，4 盒一共多少块？", expr: "8×4", answer: 32, unit: "块" },
+      { text: "全班 6 个小组，每组 7 人，又来了 3 个新同学。共多少人？", expr: "6×7+3", answer: 45, unit: "人" },
+      { text: "妈妈买 5 个苹果，每个 3 元，付 20 元应找回多少？", expr: "20-5×3", answer: 5, unit: "元" },
+      { text: "1 米 = 100 厘米。一条绳子 78 厘米，再加 22 厘米，是几米？", expr: "(78+22)÷100", answer: 1, unit: "米" },
+      { text: "钟面 12 点，分针走 1 小时再回到 12 点。一共走了几分钟？", expr: "60", answer: 60, unit: "分钟" }
+    ]}
+);
+
+DATA.math["2下"].push(
+  { id: "m2d_zh", name: "本学期总复习", range: [1, 100], ops: ["+", "-", "×", "÷"], mixed: true, secondRange: [2, 9],
+    apps: [
+      { text: "36 颗糖平均分给 4 个小朋友，每人多少颗？", expr: "36÷4", answer: 9, unit: "颗" },
+      { text: "面包店做了 50 个面包，上午卖了 28 个，下午卖了 15 个。还剩几个？", expr: "50-28-15", answer: 7, unit: "个" },
+      { text: "1 千克苹果 6 元，妈妈买 3 千克付 20 元应找几元？", expr: "20-6×3", answer: 2, unit: "元" },
+      { text: "27 个鸡蛋每盒装 4 个，最多装满几盒还剩几个？", expr: "27÷4", answer: 6, unit: "盒（余3）" },
+      { text: "1 班 32 人，2 班 35 人。两班共多少？", expr: "32+35", answer: 67, unit: "人" }
+    ]}
+);
+
+DATA.math["3上"].push(
+  { id: "m3u_zh", name: "本学期总复习", range: [10, 1000], ops: ["+", "-", "×", "÷"], mixed: true, secondRange: [2, 9],
+    apps: [
+      { text: "一本书 248 页，已经看了 156 页。还剩多少页？", expr: "248-156", answer: 92, unit: "页" },
+      { text: "一盒巧克力 16 块，妈妈买 5 盒共多少块？", expr: "16×5", answer: 80, unit: "块" },
+      { text: "84 个学生平均分成 6 组，每组多少人？", expr: "84÷6", answer: 14, unit: "人" },
+      { text: "学校操场边长 80 米，正方形周长多少？", expr: "80×4", answer: 320, unit: "米" },
+      { text: "三个数 125、248、76 的和是多少？", expr: "125+248+76", answer: 449, unit: "" }
+    ]}
+);
+
+DATA.math["3下"].push(
+  { id: "m3d_zh", name: "本学期总复习", range: [10, 1000], ops: ["+", "-", "×", "÷"], mixed: true, secondRange: [2, 12],
+    apps: [
+      { text: "长方形长 12 米，宽 8 米。面积多少？", expr: "12×8", answer: 96, unit: "平方米" },
+      { text: "三月有 31 天，平均 4 周还剩几天？", expr: "31-28", answer: 3, unit: "天" },
+      { text: "一辆汽车每小时行 65 千米，4 小时行多少？", expr: "65×4", answer: 260, unit: "千米" },
+      { text: "0.6 + 0.4 等于多少？", expr: "0.6+0.4", answer: 1, unit: "" },
+      { text: "144 个苹果平均分给 12 个篮子，每篮多少个？", expr: "144÷12", answer: 12, unit: "个" }
+    ]}
+);
+
+DATA.math["4上"].push(
+  { id: "m4u_zh", name: "本学期总复习", range: [10, 999], ops: ["+", "-", "×", "÷"], mixed: true, secondRange: [10, 99],
+    apps: [
+      { text: "一辆汽车每小时行 80 千米，从北京到天津 120 千米。需要几小时？", expr: "120÷80", answer: 1.5, unit: "小时" },
+      { text: "三位数乘两位数：125 × 24 = ?", expr: "125×24", answer: 3000, unit: "" },
+      { text: "学校 1200 元买课桌，每张 75 元，能买几张？", expr: "1200÷75", answer: 16, unit: "张" },
+      { text: "长方形长 24 米，宽是长的一半。面积多少？", expr: "24×12", answer: 288, unit: "平方米" },
+      { text: "亿以内数：写出 30050008 的中文读法（输入数字答案），原数是？", expr: "30050008", answer: 30050008, unit: "" }
+    ]}
+);
+
+DATA.math["4下"].push(
+  { id: "m4d_zh", name: "本学期总复习", range: [10, 200], ops: ["+", "-", "×", "÷"], mixed: true, secondRange: [2, 12],
+    apps: [
+      { text: "三角形内角和是多少度？", expr: "180", answer: 180, unit: "度" },
+      { text: "运算定律：25 × (4 × 9) 简便计算 = ?", expr: "25×4×9", answer: 900, unit: "" },
+      { text: "小数：0.45 + 1.75 = ?", expr: "0.45+1.75", answer: 2.2, unit: "" },
+      { text: "鸡兔同笼：共 12 个头、34 只脚。鸡有几只？", expr: "(12×4-34)÷2", answer: 7, unit: "只" },
+      { text: "平均数：5 次成绩 88、92、76、80、84 的平均分？", expr: "(88+92+76+80+84)÷5", answer: 84, unit: "分" }
+    ]}
+);
+
+DATA.math["5上"].push(
+  { id: "m5u_zh", name: "本学期总复习", range: [10, 200], ops: ["+", "-", "×", "÷"], mixed: true, decimal: false, secondRange: [2, 12],
+    apps: [
+      { text: "小数乘法：2.5 × 0.8 = ?", expr: "2.5×0.8", answer: 2, unit: "" },
+      { text: "小数除法：3.6 ÷ 0.4 = ?", expr: "3.6÷0.4", answer: 9, unit: "" },
+      { text: "方程：3x + 5 = 20，x = ?", expr: "(20-5)÷3", answer: 5, unit: "" },
+      { text: "平行四边形底 12 cm 高 8 cm。面积？", expr: "12×8", answer: 96, unit: "平方厘米" },
+      { text: "梯形上底 6、下底 10、高 4 cm。面积？", expr: "(6+10)×4÷2", answer: 32, unit: "平方厘米" }
+    ]}
+);
+
+DATA.math["5下"].push(
+  { id: "m5d_zh", name: "本学期总复习", range: [1, 100], ops: ["+", "-", "×", "÷"], mixed: true, secondRange: [2, 12],
+    apps: [
+      { text: "分数加法：3/4 + 1/8 = ?（结果写小数）", expr: "0.75+0.125", answer: 0.875, unit: "" },
+      { text: "长方体长 8 cm 宽 5 cm 高 4 cm。体积？", expr: "8×5×4", answer: 160, unit: "立方厘米" },
+      { text: "求 24 与 36 的最大公因数。", expr: "12", answer: 12, unit: "" },
+      { text: "约分：18/24 = ?（写小数）", expr: "18÷24", answer: 0.75, unit: "" },
+      { text: "正方体棱长 5 cm。表面积？", expr: "5×5×6", answer: 150, unit: "平方厘米" }
+    ]}
+);
+
+/* ============================================================
+   语文补充：3 下加 4 章（2古诗 + 2课文巩固）
+   ============================================================ */
+DATA.chinese["3下"].push(
+  { id: "c3d_add1", name: "古诗：《村晚》", type: "gushi",
+    poem: { title: "村晚", author: "雷震", lines: ["草满池塘水满陂，", "山衔落日浸寒漪。", "牧童归去横牛背，", "短笛无腔信口吹。"] },
+    items: [
+      { q: "《村晚》作者：", correct: "雷震", options: ["雷震", "白居易", "杜甫", "李白"] },
+      { q: "“陂”在诗中指：", correct: "池塘的岸", options: ["池塘的岸", "山坡", "桥", "树林"] },
+      { q: "“山衔落日”形容：", correct: "太阳要落山", options: ["太阳要落山", "太阳刚升起", "山很高", "山被云遮"] },
+      { q: "“信口吹”意思是：", correct: "随口吹奏", options: ["随口吹奏", "口对口", "用尽力吹", "认真练习"] },
+      { q: "诗中主人公是：", correct: "牧童", options: ["牧童", "农夫", "老翁", "渔夫"] },
+      { q: "诗描写的时间段：", correct: "傍晚", options: ["清晨", "正午", "傍晚", "深夜"] }
+    ]
+  },
+  { id: "c3d_add2", name: "古诗：《忆江南》（其二）", type: "gushi",
+    poem: { title: "忆江南·其二", author: "白居易", lines: ["江南忆，", "最忆是杭州。", "山寺月中寻桂子，", "郡亭枕上看潮头。", "何日更重游？"] },
+    items: [
+      { q: "《忆江南》作者：", correct: "白居易", options: ["白居易", "苏轼", "杜牧", "刘禹锡"] },
+      { q: "诗人最忆的城市：", correct: "杭州", options: ["杭州", "苏州", "扬州", "南京"] },
+      { q: "“山寺月中寻桂子”里寻的是：", correct: "桂花", options: ["桂花", "月亮", "兔子", "诗书"] },
+      { q: "“郡亭枕上看潮头”说明诗人：", correct: "在亭中看潮", options: ["在亭中看潮", "在江中划船", "在山上行走", "在田里耕作"] },
+      { q: "“何日更重游”表达的是：", correct: "盼望再去", options: ["盼望再去", "再也不去", "今天就去", "明天动身"] },
+      { q: "这是一首：", correct: "词", options: ["词", "五言诗", "七言诗", "散文"] }
+    ]
+  },
+  { id: "c3d_add3", name: "课文巩固：《燕子》", type: "zishi",
+    items: [
+      { q: "《燕子》的作者：", correct: "郑振铎", options: ["郑振铎", "老舍", "巴金", "冰心"] },
+      { q: "课文中燕子的尾巴像：", correct: "剪刀", options: ["剪刀", "扇子", "镰刀", "树叶"] },
+      { q: "课文写燕子主要在哪个季节？", correct: "春天", options: ["春天", "夏天", "秋天", "冬天"] },
+      { q: "“掠过”意思是：", correct: "轻快地从上面飞过", options: ["轻快地从上面飞过", "在地上爬过", "停下来", "回头看"] },
+      { q: "燕子的羽毛课文写成：", correct: "乌黑光亮", options: ["乌黑光亮", "雪白蓬松", "金黄柔软", "灰色暗淡"] },
+      { q: "课文表达的感情是：", correct: "对燕子和春天的喜爱", options: ["对燕子和春天的喜爱", "对冬天的怀念", "对故乡的思念", "对学习的兴趣"] }
+    ]
+  },
+  { id: "c3d_add4", name: "课文巩固：《肥皂泡》", type: "zishi",
+    items: [
+      { q: "《肥皂泡》作者：", correct: "冰心", options: ["冰心", "郑振铎", "巴金", "鲁迅"] },
+      { q: "课文中“我”最喜欢做的游戏是：", correct: "吹肥皂泡", options: ["吹肥皂泡", "捉迷藏", "跳绳", "打弹珠"] },
+      { q: "肥皂泡“五色的浮光”说明：", correct: "颜色变化丰富", options: ["颜色变化丰富", "只有一种颜色", "颜色暗淡", "看不清颜色"] },
+      { q: "“轻清脆丽”形容肥皂泡：", correct: "美丽轻盈", options: ["美丽轻盈", "厚重坚硬", "颜色昏暗", "声音响亮"] },
+      { q: "肥皂泡飞向天空时“我”心情：", correct: "充满想象与喜悦", options: ["充满想象与喜悦", "害怕惊慌", "孤单难过", "无聊厌烦"] },
+      { q: "课文主题是：", correct: "童年快乐与美好幻想", options: ["童年快乐与美好幻想", "保护环境", "节约用水", "勤奋学习"] }
+    ]
+  }
+);
+
+/* ============================================================
+   语文专项：1-2 年级拼音/识字（看字选拼音 + 看拼音选字）
+   - 每章 12 题，沿用 type=pinyin / zishi
+   ============================================================ */
+
+DATA.chinese["1上"].push(
+  { id: "c1u_pyA", name: "拼音专项：看字选拼音（一上）", type: "pinyin",
+    items: [
+      { q: "“天”读作：", correct: "tiān", options: ["tiān", "tián", "tiē", "diān"] },
+      { q: "“地”读作：", correct: "dì", options: ["dì", "tì", "dé", "pí"] },
+      { q: "“人”读作：", correct: "rén", options: ["rén", "yén", "lén", "niǎn"] },
+      { q: "“你”读作：", correct: "nǐ", options: ["nǐ", "lǐ", "dǐ", "mǐ"] },
+      { q: "“我”读作：", correct: "wǒ", options: ["wǒ", "wǎ", "ě", "mǒ"] },
+      { q: "“上”读作：", correct: "shàng", options: ["shàng", "sàng", "sháng", "xiàng"] },
+      { q: "“下”读作：", correct: "xià", options: ["xià", "xiā", "shà", "yà"] },
+      { q: "“大”读作：", correct: "dà", options: ["dà", "tà", "dǎ", "lá"] },
+      { q: "“小”读作：", correct: "xiǎo", options: ["xiǎo", "shǎo", "qiǎo", "liǎo"] },
+      { q: "“山”读作：", correct: "shān", options: ["shān", "sān", "chǎn", "xiān"] },
+      { q: "“水”读作：", correct: "shuǐ", options: ["shuǐ", "suǐ", "xuǐ", "cuǐ"] },
+      { q: "“火”读作：", correct: "huǒ", options: ["huǒ", "hǒ", "kuǒ", "fuǒ"] }
+    ]},
+  { id: "c1u_zsA", name: "识字专项：看拼音选字（一上）", type: "zishi",
+    items: [
+      { q: "拼音“rén”对应的字是：", correct: "人", options: ["人", "仁", "任", "认"] },
+      { q: "拼音“dì”对应的字是（与“天地”的“地”同字）：", correct: "地", options: ["地", "弟", "第", "帝"] },
+      { q: "拼音“tiān”对应的字是（与“天空”的“天”同字）：", correct: "天", options: ["天", "田", "添", "甜"] },
+      { q: "拼音“shǒu”对应的字是（如“小手”）：", correct: "手", options: ["手", "守", "首", "兽"] },
+      { q: "拼音“kǒu”对应的字是（如“开口”）：", correct: "口", options: ["口", "扣", "寇", "哭"] },
+      { q: "拼音“rì”对应的字是（如“日出”）：", correct: "日", options: ["日", "入", "让", "热"] },
+      { q: "拼音“yuè”对应的字是（如“月亮”）：", correct: "月", options: ["月", "越", "跃", "阅"] },
+      { q: "拼音“huǒ”对应的字是（如“火苗”）：", correct: "火", options: ["火", "货", "活", "或"] },
+      { q: "拼音“shuǐ”对应的字是（如“喝水”）：", correct: "水", options: ["水", "谁", "睡", "税"] },
+      { q: "拼音“shàng”对应的字是（如“上山”）：", correct: "上", options: ["上", "尚", "商", "伤"] },
+      { q: "拼音“xià”对应的字是（如“下来”）：", correct: "下", options: ["下", "夏", "吓", "厦"] },
+      { q: "拼音“ér”对应的字是（如“儿子”）：", correct: "儿", options: ["儿", "而", "二", "耳"] }
+    ]}
+);
+
+DATA.chinese["1下"].push(
+  { id: "c1d_pyA", name: "拼音专项：看字选拼音（一下）", type: "pinyin",
+    items: [
+      { q: "“春”读作：", correct: "chūn", options: ["chūn", "chuān", "cūn", "chōng"] },
+      { q: "“夏”读作：", correct: "xià", options: ["xià", "shà", "yà", "qià"] },
+      { q: "“秋”读作：", correct: "qiū", options: ["qiū", "qiōu", "chiū", "jiū"] },
+      { q: "“冬”读作：", correct: "dōng", options: ["dōng", "tōng", "lōng", "kōng"] },
+      { q: "“雪”读作：", correct: "xuě", options: ["xuě", "shuě", "suě", "xié"] },
+      { q: "“雨”读作：", correct: "yǔ", options: ["yǔ", "wǔ", "lǔ", "hǔ"] },
+      { q: "“风”读作：", correct: "fēng", options: ["fēng", "fōng", "pēng", "hōng"] },
+      { q: "“花”读作：", correct: "huā", options: ["huā", "fā", "kā", "xuā"] },
+      { q: "“鸟”读作：", correct: "niǎo", options: ["niǎo", "liǎo", "diǎo", "miǎo"] },
+      { q: "“鱼”读作：", correct: "yú", options: ["yú", "wú", "lú", "xú"] },
+      { q: "“草”读作：", correct: "cǎo", options: ["cǎo", "chǎo", "sǎo", "zǎo"] },
+      { q: "“树”读作：", correct: "shù", options: ["shù", "sù", "zhù", "xù"] }
+    ]},
+  { id: "c1d_zsA", name: "识字专项：看拼音选字（短语 · 一下）", type: "zishi",
+    items: [
+      { q: "短语“春风（chuī）面”括号里的字是：", correct: "吹", options: ["吹", "推", "催", "锤"] },
+      { q: "短语“鸟语花（xiāng）”括号里的字是：", correct: "香", options: ["香", "乡", "相", "想"] },
+      { q: "短语“春暖花（kāi）”括号里的字是：", correct: "开", options: ["开", "海", "该", "凯"] },
+      { q: "短语“飞（jī）满天”括号里的字是：", correct: "机", options: ["机", "鸡", "击", "极"] },
+      { q: "短语“池中的小（yú）”括号里的字是：", correct: "鱼", options: ["鱼", "余", "雨", "与"] },
+      { q: "短语“一只小（māo）”括号里的字是：", correct: "猫", options: ["猫", "毛", "锚", "帽"] },
+      { q: "短语“五星红（qí）”括号里的字是：", correct: "旗", options: ["旗", "棋", "奇", "骑"] },
+      { q: "短语“大（hǎi）边”括号里的字是：", correct: "海", options: ["海", "还", "该", "害"] },
+      { q: "短语“一支（bǐ）”括号里的字是：", correct: "笔", options: ["笔", "比", "必", "闭"] },
+      { q: "短语“（tóu）发漂亮”括号里的字是：", correct: "头", options: ["头", "投", "偷", "透"] },
+      { q: "短语“（mā）妈你好”括号里的字是：", correct: "妈", options: ["妈", "麻", "马", "骂"] },
+      { q: "短语“弟弟很（guāi）”括号里的字是：", correct: "乖", options: ["乖", "怪", "拐", "怀"] }
+    ]}
+);
+
+DATA.chinese["2上"].push(
+  { id: "c2u_pyA", name: "拼音专项：看字选拼音（二上）", type: "pinyin",
+    items: [
+      { q: "“瀑”（瀑布）读作：", correct: "pù", options: ["pù", "bào", "bù", "pō"] },
+      { q: "“登”（登山）读作：", correct: "dēng", options: ["dēng", "dèn", "téng", "chēng"] },
+      { q: "“鹳”（鹳雀楼）读作：", correct: "guàn", options: ["guàn", "huān", "hè", "quān"] },
+      { q: "“敕”（敕勒歌）读作：", correct: "chì", options: ["chì", "cè", "shè", "lì"] },
+      { q: "“勒”（勒住）读作：", correct: "lè", options: ["lè", "lā", "là", "léi"] },
+      { q: "“撑”（撑伞）读作：", correct: "chēng", options: ["chēng", "chèn", "chěn", "shēng"] },
+      { q: "“曹”（曹冲）读作：", correct: "cáo", options: ["cáo", "zǎo", "cōu", "sào"] },
+      { q: "“蝌”（蝌蚪）读作：", correct: "kē", options: ["kē", "ké", "kě", "kè"] },
+      { q: "“蚪”（蝌蚪）读作：", correct: "dǒu", options: ["dǒu", "tóu", "dú", "tǒu"] },
+      { q: "“蹦”（蹦跳）读作：", correct: "bèng", options: ["bèng", "pèng", "mèng", "fēng"] },
+      { q: "“辉”（光辉）读作：", correct: "huī", options: ["huī", "kuī", "fēi", "shuī"] },
+      { q: "“枫”（枫叶）读作：", correct: "fēng", options: ["fēng", "féng", "fěng", "fèng"] }
+    ]},
+  { id: "c2u_zsA", name: "识字专项：看拼音选字（短语 · 二上）", type: "zishi",
+    items: [
+      { q: "古诗“（shān）行”括号里的字是：", correct: "山", options: ["山", "删", "衫", "杉"] },
+      { q: "短语“望（lú）山瀑布”括号里的字是：", correct: "庐", options: ["庐", "卢", "鲁", "路"] },
+      { q: "短语“江（xuě）独钓”括号里的字是：", correct: "雪", options: ["雪", "学", "削", "血"] },
+      { q: "短语“望（dòng）庭”括号里的字是：", correct: "洞", options: ["洞", "动", "懂", "冻"] },
+      { q: "短语“春（fēng）拂面”括号里的字是：", correct: "风", options: ["风", "蜂", "封", "锋"] },
+      { q: "短语“一年一（dù）”括号里的字是：", correct: "度", options: ["度", "杜", "渡", "妒"] },
+      { q: "短语“凉州（cí）”括号里的字是：", correct: "词", options: ["词", "慈", "此", "辞"] },
+      { q: "短语“晓出净（cí）寺”括号里的字是：", correct: "慈", options: ["慈", "词", "兹", "雌"] },
+      { q: "短语“江南（féng）李龟年”括号里的字是：", correct: "逢", options: ["逢", "缝", "蜂", "风"] },
+      { q: "短语“小蝌蚪找（mā）妈”括号里的字是：", correct: "妈", options: ["妈", "麻", "马", "骂"] },
+      { q: "短语“曹（chōng）称象”括号里的字是：", correct: "冲", options: ["冲", "充", "宠", "崇"] },
+      { q: "短语“植物（mā）妈”括号里的字是：", correct: "妈", options: ["妈", "马", "麻", "码"] }
+    ]}
+);
+
+DATA.chinese["2下"].push(
+  { id: "c2d_pyA", name: "拼音专项：看字选拼音（二下）", type: "pinyin",
+    items: [
+      { q: "“贝”（贝壳）读作：", correct: "bèi", options: ["bèi", "pèi", "bēi", "mèi"] },
+      { q: "“传”（传统）读作：", correct: "chuán", options: ["chuán", "zhuàn", "chán", "quán"] },
+      { q: "“统”（统一）读作：", correct: "tǒng", options: ["tǒng", "dǒng", "tóng", "cǒng"] },
+      { q: "“雷”（打雷）读作：", correct: "léi", options: ["léi", "lèi", "nèi", "fēi"] },
+      { q: "“湾”（海湾）读作：", correct: "wān", options: ["wān", "wáng", "wǎn", "huán"] },
+      { q: "“姨”（阿姨）读作：", correct: "yí", options: ["yí", "yī", "yǐ", "yì"] },
+      { q: "“舅”（舅舅）读作：", correct: "jiù", options: ["jiù", "jiǔ", "qiú", "xiù"] },
+      { q: "“嫦”（嫦娥）读作：", correct: "cháng", options: ["cháng", "shàng", "sháng", "chàng"] },
+      { q: "“娥”（嫦娥）读作：", correct: "é", options: ["é", "wǒ", "wō", "ně"] },
+      { q: "“拨”（拨开）读作：", correct: "bō", options: ["bō", "fā", "pō", "pā"] },
+      { q: "“鸳”（鸳鸯）读作：", correct: "yuān", options: ["yuān", "yuǎn", "yǎn", "yān"] },
+      { q: "“鸯”（鸳鸯）读作：", correct: "yāng", options: ["yāng", "yáng", "yīng", "āng"] }
+    ]},
+  { id: "c2d_zsA", name: "识字专项：看拼音选字（句子 · 二下）", type: "zishi",
+    items: [
+      { q: "句子“（léi）声大作”括号里的字是：", correct: "雷", options: ["雷", "累", "泪", "蕾"] },
+      { q: "句子“春风又（lǜ）江南岸”括号里的字是：", correct: "绿", options: ["绿", "律", "旅", "虑"] },
+      { q: "句子“端午吃（zòng）子”括号里的字是：", correct: "粽", options: ["粽", "综", "总", "中"] },
+      { q: "句子“八月十五（zhōng）秋节”括号里的字是：", correct: "中", options: ["中", "终", "钟", "忠"] },
+      { q: "句子“阿（yí）家来”括号里的字是：", correct: "姨", options: ["姨", "一", "移", "衣"] },
+      { q: "句子“（jiù）舅来访”括号里的字是：", correct: "舅", options: ["舅", "旧", "救", "就"] },
+      { q: "句子“喜（què）登枝”括号里的字是：", correct: "鹊", options: ["鹊", "雀", "确", "缺"] },
+      { q: "句子“（tù）儿乖巧”括号里的字是：", correct: "兔", options: ["兔", "突", "图", "涂"] },
+      { q: "句子“春暖花（kāi）”括号里的字是：", correct: "开", options: ["开", "该", "海", "凯"] },
+      { q: "句子“（yàn）子归来”括号里的字是：", correct: "燕", options: ["燕", "验", "厌", "砚"] },
+      { q: "句子“万紫千（hóng）”括号里的字是：", correct: "红", options: ["红", "鸿", "洪", "弘"] },
+      { q: "句子“雨（hòu）天晴”括号里的字是：", correct: "后", options: ["后", "厚", "候", "喉"] }
+    ]}
+);
+
+/* ============================================================
+   语文专项扩充：1-2 年级再加 12 章拼音/识字（每章 35 题）
+   - 拼音综合训练：拼音规则 + 字音 + 多音字 + 声调
+   - 同音/形近字辨析
+   - 看拼音选字（短语 / 句子场景）
+   ============================================================ */
+
+DATA.chinese["1上"].push(
+  { id: "c1u_pyD", name: "拼音综合训练（一上）", type: "pinyin",
+    items: [
+      { q: "下列哪个是单韵母？", correct: "a", options: ["a", "ai", "an", "ang"] },
+      { q: "下列哪个是复韵母？", correct: "ai", options: ["ai", "a", "m", "zh"] },
+      { q: "下列哪个是前鼻韵母？", correct: "an", options: ["an", "ang", "iao", "ie"] },
+      { q: "下列哪个是后鼻韵母？", correct: "ang", options: ["ang", "an", "in", "un"] },
+      { q: "下列哪个是整体认读音节？", correct: "zhi", options: ["zhi", "zh", "zo", "zu"] },
+      { q: "下列哪个是声母？", correct: "m", options: ["m", "a", "an", "ai"] },
+      { q: "“b”和“p”的主要区别是：", correct: "是否送气", options: ["是否送气", "声调", "笔画", "韵母"] },
+      { q: "“n”和“l”的区别：", correct: "鼻音和边音", options: ["鼻音和边音", "送气", "声调", "翘舌"] },
+      { q: "“z、c、s”是：", correct: "平舌音", options: ["平舌音", "翘舌音", "鼻音", "送气音"] },
+      { q: "“zh、ch、sh”是：", correct: "翘舌音", options: ["翘舌音", "平舌音", "鼻音", "送气音"] },
+      { q: "“j、q、x”和“ü”相拼时，ü 上两点：", correct: "要省略", options: ["要省略", "不能省", "写成 u", "写成 o"] },
+      { q: "给“花”注音：", correct: "huā", options: ["huā", "hā", "fā", "xuā"] },
+      { q: "给“草”注音：", correct: "cǎo", options: ["cǎo", "zǎo", "sǎo", "chǎo"] },
+      { q: "给“鸟”注音：", correct: "niǎo", options: ["niǎo", "liǎo", "miǎo", "diǎo"] },
+      { q: "给“鱼”注音：", correct: "yú", options: ["yú", "wú", "lú", "xú"] },
+      { q: "给“云”注音：", correct: "yún", options: ["yún", "yīn", "yǔn", "wén"] },
+      { q: "“马”是第几声？", correct: "三声", options: ["一声", "二声", "三声", "四声"] },
+      { q: "“妈”是第几声？", correct: "一声", options: ["一声", "二声", "三声", "四声"] },
+      { q: "“麻”是第几声？", correct: "二声", options: ["一声", "二声", "三声", "四声"] },
+      { q: "“骂”是第几声？", correct: "四声", options: ["一声", "二声", "三声", "四声"] },
+      { q: "“笔”是第几声？", correct: "三声", options: ["一声", "二声", "三声", "四声"] },
+      { q: "“树”是第几声？", correct: "四声", options: ["一声", "二声", "三声", "四声"] },
+      { q: "“山”是第几声？", correct: "一声", options: ["一声", "二声", "三声", "四声"] },
+      { q: "“海”是第几声？", correct: "三声", options: ["一声", "二声", "三声", "四声"] },
+      { q: "“好”在“好的”中读：", correct: "hǎo", options: ["hǎo", "hào", "hāo", "hé"] },
+      { q: "“好”在“爱好”中读：", correct: "hào", options: ["hào", "hǎo", "hāo", "hé"] },
+      { q: "“长”在“长城”中读：", correct: "cháng", options: ["cháng", "zhǎng", "zhàng", "chàng"] },
+      { q: "“长”在“长大”中读：", correct: "zhǎng", options: ["zhǎng", "cháng", "zhàng", "chàng"] },
+      { q: "“了”在“走了”中读：", correct: "le", options: ["le", "liǎo", "lè", "léi"] },
+      { q: "“了”在“了解”中读：", correct: "liǎo", options: ["liǎo", "le", "lè", "léi"] },
+      { q: "“乐”在“快乐”中读：", correct: "lè", options: ["lè", "yuè", "lào", "luò"] },
+      { q: "“乐”在“音乐”中读：", correct: "yuè", options: ["yuè", "lè", "yào", "yuē"] },
+      { q: "“和”在“我和你”中读：", correct: "hé", options: ["hé", "hè", "huó", "huò"] },
+      { q: "下列哪个不是单韵母？", correct: "ai", options: ["ai", "a", "o", "e"] },
+      { q: "下列哪个不是声母？", correct: "ai", options: ["ai", "b", "d", "m"] }
+    ]},
+  { id: "c1u_zsD", name: "同音/形近字辨析（一上）", type: "zishi",
+    items: [
+      { q: "句子“我今天（  ）家”应填：", correct: "在", options: ["在", "再", "才", "也"] },
+      { q: "句子“明天（  ）来”应填：", correct: "再", options: ["再", "在", "才", "也"] },
+      { q: "句子“妈妈说话”中“妈妈”用代词应是：", correct: "她", options: ["她", "他", "它", "也"] },
+      { q: "句子“爸爸去上班”中“爸爸”用代词应是：", correct: "他", options: ["他", "她", "它", "那"] },
+      { q: "句子“小狗摇尾巴，（  ）真可爱”应填：", correct: "它", options: ["它", "他", "她", "也"] },
+      { q: "词语“做工”用：", correct: "做", options: ["做", "作", "坐", "座"] },
+      { q: "词语“作业”用：", correct: "作", options: ["作", "做", "坐", "座"] },
+      { q: "词语“请坐下”用：", correct: "坐", options: ["坐", "座", "做", "作"] },
+      { q: "词语“一座山”用：", correct: "座", options: ["座", "坐", "做", "作"] },
+      { q: "词语“已经”用：", correct: "已", options: ["已", "己", "巳", "异"] },
+      { q: "词语“自己”用：", correct: "己", options: ["己", "已", "巳", "异"] },
+      { q: "词语“末尾”用：", correct: "末", options: ["末", "未", "木", "本"] },
+      { q: "词语“未来”用：", correct: "未", options: ["未", "末", "木", "本"] },
+      { q: "数字“一千”用：", correct: "千", options: ["千", "干", "于", "午"] },
+      { q: "“树干”用：", correct: "干", options: ["干", "千", "十", "午"] },
+      { q: "“工作”用：", correct: "工", options: ["工", "弓", "公", "红"] },
+      { q: "“弓箭”用：", correct: "弓", options: ["弓", "工", "公", "穷"] },
+      { q: "“公园”用：", correct: "公", options: ["公", "工", "弓", "红"] },
+      { q: "表示太阳的字是：", correct: "日", options: ["日", "曰", "目", "田"] },
+      { q: "“曰”的意思是：", correct: "说", options: ["说", "太阳", "月亮", "田"] },
+      { q: "表示眼睛的字是：", correct: "目", options: ["目", "日", "白", "田"] },
+      { q: "表示田地的字是：", correct: "田", options: ["田", "日", "目", "曰"] },
+      { q: "“千”和“干”：哪个是数字？", correct: "千", options: ["千", "干", "于", "午"] },
+      { q: "“土”和“士”：表示泥土的是？", correct: "土", options: ["土", "士", "王", "玉"] },
+      { q: "“士”表示：", correct: "人", options: ["人", "泥土", "月亮", "田"] },
+      { q: "“鸟”和“乌”：表黑色的是？", correct: "乌", options: ["乌", "鸟", "凫", "鸣"] },
+      { q: "“白”加一横可能变成：", correct: "百", options: ["百", "自", "伯", "白"] },
+      { q: "“口”加一横可能变成：", correct: "日", options: ["日", "月", "田", "口"] },
+      { q: "表示桌子的字（古义）：", correct: "几", options: ["几", "凡", "丸", "九"] },
+      { q: "“丸”读：", correct: "wán", options: ["wán", "wǎn", "yuán", "yuǎn"] },
+      { q: "“了”加一笔可能变成：", correct: "子", options: ["子", "孑", "孒", "孓"] },
+      { q: "“刀”和“力”：用来切东西的是？", correct: "刀", options: ["刀", "力", "刁", "勿"] },
+      { q: "“人”加一笔可能变成：", correct: "大", options: ["大", "入", "八", "个"] },
+      { q: "“天”和“夫”：上面有撇的是？", correct: "夫", options: ["夫", "天", "无", "失"] },
+      { q: "“朋”由两个什么字组成？", correct: "月", options: ["月", "日", "目", "田"] }
+    ]},
+  { id: "c1u_zsE", name: "看拼音选字 · 句子场景（一上）", type: "zishi",
+    items: [
+      { q: "句子“我（zài）家”括号里的字：", correct: "在", options: ["在", "再", "才", "也"] },
+      { q: "句子“小（māo）抓老鼠”括号里的字：", correct: "猫", options: ["猫", "毛", "锚", "帽"] },
+      { q: "句子“（mā）妈做饭”括号里的字：", correct: "妈", options: ["妈", "麻", "马", "骂"] },
+      { q: "句子“天气真（hǎo）”括号里的字：", correct: "好", options: ["好", "号", "豪", "嚎"] },
+      { q: "句子“红色的（huā）”括号里的字：", correct: "花", options: ["花", "华", "化", "划"] },
+      { q: "句子“一只小（niǎo）”括号里的字：", correct: "鸟", options: ["鸟", "了", "乌", "与"] },
+      { q: "句子“喝一杯（shuǐ）”括号里的字：", correct: "水", options: ["水", "谁", "睡", "税"] },
+      { q: "句子“爬山真（lèi）”括号里的字：", correct: "累", options: ["累", "雷", "泪", "类"] },
+      { q: "句子“放（fēng）筝”括号里的字：", correct: "风", options: ["风", "封", "锋", "丰"] },
+      { q: "句子“看图说（huà）”括号里的字：", correct: "话", options: ["话", "华", "画", "化"] },
+      { q: "句子“画一幅（huà）”括号里的字：", correct: "画", options: ["画", "话", "华", "化"] },
+      { q: "句子“明天星期（rì）”括号里的字：", correct: "日", options: ["日", "入", "中", "六"] },
+      { q: "句子“月亮（liàng）了”括号里的字：", correct: "亮", options: ["亮", "凉", "良", "谅"] },
+      { q: "句子“我有一支（bǐ）”括号里的字：", correct: "笔", options: ["笔", "比", "必", "闭"] },
+      { q: "句子“耳朵能听（jiàn）”括号里的字：", correct: "见", options: ["见", "件", "建", "健"] },
+      { q: "句子“小（shǒu）真灵巧”括号里的字：", correct: "手", options: ["手", "守", "首", "兽"] },
+      { q: "句子“妈妈牵着我的（shǒu）”括号里的字：", correct: "手", options: ["手", "守", "首", "兽"] },
+      { q: "句子“小（gǒu）汪汪叫”括号里的字：", correct: "狗", options: ["狗", "苟", "勾", "沟"] },
+      { q: "句子“老（hǔ）很凶”括号里的字：", correct: "虎", options: ["虎", "户", "护", "沪"] },
+      { q: "句子“金色的（qiū）天”括号里的字：", correct: "秋", options: ["秋", "球", "求", "丘"] },
+      { q: "句子“（tài）阳出来了”括号里的字：", correct: "太", options: ["太", "汰", "态", "抬"] },
+      { q: "句子“妹妹（kū）了”括号里的字：", correct: "哭", options: ["哭", "苦", "枯", "库"] },
+      { q: "句子“弟弟在（xiào）”括号里的字：", correct: "笑", options: ["笑", "校", "孝", "效"] },
+      { q: "句子“（chī）饭”括号里的字：", correct: "吃", options: ["吃", "痴", "池", "赤"] },
+      { q: "句子“喝（chá）”括号里的字：", correct: "茶", options: ["茶", "差", "查", "察"] },
+      { q: "句子“（kàn）书”括号里的字：", correct: "看", options: ["看", "砍", "堪", "侃"] },
+      { q: "句子“听（gē）”括号里的字：", correct: "歌", options: ["歌", "哥", "割", "格"] },
+      { q: "句子“打球真好（wán）”括号里的字：", correct: "玩", options: ["玩", "完", "丸", "顽"] },
+      { q: "句子“妹妹很（kě）爱”括号里的字：", correct: "可", options: ["可", "渴", "克", "课"] },
+      { q: "句子“我去公园（wán）”括号里的字：", correct: "玩", options: ["玩", "完", "丸", "顽"] },
+      { q: "句子“（kāi）始上课”括号里的字：", correct: "开", options: ["开", "海", "该", "凯"] },
+      { q: "句子“放学回（jiā）”括号里的字：", correct: "家", options: ["家", "夹", "加", "佳"] },
+      { q: "句子“妈妈很爱（wǒ）”括号里的字：", correct: "我", options: ["我", "卧", "握", "窝"] },
+      { q: "句子“天上有（yún）”括号里的字：", correct: "云", options: ["云", "运", "晕", "匀"] },
+      { q: "句子“画一只（yú）”括号里的字：", correct: "鱼", options: ["鱼", "余", "雨", "与"] }
+    ]}
+);
+
+DATA.chinese["1下"].push(
+  { id: "c1d_pyD", name: "拼音综合训练（一下）", type: "pinyin",
+    items: [
+      { q: "“桃”读：", correct: "táo", options: ["táo", "tāo", "dào", "dáo"] },
+      { q: "“燕”读：", correct: "yàn", options: ["yàn", "yīn", "yǎn", "yán"] },
+      { q: "“莺”读：", correct: "yīng", options: ["yīng", "yāng", "yìng", "yán"] },
+      { q: "“蜂”读：", correct: "fēng", options: ["fēng", "fèng", "féng", "pēng"] },
+      { q: "“蝶”读：", correct: "dié", options: ["dié", "diē", "déi", "tié"] },
+      { q: "“贼”读：", correct: "zéi", options: ["zéi", "zé", "zhèi", "zhā"] },
+      { q: "“宿”在“宿舍”中读：", correct: "sù", options: ["sù", "shù", "xiǔ", "xiù"] },
+      { q: "“宿”在“一宿”中读：", correct: "xiǔ", options: ["xiǔ", "sù", "xiù", "shù"] },
+      { q: "“几”在“几个”中读：", correct: "jǐ", options: ["jǐ", "jī", "qī", "qǐ"] },
+      { q: "“几”在“几乎”中读：", correct: "jī", options: ["jī", "jǐ", "qī", "qǐ"] },
+      { q: "“种”在“种树”中读：", correct: "zhòng", options: ["zhòng", "zhǒng", "chóng", "cōng"] },
+      { q: "“种”在“种子”中读：", correct: "zhǒng", options: ["zhǒng", "zhòng", "chóng", "cōng"] },
+      { q: "“圈”在“圆圈”中读：", correct: "quān", options: ["quān", "juàn", "jiūn", "quǎn"] },
+      { q: "“圈”在“猪圈”中读：", correct: "juàn", options: ["juàn", "quān", "jiùn", "quǎn"] },
+      { q: "“扇”在“扇子”中读：", correct: "shàn", options: ["shàn", "shān", "sàn", "shǎn"] },
+      { q: "“扇”在“扇动”中读：", correct: "shān", options: ["shān", "shàn", "sàn", "shǎn"] },
+      { q: "“倒”在“倒下”中读：", correct: "dǎo", options: ["dǎo", "dào", "tǎo", "dōu"] },
+      { q: "“倒”在“倒水”中读：", correct: "dào", options: ["dào", "dǎo", "tǎo", "dōu"] },
+      { q: "“藏”在“躲藏”中读：", correct: "cáng", options: ["cáng", "zàng", "càng", "zhàng"] },
+      { q: "“藏”在“宝藏”中读：", correct: "zàng", options: ["zàng", "cáng", "càng", "zhàng"] },
+      { q: "“为”在“因为”中读：", correct: "wèi", options: ["wèi", "wéi", "wěi", "wèn"] },
+      { q: "“为”在“行为”中读：", correct: "wéi", options: ["wéi", "wèi", "wěi", "wèn"] },
+      { q: "“教”在“教书”中读：", correct: "jiāo", options: ["jiāo", "jiào", "qiáo", "qiào"] },
+      { q: "“教”在“教室”中读：", correct: "jiào", options: ["jiào", "jiāo", "qiáo", "qiào"] },
+      { q: "“都”在“全都”中读：", correct: "dōu", options: ["dōu", "dū", "tōu", "duò"] },
+      { q: "“都”在“首都”中读：", correct: "dū", options: ["dū", "dōu", "tōu", "duò"] },
+      { q: "“处”在“处理”中读：", correct: "chǔ", options: ["chǔ", "chù", "zhǔ", "zhù"] },
+      { q: "“处”在“住处”中读：", correct: "chù", options: ["chù", "chǔ", "zhǔ", "zhù"] },
+      { q: "“应”在“应该”中读：", correct: "yīng", options: ["yīng", "yìng", "yīn", "yǐn"] },
+      { q: "“应”在“答应”中读：", correct: "yìng", options: ["yìng", "yīng", "yīn", "yǐn"] },
+      { q: "“假”在“放假”中读：", correct: "jià", options: ["jià", "jiǎ", "qià", "xià"] },
+      { q: "“假”在“真假”中读：", correct: "jiǎ", options: ["jiǎ", "jià", "qià", "xià"] },
+      { q: "“曲”在“歌曲”中读：", correct: "qǔ", options: ["qǔ", "qū", "qiū", "qiú"] },
+      { q: "“曲”在“弯曲”中读：", correct: "qū", options: ["qū", "qǔ", "qiū", "qiú"] },
+      { q: "“觉”在“睡觉”中读：", correct: "jiào", options: ["jiào", "jué", "jiāo", "jiǎo"] }
+    ]},
+  { id: "c1d_zsD", name: "同音/形近字辨析（一下）", type: "zishi",
+    items: [
+      { q: "“今天我在家”应填：", correct: "在", options: ["在", "再", "才", "也"] },
+      { q: "“明天再来”应填：", correct: "再", options: ["再", "在", "才", "也"] },
+      { q: "“做饭”应填：", correct: "做", options: ["做", "作", "坐", "座"] },
+      { q: "“作业”应填：", correct: "作", options: ["作", "做", "坐", "座"] },
+      { q: "“坐下”应填：", correct: "坐", options: ["坐", "座", "做", "作"] },
+      { q: "“一座楼”应填：", correct: "座", options: ["座", "坐", "做", "作"] },
+      { q: "“小狗它在跑”应填：", correct: "它", options: ["它", "他", "她", "那"] },
+      { q: "“姐姐她在看书”应填：", correct: "她", options: ["她", "他", "它", "那"] },
+      { q: "“已经”应填：", correct: "已", options: ["已", "己", "巳", "异"] },
+      { q: "“自己”应填：", correct: "己", options: ["己", "已", "巳", "异"] },
+      { q: "“末尾”应填：", correct: "末", options: ["末", "未", "木", "本"] },
+      { q: "“未来”应填：", correct: "未", options: ["未", "末", "木", "本"] },
+      { q: "“一千米”应填：", correct: "千", options: ["千", "干", "于", "午"] },
+      { q: "“干活”应填：", correct: "干", options: ["干", "千", "十", "午"] },
+      { q: "“黄金”应填：", correct: "金", options: ["金", "全", "合", "今"] },
+      { q: "“全部”应填：", correct: "全", options: ["全", "金", "合", "今"] },
+      { q: "“进入”应填：", correct: "进", options: ["进", "近", "迅", "迁"] },
+      { q: "“附近”应填：", correct: "近", options: ["近", "进", "迅", "迁"] },
+      { q: "“方向”应填：", correct: "向", options: ["向", "项", "响", "想"] },
+      { q: "“想念”应填：", correct: "想", options: ["想", "响", "向", "相"] },
+      { q: "“声响”应填：", correct: "响", options: ["响", "想", "向", "相"] },
+      { q: "“好像”应填：", correct: "像", options: ["像", "象", "相", "向"] },
+      { q: "“大象”应填：", correct: "象", options: ["象", "像", "相", "向"] },
+      { q: "“明亮”应填：", correct: "亮", options: ["亮", "凉", "良", "谅"] },
+      { q: "“凉爽”应填：", correct: "凉", options: ["凉", "亮", "良", "谅"] },
+      { q: "“买东西”应填：", correct: "买", options: ["买", "卖", "麦", "迈"] },
+      { q: "“卖菜”应填：", correct: "卖", options: ["卖", "买", "麦", "迈"] },
+      { q: "“公园”应填：", correct: "园", options: ["园", "圆", "源", "缘"] },
+      { q: "“圆形”应填：", correct: "圆", options: ["圆", "园", "源", "缘"] },
+      { q: "“穿衣服”应填：", correct: "穿", options: ["穿", "川", "船", "钏"] },
+      { q: "“四川”应填：", correct: "川", options: ["川", "穿", "船", "钏"] },
+      { q: "“请客”应填：", correct: "请", options: ["请", "清", "晴", "情"] },
+      { q: "“清水”应填：", correct: "清", options: ["清", "请", "晴", "情"] },
+      { q: "“晴天”应填：", correct: "晴", options: ["晴", "情", "清", "请"] },
+      { q: "“感情”应填：", correct: "情", options: ["情", "晴", "清", "请"] }
+    ]},
+  { id: "c1d_zsE", name: "看拼音选字 · 句子场景（一下）", type: "zishi",
+    items: [
+      { q: "“春风又（lǜ）江南岸”括号字：", correct: "绿", options: ["绿", "律", "旅", "虑"] },
+      { q: "“（hú）水清清”括号字：", correct: "湖", options: ["湖", "壶", "糊", "胡"] },
+      { q: "“桃（huā）盛开”括号字：", correct: "花", options: ["花", "华", "化", "画"] },
+      { q: "“（liǔ）枝随风”括号字：", correct: "柳", options: ["柳", "榴", "留", "流"] },
+      { q: "“燕子飞（lái）”括号字：", correct: "来", options: ["来", "赖", "莱", "睐"] },
+      { q: "“（chí）塘清清”括号字：", correct: "池", options: ["池", "迟", "驰", "弛"] },
+      { q: "“草地真（lǜ）”括号字：", correct: "绿", options: ["绿", "旅", "律", "录"] },
+      { q: "“（xiǎo）池里有鱼”括号字：", correct: "小", options: ["小", "笑", "晓", "筱"] },
+      { q: "“（dà）海无边”括号字：", correct: "大", options: ["大", "达", "答", "打"] },
+      { q: "“（fēi）机起飞”括号字：", correct: "飞", options: ["飞", "非", "啡", "菲"] },
+      { q: "“知（liǎo）了在叫”括号字：", correct: "了", options: ["了", "鸟", "鸢", "鹭"] },
+      { q: "“（chí）上有荷花”括号字：", correct: "池", options: ["池", "迟", "驰", "弛"] },
+      { q: "“（tài）阳很大”括号字：", correct: "太", options: ["太", "汰", "态", "抬"] },
+      { q: "“下（yǔ）了”括号字：", correct: "雨", options: ["雨", "语", "羽", "与"] },
+      { q: "“（xià）雨打伞”括号字：", correct: "下", options: ["下", "夏", "吓", "虾"] },
+      { q: "“（chī）西瓜”括号字：", correct: "吃", options: ["吃", "痴", "池", "赤"] },
+      { q: "“（pǎo）步真累”括号字：", correct: "跑", options: ["跑", "抛", "泡", "袍"] },
+      { q: "“唱（gē）跳舞”括号字：", correct: "歌", options: ["歌", "格", "哥", "葛"] },
+      { q: "“穿（yī）服”括号字：", correct: "衣", options: ["衣", "医", "依", "伊"] },
+      { q: "“戴帽（zǐ）”括号字：", correct: "子", options: ["子", "紫", "字", "籽"] },
+      { q: "“刷（yá）”括号字：", correct: "牙", options: ["牙", "呀", "丫", "芽"] },
+      { q: "“（xǐ）手”括号字：", correct: "洗", options: ["洗", "喜", "玺", "系"] },
+      { q: "“（wèn）问题”括号字：", correct: "问", options: ["问", "闻", "纹", "瘟"] },
+      { q: "“（jiào）老师”括号字：", correct: "叫", options: ["叫", "教", "觉", "较"] },
+      { q: "“（kàn）电视”括号字：", correct: "看", options: ["看", "砍", "堪", "侃"] },
+      { q: "“（xiě）字”括号字：", correct: "写", options: ["写", "谢", "卸", "泻"] },
+      { q: "“（ná）书”括号字：", correct: "拿", options: ["拿", "那", "纳", "呐"] },
+      { q: "“（chàng）歌”括号字：", correct: "唱", options: ["唱", "常", "长", "厂"] },
+      { q: "“（wǎn）饭”括号字：", correct: "晚", options: ["晚", "碗", "弯", "挽"] },
+      { q: "“（zǎo）上”括号字：", correct: "早", options: ["早", "枣", "澡", "灶"] },
+      { q: "“睡（jiào）”括号字：", correct: "觉", options: ["觉", "叫", "教", "较"] },
+      { q: "“（shū）本”括号字：", correct: "书", options: ["书", "输", "疏", "熟"] },
+      { q: "“（shuǐ）杯”括号字：", correct: "水", options: ["水", "谁", "睡", "税"] },
+      { q: "“（fàn）店”括号字：", correct: "饭", options: ["饭", "范", "犯", "凡"] },
+      { q: "“（mā）妈”括号字：", correct: "妈", options: ["妈", "麻", "马", "骂"] }
+    ]}
+);
+
+DATA.chinese["2上"].push(
+  { id: "c2u_pyD", name: "拼音综合训练（二上）", type: "pinyin",
+    items: [
+      { q: "“瀑”（瀑布）读：", correct: "pù", options: ["pù", "bào", "bù", "pō"] },
+      { q: "“庐”（庐山）读：", correct: "lú", options: ["lú", "lǔ", "lù", "luó"] },
+      { q: "“鹳”读：", correct: "guàn", options: ["guàn", "huān", "hè", "quān"] },
+      { q: "“雀”读：", correct: "què", options: ["què", "qiào", "cuò", "jué"] },
+      { q: "“敕”（敕勒歌）读：", correct: "chì", options: ["chì", "cè", "shè", "lì"] },
+      { q: "“勒”（敕勒歌）读：", correct: "lè", options: ["lè", "lā", "là", "léi"] },
+      { q: "“勒”（勒紧）读：", correct: "lēi", options: ["lēi", "lè", "lā", "là"] },
+      { q: "“野”读：", correct: "yě", options: ["yě", "yè", "yāo", "rě"] },
+      { q: "“茫”（苍茫）读：", correct: "máng", options: ["máng", "mǎng", "wáng", "wàng"] },
+      { q: "“穹”（苍穹）读：", correct: "qióng", options: ["qióng", "qún", "qōng", "gōng"] },
+      { q: "“孤”（孤舟）读：", correct: "gū", options: ["gū", "kū", "hū", "wū"] },
+      { q: "“蓑”（蓑笠）读：", correct: "suō", options: ["suō", "shuō", "sōu", "sā"] },
+      { q: "“笠”读：", correct: "lì", options: ["lì", "lǐ", "qī", "jì"] },
+      { q: "“翁”（渔翁）读：", correct: "wēng", options: ["wēng", "wōng", "yōng", "gōng"] },
+      { q: "“曹”读：", correct: "cáo", options: ["cáo", "zǎo", "cōu", "sào"] },
+      { q: "“撑”读：", correct: "chēng", options: ["chēng", "chèn", "chěn", "shēng"] },
+      { q: "“蝌”读：", correct: "kē", options: ["kē", "ké", "kě", "kè"] },
+      { q: "“蚪”读：", correct: "dǒu", options: ["dǒu", "tóu", "dú", "tǒu"] },
+      { q: "“蹦”读：", correct: "bèng", options: ["bèng", "pèng", "mèng", "fēng"] },
+      { q: "“辉”读：", correct: "huī", options: ["huī", "kuī", "fēi", "shuī"] },
+      { q: "“枫”读：", correct: "fēng", options: ["fēng", "féng", "fěng", "fèng"] },
+      { q: "“霜”读：", correct: "shuāng", options: ["shuāng", "shǎng", "shàng", "xiāng"] },
+      { q: "“径”读：", correct: "jìng", options: ["jìng", "jīng", "xíng", "jǐng"] },
+      { q: "“斜”读：", correct: "xié", options: ["xié", "xiá", "yá", "yé"] },
+      { q: "“锄”（锄禾）读：", correct: "chú", options: ["chú", "zhú", "zhǎo", "cú"] },
+      { q: "“皆”读：", correct: "jiē", options: ["jiē", "jié", "qié", "xié"] },
+      { q: "“辛”读：", correct: "xīn", options: ["xīn", "sīn", "shīn", "qīn"] },
+      { q: "“绝”读：", correct: "jué", options: ["jué", "juè", "jiē", "quē"] },
+      { q: "“牧”读：", correct: "mù", options: ["mù", "wù", "mò", "fù"] },
+      { q: "“将”在“将军”中读：", correct: "jiāng", options: ["jiāng", "jiàng", "qiāng", "qiàng"] },
+      { q: "“将”在“大将”中读：", correct: "jiàng", options: ["jiàng", "jiāng", "qiāng", "qiàng"] },
+      { q: "“朝”在“朝阳”中读：", correct: "zhāo", options: ["zhāo", "cháo", "zhào", "zhōu"] },
+      { q: "“朝”在“朝代”中读：", correct: "cháo", options: ["cháo", "zhāo", "zhào", "zhōu"] },
+      { q: "“觉”在“感觉”中读：", correct: "jué", options: ["jué", "jiào", "jiāo", "jiǎo"] },
+      { q: "“觉”在“睡觉”中读：", correct: "jiào", options: ["jiào", "jué", "jiāo", "jiǎo"] }
+    ]},
+  { id: "c2u_zsD", name: "同音/形近字辨析（二上）", type: "zishi",
+    items: [
+      { q: "“蜜蜂”应填：", correct: "蜂", options: ["蜂", "峰", "锋", "逢"] },
+      { q: "“山峰”应填：", correct: "峰", options: ["峰", "蜂", "锋", "逢"] },
+      { q: "“刀锋”应填：", correct: "锋", options: ["锋", "蜂", "峰", "逢"] },
+      { q: "“相逢”应填：", correct: "逢", options: ["逢", "蜂", "峰", "锋"] },
+      { q: "“已经”应填：", correct: "已", options: ["已", "己", "巳", "异"] },
+      { q: "“自己”应填：", correct: "己", options: ["己", "已", "巳", "异"] },
+      { q: "“期末”应填：", correct: "末", options: ["末", "未", "木", "本"] },
+      { q: "“未来”应填：", correct: "未", options: ["未", "末", "木", "本"] },
+      { q: "“工作”应填：", correct: "作", options: ["作", "做", "坐", "座"] },
+      { q: "“做事”应填：", correct: "做", options: ["做", "作", "坐", "座"] },
+      { q: "“请坐”应填：", correct: "坐", options: ["坐", "座", "做", "作"] },
+      { q: "“一座山”应填：", correct: "座", options: ["座", "坐", "做", "作"] },
+      { q: "“还在”应填：", correct: "在", options: ["在", "再", "才", "也"] },
+      { q: "“再见”应填：", correct: "再", options: ["再", "在", "才", "也"] },
+      { q: "“弟弟他”应填：", correct: "他", options: ["他", "她", "它", "也"] },
+      { q: "“妈妈她”应填：", correct: "她", options: ["她", "他", "它", "也"] },
+      { q: "“小猫它”应填：", correct: "它", options: ["它", "他", "她", "也"] },
+      { q: "“果园”应填：", correct: "园", options: ["园", "圆", "源", "缘"] },
+      { q: "“圆圈”应填：", correct: "圆", options: ["圆", "园", "源", "缘"] },
+      { q: "“水源”应填：", correct: "源", options: ["源", "园", "缘", "圆"] },
+      { q: "“请客”应填：", correct: "请", options: ["请", "清", "晴", "情"] },
+      { q: "“清晨”应填：", correct: "清", options: ["清", "请", "晴", "情"] },
+      { q: "“晴朗”应填：", correct: "晴", options: ["晴", "情", "清", "请"] },
+      { q: "“感情”应填：", correct: "情", options: ["情", "晴", "清", "请"] },
+      { q: "“眼睛”应填：", correct: "睛", options: ["睛", "晴", "精", "情"] },
+      { q: "“精彩”应填：", correct: "精", options: ["精", "睛", "晴", "情"] },
+      { q: "“辛苦”应填：", correct: "辛", options: ["辛", "幸", "兴", "星"] },
+      { q: "“幸福”应填：", correct: "幸", options: ["幸", "辛", "兴", "星"] },
+      { q: "“兴趣”应填：", correct: "兴", options: ["兴", "星", "辛", "幸"] },
+      { q: "“星星”应填：", correct: "星", options: ["星", "兴", "辛", "幸"] },
+      { q: "“湖水”应填：", correct: "湖", options: ["湖", "壶", "糊", "胡"] },
+      { q: "“茶壶”应填：", correct: "壶", options: ["壶", "湖", "糊", "胡"] },
+      { q: "“糊涂”应填：", correct: "糊", options: ["糊", "湖", "壶", "胡"] },
+      { q: "“胡同”应填：", correct: "胡", options: ["胡", "湖", "壶", "糊"] },
+      { q: "“形近字 知/只”：“一只小鸟”填：", correct: "只", options: ["只", "知", "支", "枝"] }
+    ]},
+  { id: "c2u_zsE", name: "看拼音选字 · 句子场景（二上）", type: "zishi",
+    items: [
+      { q: "“（jué）句”括号字：", correct: "绝", options: ["绝", "觉", "角", "决"] },
+      { q: "“牧（tóng）”括号字：", correct: "童", options: ["童", "同", "铜", "桐"] },
+      { q: "“竹（lín）”括号字：", correct: "林", options: ["林", "临", "邻", "淋"] },
+      { q: "“（gū）舟”括号字：", correct: "孤", options: ["孤", "姑", "沽", "估"] },
+      { q: "“（fēng）筝”括号字：", correct: "风", options: ["风", "封", "锋", "丰"] },
+      { q: "“（dài）帽子”括号字：", correct: "戴", options: ["戴", "带", "代", "呆"] },
+      { q: "“（hú）水”括号字：", correct: "湖", options: ["湖", "壶", "糊", "胡"] },
+      { q: "“枫叶如（dān）”括号字：", correct: "丹", options: ["丹", "单", "蛋", "胆"] },
+      { q: "“（cháng）城”括号字：", correct: "长", options: ["长", "常", "场", "厂"] },
+      { q: "“（lú）山”括号字：", correct: "庐", options: ["庐", "卢", "鲁", "路"] },
+      { q: "“山（dǐng）”括号字：", correct: "顶", options: ["顶", "丁", "钉", "订"] },
+      { q: "“（jīn）天”括号字：", correct: "今", options: ["今", "金", "筋", "紧"] },
+      { q: "“（hǎi）边”括号字：", correct: "海", options: ["海", "还", "孩", "害"] },
+      { q: "“（chuān）越”括号字：", correct: "穿", options: ["穿", "川", "船", "钏"] },
+      { q: "“（mù）牛”括号字：", correct: "牧", options: ["牧", "木", "目", "亩"] },
+      { q: "“（pī）发”括号字：", correct: "披", options: ["披", "批", "疲", "啤"] },
+      { q: "“（suō）笠”括号字：", correct: "蓑", options: ["蓑", "缩", "索", "锁"] },
+      { q: "“（diào）鱼”括号字：", correct: "钓", options: ["钓", "掉", "调", "吊"] },
+      { q: "“渔（wēng）”括号字：", correct: "翁", options: ["翁", "瓮", "嗡", "雍"] },
+      { q: "“（dú）钓”括号字：", correct: "独", options: ["独", "读", "毒", "督"] },
+      { q: "“（hán）山”括号字：", correct: "寒", options: ["寒", "含", "喊", "汉"] },
+      { q: "“（cǎo）原”括号字：", correct: "草", options: ["草", "操", "糟", "嘈"] },
+      { q: "“（féng）人便说”括号字：", correct: "逢", options: ["逢", "缝", "蜂", "锋"] },
+      { q: "“（jì）节”括号字：", correct: "季", options: ["季", "记", "计", "寄"] },
+      { q: "“古（shī）”括号字：", correct: "诗", options: ["诗", "师", "狮", "施"] },
+      { q: "“（yín）诵”括号字：", correct: "吟", options: ["吟", "银", "饮", "寅"] },
+      { q: "“（liǔ）絮”括号字：", correct: "柳", options: ["柳", "榴", "留", "流"] },
+      { q: "“鹅（máo）”括号字：", correct: "毛", options: ["毛", "猫", "锚", "帽"] },
+      { q: "“（yǒng）柳”括号字：", correct: "咏", options: ["咏", "勇", "拥", "泳"] },
+      { q: "“（lù）柴”括号字：", correct: "鹿", options: ["鹿", "录", "路", "陆"] },
+      { q: "“蛙（shēng）”括号字：", correct: "声", options: ["声", "生", "升", "胜"] },
+      { q: "“（hé）花”括号字：", correct: "荷", options: ["荷", "合", "河", "和"] },
+      { q: "“（zhú）林”括号字：", correct: "竹", options: ["竹", "烛", "逐", "筑"] },
+      { q: "“（chí）塘”括号字：", correct: "池", options: ["池", "迟", "驰", "弛"] },
+      { q: "“春（mián）”括号字：", correct: "眠", options: ["眠", "棉", "免", "勉"] }
+    ]}
+);
+
+DATA.chinese["2下"].push(
+  { id: "c2d_pyD", name: "拼音综合训练（二下）", type: "pinyin",
+    items: [
+      { q: "“贝”读：", correct: "bèi", options: ["bèi", "pèi", "bēi", "mèi"] },
+      { q: "“粽”（粽子）读：", correct: "zòng", options: ["zòng", "zhòng", "zǒng", "jīng"] },
+      { q: "“蛋”读：", correct: "dàn", options: ["dàn", "dān", "tàn", "dèn"] },
+      { q: "“蕊”读：", correct: "ruǐ", options: ["ruǐ", "luǐ", "wěi", "zuǐ"] },
+      { q: "“鹊”读：", correct: "què", options: ["què", "qiào", "cuò", "jué"] },
+      { q: "“蓬”读：", correct: "péng", options: ["péng", "féng", "bāng", "píng"] },
+      { q: "“翁”读：", correct: "wēng", options: ["wēng", "wōng", "yōng", "gōng"] },
+      { q: "“嫩”读：", correct: "nèn", options: ["nèn", "nún", "ruán", "ruì"] },
+      { q: "“羡”读：", correct: "xiàn", options: ["xiàn", "xián", "xiàng", "yán"] },
+      { q: "“慕”读：", correct: "mù", options: ["mù", "mú", "wù", "mǔ"] },
+      { q: "“嫦”读：", correct: "cháng", options: ["cháng", "shàng", "sháng", "chàng"] },
+      { q: "“娥”读：", correct: "é", options: ["é", "wǒ", "wō", "ně"] },
+      { q: "“弦”读：", correct: "xián", options: ["xián", "xuán", "yán", "xiàn"] },
+      { q: "“蹈”读：", correct: "dǎo", options: ["dǎo", "dào", "tǎo", "tāo"] },
+      { q: "“袍”读：", correct: "páo", options: ["páo", "bāo", "pāo", "pào"] },
+      { q: "“悲”读：", correct: "bēi", options: ["bēi", "pēi", "bèi", "mēi"] },
+      { q: "“枯”读：", correct: "kū", options: ["kū", "qū", "gū", "hū"] },
+      { q: "“燥”读：", correct: "zào", options: ["zào", "cào", "sāo", "zhào"] },
+      { q: "“搬”读：", correct: "bān", options: ["bān", "pān", "fān", "màn"] },
+      { q: "“穴”读：", correct: "xué", options: ["xué", "xuě", "shuě", "shuō"] },
+      { q: "“脉”（山脉）读：", correct: "mài", options: ["mài", "mò", "bài", "pài"] },
+      { q: "“缘”读：", correct: "yuán", options: ["yuán", "yuǎn", "yán", "xuán"] },
+      { q: "“鸟（cháo）”（巢穴）读：", correct: "cháo", options: ["cháo", "zhāo", "zhào", "qiāo"] },
+      { q: "“城”读：", correct: "chéng", options: ["chéng", "zhèng", "shéng", "qíng"] },
+      { q: "“塞”（塞下曲）读：", correct: "sài", options: ["sài", "sāi", "zài", "zhāi"] },
+      { q: "“为”（认为）读：", correct: "wéi", options: ["wéi", "wèi", "wěi", "wèn"] },
+      { q: "“为”（为了）读：", correct: "wèi", options: ["wèi", "wéi", "wěi", "wèn"] },
+      { q: "“数”（数学）读：", correct: "shù", options: ["shù", "shǔ", "sǒu", "sòu"] },
+      { q: "“数”（数一数）读：", correct: "shǔ", options: ["shǔ", "shù", "sǒu", "sòu"] },
+      { q: "“曾”（曾经）读：", correct: "céng", options: ["céng", "zēng", "zèng", "cén"] },
+      { q: "“曾”（姓曾）读：", correct: "zēng", options: ["zēng", "céng", "zèng", "cén"] },
+      { q: "“兴”（兴奋）读：", correct: "xīng", options: ["xīng", "xìng", "xíng", "qīng"] },
+      { q: "“兴”（高兴）读：", correct: "xìng", options: ["xìng", "xīng", "xíng", "qīng"] },
+      { q: "“传”（传统）读：", correct: "chuán", options: ["chuán", "zhuàn", "chán", "quán"] },
+      { q: "“传”（传记）读：", correct: "zhuàn", options: ["zhuàn", "chuán", "chán", "quán"] }
+    ]},
+  { id: "c2d_zsD", name: "同音/形近字辨析（二下）", type: "zishi",
+    items: [
+      { q: "“复习”应填：", correct: "复", options: ["复", "付", "赴", "赋"] },
+      { q: "“付钱”应填：", correct: "付", options: ["付", "复", "赴", "赋"] },
+      { q: "“宝贝”应填：", correct: "贝", options: ["贝", "见", "具", "页"] },
+      { q: "“看见”应填：", correct: "见", options: ["见", "贝", "具", "页"] },
+      { q: "“传说”应填：", correct: "传", options: ["传", "转", "砖", "船"] },
+      { q: "“转身”应填：", correct: "转", options: ["转", "传", "砖", "船"] },
+      { q: "“统一”应填：", correct: "统", options: ["统", "桶", "痛", "通"] },
+      { q: "“水桶”应填：", correct: "桶", options: ["桶", "统", "痛", "通"] },
+      { q: "“海湾”应填：", correct: "湾", options: ["湾", "弯", "丸", "玩"] },
+      { q: "“弯腰”应填：", correct: "弯", options: ["弯", "湾", "丸", "玩"] },
+      { q: "“喜鹊”应填：", correct: "鹊", options: ["鹊", "雀", "确", "缺"] },
+      { q: "“麻雀”应填：", correct: "雀", options: ["雀", "鹊", "确", "缺"] },
+      { q: "“拨号”应填：", correct: "拨", options: ["拨", "拔", "泼", "钵"] },
+      { q: "“拔河”应填：", correct: "拔", options: ["拔", "拨", "泼", "钵"] },
+      { q: "“鸳鸯”应填：", correct: "鸳", options: ["鸳", "园", "原", "源"] },
+      { q: "“果园”应填：", correct: "园", options: ["园", "鸳", "原", "源"] },
+      { q: "“舅舅”应填：", correct: "舅", options: ["舅", "旧", "就", "救"] },
+      { q: "“陈旧”应填：", correct: "旧", options: ["旧", "舅", "就", "救"] },
+      { q: "“阿姨”应填：", correct: "姨", options: ["姨", "移", "疑", "夷"] },
+      { q: "“移动”应填：", correct: "移", options: ["移", "姨", "疑", "夷"] },
+      { q: "“打雷”应填：", correct: "雷", options: ["雷", "累", "泪", "类"] },
+      { q: "“劳累”应填：", correct: "累", options: ["累", "雷", "泪", "类"] },
+      { q: "“粽子”应填：", correct: "粽", options: ["粽", "综", "总", "中"] },
+      { q: "“综合”应填：", correct: "综", options: ["综", "粽", "总", "中"] },
+      { q: "“嫦娥”应填：", correct: "嫦", options: ["嫦", "常", "长", "厂"] },
+      { q: "“经常”应填：", correct: "常", options: ["常", "嫦", "长", "厂"] },
+      { q: "“怀念”应填：", correct: "怀", options: ["怀", "坏", "槐", "淮"] },
+      { q: "“坏人”应填：", correct: "坏", options: ["坏", "怀", "槐", "淮"] },
+      { q: "“羡慕”应填：", correct: "羡", options: ["羡", "线", "限", "献"] },
+      { q: "“毛线”应填：", correct: "线", options: ["线", "羡", "限", "献"] },
+      { q: "“白鹅”应填：", correct: "鹅", options: ["鹅", "俄", "饿", "我"] },
+      { q: "“饥饿”应填：", correct: "饿", options: ["饿", "鹅", "俄", "我"] },
+      { q: "“黄色”应填：", correct: "黄", options: ["黄", "皇", "煌", "惶"] },
+      { q: "“皇帝”应填：", correct: "皇", options: ["皇", "黄", "煌", "惶"] },
+      { q: "“辉煌”应填：", correct: "煌", options: ["煌", "黄", "皇", "惶"] }
+    ]},
+  { id: "c2d_zsE", name: "看拼音选字 · 句子场景（二下）", type: "zishi",
+    items: [
+      { q: "“（chūn）天来了”括号字：", correct: "春", options: ["春", "纯", "醇", "椿"] },
+      { q: "“（róng）化的雪”括号字：", correct: "融", options: ["融", "容", "熔", "荣"] },
+      { q: "“（xiǎo）燕子归来”括号字：", correct: "小", options: ["小", "晓", "筱", "孝"] },
+      { q: "“（fēi）翔的鸟”括号字：", correct: "飞", options: ["飞", "非", "啡", "菲"] },
+      { q: "“拂面的春（fēng）”括号字：", correct: "风", options: ["风", "封", "锋", "丰"] },
+      { q: "“（liǔ）絮飘飘”括号字：", correct: "柳", options: ["柳", "榴", "留", "流"] },
+      { q: "“（cǎo）色青青”括号字：", correct: "草", options: ["草", "操", "糟", "嘈"] },
+      { q: "“牛羊（mǎn）山”括号字：", correct: "满", options: ["满", "慢", "漫", "曼"] },
+      { q: "“（jīn）光闪闪”括号字：", correct: "金", options: ["金", "今", "筋", "紧"] },
+      { q: "“瓜（guǒ）香甜”括号字：", correct: "果", options: ["果", "裹", "锅", "国"] },
+      { q: "“（cǎi）色斑斓”括号字：", correct: "彩", options: ["彩", "采", "睬", "踩"] },
+      { q: "“（lè）极了”括号字：", correct: "乐", options: ["乐", "勒", "肋", "泐"] },
+      { q: "“弟（dì）很乖”括号字：", correct: "弟", options: ["弟", "低", "堤", "抵"] },
+      { q: "“（jiě）姐温柔”括号字：", correct: "姐", options: ["姐", "解", "界", "杰"] },
+      { q: "“妹（mèi）天真”括号字：", correct: "妹", options: ["妹", "媒", "枚", "煤"] },
+      { q: "“（zǔ）父慈祥”括号字：", correct: "祖", options: ["祖", "组", "阻", "俎"] },
+      { q: "“外（pó）”括号字：", correct: "婆", options: ["婆", "破", "泼", "坡"] },
+      { q: "“（jiā）人团聚”括号字：", correct: "家", options: ["家", "夹", "加", "佳"] },
+      { q: "“灯（lóng）”括号字：", correct: "笼", options: ["笼", "龙", "聋", "隆"] },
+      { q: "“夜（kōng）”括号字：", correct: "空", options: ["空", "控", "孔", "恐"] },
+      { q: "“（xīng）星点点”括号字：", correct: "星", options: ["星", "兴", "腥", "性"] },
+      { q: "“（zhú）林深处”括号字：", correct: "竹", options: ["竹", "烛", "逐", "筑"] },
+      { q: "“（liǔ）树成行”括号字：", correct: "柳", options: ["柳", "榴", "留", "流"] },
+      { q: "“（tī）足球”括号字：", correct: "踢", options: ["踢", "梯", "题", "堤"] },
+      { q: "“（tiào）绳”括号字：", correct: "跳", options: ["跳", "挑", "条", "调"] },
+      { q: "“（pǎo）操”括号字：", correct: "跑", options: ["跑", "抛", "泡", "袍"] },
+      { q: "“（zǎo）锻炼”括号字：", correct: "早", options: ["早", "枣", "澡", "灶"] },
+      { q: "“（gē）声响亮”括号字：", correct: "歌", options: ["歌", "格", "哥", "葛"] },
+      { q: "“（wǔ）蹈”括号字：", correct: "舞", options: ["舞", "伍", "午", "武"] },
+      { q: "“（huà）笔”括号字：", correct: "画", options: ["画", "话", "华", "化"] },
+      { q: "“（zhī）识”括号字：", correct: "知", options: ["知", "支", "枝", "只"] },
+      { q: "“学（xí）”括号字：", correct: "习", options: ["习", "喜", "席", "锡"] },
+      { q: "“成（jì）”括号字：", correct: "绩", options: ["绩", "季", "记", "计"] },
+      { q: "“进（bù）”括号字：", correct: "步", options: ["步", "不", "部", "布"] },
+      { q: "“万紫千（hóng）”括号字：", correct: "红", options: ["红", "鸿", "洪", "弘"] }
     ]}
 );
 

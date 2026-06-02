@@ -159,23 +159,20 @@
     if (!chapters || !chapters.length) return null;
     if (subject === "math") {
       const apps = [];
-      const opsSet = new Set();
-      let minLo = Infinity, maxHi = -Infinity;
       chapters.forEach(c => {
         (c.apps || []).forEach(a => apps.push(a));
-        (c.ops || []).forEach(o => opsSet.add(o));
-        if (Array.isArray(c.range)) {
-          if (c.range[0] < minLo) minLo = c.range[0];
-          if (c.range[1] > maxHi) maxHi = c.range[1];
-        }
       });
       const sample = chapters[0];
+      // 注意：不再把所有 range 合并取并集，否则会把"大数的认识 [10000,999999]"
+      // 和"三位数乘两位数 [×]" 叠加，混出超纲的 "999999 × 999999" 口算。
+      // 实际生成口算时按 subChapters 随机挑一个原章节，保持单题难度不超出该章节本身。
       return {
         id: "mix-" + subject,
         name: "本学期 · 随机一组",
-        range: (isFinite(minLo) && isFinite(maxHi)) ? [minLo, maxHi] : (sample.range || [1, 100]),
-        ops: opsSet.size ? Array.from(opsSet) : (sample.ops || ["+", "-"]),
+        range: sample.range || [1, 100],
+        ops: sample.ops || ["+", "-"],
         apps,
+        subChapters: chapters.slice(),
         _mix: true
       };
     }

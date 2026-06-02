@@ -43,13 +43,20 @@ const MathModule = (() => {
     }
 
     let a, b, ans;
+    const step = ch.step && ch.step > 1 ? ch.step : 1;
+    function randStep(lo, hi) {
+      if (step <= 1) return rand(lo, hi);
+      const k = Math.floor((hi - lo) / step);
+      return lo + rand(0, k) * step;
+    }
     if (op === "+") {
-      a = rand(r[0], r[1]); b = rand(r[0], r[1]); ans = a + b;
+      a = randStep(r[0], r[1]); b = randStep(r[0], r[1]); ans = a + b;
     } else if (op === "-") {
-      a = rand(r[0], r[1]); b = rand(r[0], Math.min(a, r[1])); if (b > a)[a,b]=[b,a]; ans = a - b;
+      a = randStep(r[0], r[1]); b = randStep(r[0], Math.min(a, r[1])); if (b > a)[a,b]=[b,a]; ans = a - b;
     } else if (op === "×") {
-      const sr = ch.secondRange || r;
-      a = rand(r[0], r[1]); b = rand(sr[0], sr[1]); ans = a * b;
+      // 乘法时第二个因子用 secondRange；若没设，则压到一个适合口算的小范围
+      const sr = ch.secondRange || [2, Math.min(12, r[1])];
+      a = randStep(r[0], r[1]); b = rand(sr[0], sr[1]); ans = a * b;
     } else if (op === "÷") {
       const dr = ch.divisorRange || [2, 9];
       b = rand(dr[0], dr[1]);
@@ -65,8 +72,14 @@ const MathModule = (() => {
     const items = [];
     const used = new Set();
     let safety = 0;
+    // 学期混合章节：从原始章节列表里轮流挑一个生成口算，
+    // 避免把所有章节 range 合并取并集，导致 4 上"大数 × 三位数乘两位数"混出超纲题
+    const oralSources = (chapter._mix && Array.isArray(chapter.subChapters) && chapter.subChapters.length)
+      ? chapter.subChapters.filter(c => Array.isArray(c.ops) && c.ops.length)
+      : null;
     while (items.length < oralCount && safety < 500) {
-      const q = genOral(chapter);
+      const src = oralSources ? pick(oralSources) : chapter;
+      const q = genOral(src);
       const key = q.text;
       if (!used.has(key)) { used.add(key); items.push(q); }
       safety++;
