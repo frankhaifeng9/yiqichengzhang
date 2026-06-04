@@ -44,11 +44,11 @@ ipconfig getifaddr en0
    git commit -m "添加 Pages 自动部署与部署手册"
    git push origin main
    ```
-2. 打开 https://github.com/youxuanxue/yiqichengzhang/settings/pages
+2. 打开 https://github.com/frankhaifeng9/yiqichengzhang/settings/pages
 3. **Source** 选择 **GitHub Actions**（不要选 Deploy from a branch）。
 4. 等待 Actions 跑完（约 1 分钟），公网地址为：
    ```
-   https://youxuanxue.github.io/yiqichengzhang/
+   https://frankhaifeng9.github.io/yiqichengzhang/
    ```
 
 之后每次 `git push origin main` 会自动重新部署，所有终端的 PWA 下次启动时通过 Service Worker 拉取新版本。
@@ -57,7 +57,7 @@ ipconfig getifaddr en0
 
 ## 三、iOS / iPad 安装（公网 PWA，完整离线）
 
-1. iPhone / iPad Safari 打开 `https://youxuanxue.github.io/yiqichengzhang/`
+1. iPhone / iPad Safari 打开 `https://frankhaifeng9.github.io/yiqichengzhang/`
 2. 分享按钮 → **添加到主屏幕**。
 3. 首次启动联网，之后即使飞行模式也可使用（Service Worker 已缓存）。
 
@@ -71,7 +71,7 @@ ipconfig getifaddr en0
 
 ### 步骤
 1. 浏览器打开 https://www.pwabuilder.com/
-2. 输入公网 URL：`https://youxuanxue.github.io/yiqichengzhang/`，点击 **Start**。
+2. 输入公网 URL：`https://frankhaifeng9.github.io/yiqichengzhang/`，点击 **Start**。
 3. 等待评分。`Manifest` 和 `Service Worker` 两项应该都是绿色。
 4. 右上角 **Package For Stores** → 选择 **Android**。
 5. **Package options** 保持默认即可，重点确认：
@@ -97,7 +97,7 @@ ipconfig getifaddr en0
 ## 五、更新流程一句话总结
 
 ```
-本地改代码 → git push origin main
+本地改代码 → git push frank main（同步推 origin、gitee）
         ├── GitHub Actions 自动部署到 Pages（公网用户、APK、iOS PWA 都更新）
-        └── Mac 本机每 5 分钟 git pull（iPad 局域网访问也更新）
+        └── Mac 本机每 5 分钟 git pull origin main（iPad 局域网访问也更新）
 ```
