@@ -4,7 +4,36 @@ const EnglishModule = (() => {
   function pick(arr) { return arr[Math.floor(Math.random() * arr.length)]; }
   function shuffle(arr) { const a = arr.slice(); for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; }
 
-  /* === 标准发音（Web Speech API） === */
+  /* === 标准发音 === */
+  // 优先用有道在线 MP3（音色一致、不依赖手机自带 TTS），失败再 fallback 到 Web Speech API。
+  // 国行 Android 多数不预装英文 TTS 引擎，直接 speechSynthesis 静默无声，所以必须有 MP3 兜底。
+  let _enAudio = null;
+  function playEnAudio(text) {
+    return new Promise((resolve, reject) => {
+      try {
+        if (!text) { reject(new Error("empty")); return; }
+        const url = "https://dict.youdao.com/dictvoice?audio=" + encodeURIComponent(text) + "&type=2";
+        if (!_enAudio) {
+          _enAudio = new Audio();
+          _enAudio.preload = "auto";
+        } else {
+          try { _enAudio.pause(); } catch (_) {}
+        }
+        _enAudio.src = url;
+        let settled = false;
+        const fin = (ok, err) => { if (settled) return; settled = true; ok ? resolve() : reject(err); };
+        _enAudio.onerror = () => fin(false, new Error("audio error"));
+        const p = _enAudio.play();
+        if (p && typeof p.then === "function") {
+          p.then(() => fin(true)).catch(e => fin(false, e));
+        } else {
+          fin(true);
+        }
+        setTimeout(() => fin(false, new Error("audio timeout")), 2500);
+      } catch (e) { reject(e); }
+    });
+  }
+
   let _enVoice = null;
   function pickEnVoice() {
     if (!("speechSynthesis" in window)) return null;
@@ -18,7 +47,7 @@ const EnglishModule = (() => {
   if ("speechSynthesis" in window) {
     window.speechSynthesis.onvoiceschanged = () => { _enVoice = pickEnVoice(); };
   }
-  function speakEn(text, rate) {
+  function speakBySystem(text, rate) {
     try {
       if (!("speechSynthesis" in window) || !text) return;
       window.speechSynthesis.cancel();
@@ -31,6 +60,10 @@ const EnglishModule = (() => {
       if (_enVoice) u.voice = _enVoice;
       window.speechSynthesis.speak(u);
     } catch (e) { /* 静默 */ }
+  }
+  function speakEn(text, rate) {
+    if (!text) return;
+    playEnAudio(text).catch(() => speakBySystem(text, rate));
   }
   function speakerHtml(text, size) {
     const cls = size === "sm" ? "speaker-btn speaker-sm" : "speaker-btn";
