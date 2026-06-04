@@ -67,30 +67,42 @@ ipconfig getifaddr en0
 
 ## 四、Android APK 打包
 
-推荐用 **PWABuilder**（微软出品，零本地环境）。
+PWABuilder 现已不再自动签名（无论 Google Play 还是 Other Android 都输出 unsigned APK），需本地签名一次。**所有工具+密钥已就位**在 `~/Documents/yqcz-android-keystore/`，日常重新打包只需 4 行命令。
 
-### 步骤
-1. 浏览器打开 https://www.pwabuilder.com/
-2. 输入公网 URL：`https://frankhaifeng9.github.io/yiqichengzhang/`，点击 **Start**。
-3. 等待评分。`Manifest` 和 `Service Worker` 两项应该都是绿色。
-4. 右上角 **Package For Stores** → 选择 **Android**。
-5. **Package options** 保持默认即可，重点确认：
-   - **Package ID**：建议改为 `com.yqcz.app`（一旦发布就不能再改，慎重）。
-   - **Signing key**：首次选 **Create new**，PWABuilder 会生成 `signing.keystore`。
-     ⚠️ **下载后妥善保存这个 keystore 和密码**，以后升级 APK 必须用同一个 key，否则用户无法覆盖安装。
-6. 下载 zip，里面包含：
-   - `app-release-signed.apk` ← 这是发给外地用户的文件
-   - `app-release-bundle.aab`（上架 Google Play 用，可忽略）
-   - `signing.keystore` + 密码文件 ← **备份起来**
+### 第一步：PWABuilder 生成 unsigned APK
+1. 浏览器打开 https://www.pwabuilder.com/，输入 `https://frankhaifeng9.github.io/yiqichengzhang/`，点 **Start**。
+2. 右上角 **Package For Stores** → 选 **Android** → 顶部切到 **Other Android** Tab。
+3. **Package ID** 用 `com.yqcz.app`（一旦发布不能改），其他保持默认 → **Download Package**。
+4. 解压下载的 zip，取出 `懿起成长-unsigned.apk`，放到 `~/Documents/yqcz-android-keystore/`。
+
+### 第二步：本地签名（已配好，重复使用）
+```bash
+cd ~/Documents/yqcz-android-keystore
+export JAVA_HOME="$HOME/Documents/yqcz-android-keystore/jdk-21.0.11+10/Contents/Home"
+export PATH="$JAVA_HOME/bin:$PATH"
+KS_PASS=$(cat keystore-password.txt)
+java -jar uber-apk-signer.jar \
+  --apks 懿起成长-unsigned.apk \
+  --ks signing.keystore --ksAlias yqcz \
+  --ksPass "$KS_PASS" --ksKeyPass "$KS_PASS" \
+  --allowResign
+mv 懿起成长-aligned-signed.apk 懿起成长.apk
+```
+输出 `懿起成长.apk` 即可分发。签名方案 V1+V2+V3，证书有效期到 2053。
+
+### 本地签名目录里有什么（务必备份）
+- `signing.keystore` + `keystore-password.txt` ← **丢了等于失去给老用户推送升级的能力**
+- `uber-apk-signer.jar`（3.1 MB，patrickfav v1.3.0）
+- `jdk-21.0.11+10/`（Adoptium Temurin 21，约 460 MB 解压后）
+- `重要-请备份.txt`（记录别名、算法、过期日、重新签名命令）
+
+建议把 `signing.keystore` + `keystore-password.txt` + `重要-请备份.txt` 复制到 iCloud / 移动硬盘 / 1Password 至少两处。
 
 ### 分发给外地用户
-- 直接微信 / QQ / 邮箱发 `.apk`。
-- 用户在 Android 手机：
-  1. 下载 `.apk`。
-  2. 点击安装时若提示「未知来源」，按提示去设置里允许该应用安装。
-  3. 安装完成，桌面出现「懿起成长」图标。
+- 直接微信 / QQ / 邮箱发 `懿起成长.apk`。
+- 用户 Android 手机：下载 → 点击安装 → 若提示「未知来源」按提示去设置允许 → 桌面出现图标。
 
-> **更新方式**：APK 是 TWA（Trusted Web Activity），实际内容仍从公网 URL 实时加载。所以 **`git push` 后用户下次打开 App 就是新版本**，**无需重新打包/重装 APK**。只有改图标、改包名、改启动 URL 才需要重新打 APK。
+> **更新方式**：APK 是 TWA（Trusted Web Activity），实际内容仍从公网 URL 实时加载。所以 **`git push` 后用户下次打开 App 就是新版本**，**无需重新打包/重装 APK**。只有改图标 / Package ID / 启动 URL 才需要按上面重新走一遍签名。
 
 ---
 
