@@ -3,6 +3,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <!-- 关键：去掉所有外发请求的 Referer，让 Baidu TTS / Youdao TTS 不再因为 github.io 来源被拦截，
+       从而能整句连读英文，而不是被迫拆词逐播。 -->
+  <meta name="referrer" content="no-referrer" />
   <title>懿起成长 · 小学生学习乐园</title>
 
   <!-- 图标 & 主题 -->
@@ -23,7 +26,7 @@
   <meta http-equiv="Pragma" content="no-cache" />
   <meta http-equiv="Expires" content="0" />
 
-  <link rel="stylesheet" href="styles.css?v=20260530j" />
+  <link rel="stylesheet" href="styles.css?v=20260605d" />
 </head>
 <body>
   <div id="app">
@@ -380,12 +383,12 @@
 
   </div>
 
-  <script src="js/data.js?v=20260530j"></script>
-  <script src="js/math.js?v=20260530j"></script>
-  <script src="js/english.js?v=20260530j"></script>
-  <script src="js/chinese.js?v=20260530j"></script>
-  <script src="js/plan.js?v=20260530j"></script>
-  <script src="js/app.js?v=20260530j"></script>
+  <script src="js/data.js?v=20260605d"></script>
+  <script src="js/math.js?v=20260605d"></script>
+  <script src="js/english.js?v=20260605d"></script>
+  <script src="js/chinese.js?v=20260605d"></script>
+  <script src="js/plan.js?v=20260605d"></script>
+  <script src="js/app.js?v=20260605d"></script>
 
   <script>
     // 注册 Service Worker：离线可用、桌面图标启动更快

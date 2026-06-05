@@ -5,11 +5,17 @@ const EnglishModule = (() => {
   function shuffle(arr) { const a = arr.slice(); for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; }
 
   /* === 标准发音 === */
-  // 单词：有道 dictvoice（稳定）
-  // 句子：有道（短句 OK）→ Youdao 500 时拆词逐播 → 全失败 fallback 到 speechSynthesis
-  // 实测：百度 gettts 从 github.io 调用被 Referer 拦截返回 200/text/html 0 字节，不可用。
-  // 关键：tryAudio 的 resolve 时机改为 audio "ended" 事件（朗读完整播完），让上层能 await 完成，
-  //       否则提交后 700ms 自动切下一题会读到一半就被打断。
+  // 整句连读策略：
+  //   1) 百度 fanyi gettts（首选）：人声更连贯，长句也能整段返回 audio/mpeg
+  //   2) 有道 dictvoice（备份）：短词/短句稳定，但句子 ≥ ~22 字符常返回 500
+  //   3) 系统 speechSynthesis（最后兜底，仅在设备有英文语音时）
+  //
+  // 关键背景：百度 gettts 看到 Referer = https://*.github.io/* 时会把响应改成 0 字节 text/html。
+  //   解决：index.html 顶部加了 <meta name="referrer" content="no-referrer">，
+  //   全站外发请求都不带 Referer，<audio> 媒体请求亦同 —— 百度因此恢复正常返回 MP3。
+  //
+  // tryAudio 的 resolve 时机：监听 "ended" 事件（朗读完整播完），让 app.js 提交后能
+  //   await 完成再切到下一题，否则 700ms 自动切题会把发音从中间打断。
   let _enAudio = null;
   let _currentPlayback = Promise.resolve();
 
@@ -31,35 +37,24 @@ const EnglishModule = (() => {
         if (p && typeof p.then === "function") {
           p.catch(e => fin(false, e));                       // 启动失败立即 reject；播放成功等 ended
         }
-        setTimeout(() => fin(false, new Error("audio timeout")), timeoutMs || 8000);
+        setTimeout(() => fin(false, new Error("audio timeout")), timeoutMs || 10000);
       } catch (e) { reject(e); }
     });
   }
 
+  function baiduUrl(text) {
+    // spd=3 是适合儿童的中速；lan=en 英文女声
+    return "https://fanyi.baidu.com/gettts?lan=en&spd=3&source=web&text=" + encodeURIComponent(text);
+  }
   function youdaoUrl(text) {
     return "https://dict.youdao.com/dictvoice?type=2&audio=" + encodeURIComponent(text);
   }
 
-  function playWordsSequentially(words) {
-    return new Promise(resolve => {
-      let i = 0;
-      const step = () => {
-        if (i >= words.length) { resolve(); return; }
-        const w = words[i++];
-        tryAudio(youdaoUrl(w), 4000).then(step, step);  // 单词失败也跳过，继续下一个
-      };
-      step();
-    });
-  }
-
   function playEnAudio(text) {
     if (!text) return Promise.reject(new Error("empty"));
-    // 一次性 Youdao；句子超过约 22 字符常返回 500 "returned null audio"，那时拆词
-    return tryAudio(youdaoUrl(text), 6000).catch(() => {
-      const words = text.replace(/[.,!?;:""''()\[\]{}\-]/g, " ").split(/\s+/).filter(Boolean);
-      if (words.length <= 1) return Promise.reject(new Error("cannot speak"));
-      return playWordsSequentially(words);
-    });
+    // 百度整句 → 失败 → 有道整句 → 失败抛出，让上层走系统语音
+    return tryAudio(baiduUrl(text), 8000)
+      .catch(() => tryAudio(youdaoUrl(text), 6000));
   }
 
   let _enVoice = null;
