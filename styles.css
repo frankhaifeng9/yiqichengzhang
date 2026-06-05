@@ -882,6 +882,8 @@ html, body {
   padding: 10px 16px;
   font-size: 15px;
 }
+/* 覆盖 primary-btn 的 width:100%，避免在 flex 行内霸屏 */
+.pomo-actions .primary-btn { width: auto; display: inline-block; }
 .pomo-presets {
   display: flex; gap: 8px; justify-content: center; flex-wrap: wrap;
   margin-bottom: 14px;
@@ -984,4 +986,75 @@ html, body {
   .task-table .col-time { width: 80px; }
   .task-table .col-run { width: 74px; }
   .task-table .col-done { width: 50px; }
+}
+
+/* === 移动端窄屏（≤480px：安卓手机竖屏） === */
+@media (max-width: 480px) {
+  .screen { padding: 16px 12px 80px; }
+  .screen-title { font-size: 19px; margin: 4px 2px 14px; }
+  .card { padding: 14px; margin-bottom: 12px; }
+
+  /* 番茄钟卡片 */
+  .pomo-card { padding: 18px 12px; }
+  .pomo-task { font-size: 13px; line-height: 1.4; margin-bottom: 8px; }
+  .pomo-time { font-size: 54px; letter-spacing: 2px; margin: 4px 0; }
+  .pomo-state { font-size: 13px; padding: 3px 12px; margin-bottom: 14px; }
+
+  /* 三个按钮等分一行 */
+  .pomo-actions { gap: 8px; flex-wrap: nowrap; }
+  .pomo-actions .pomo-btn {
+    flex: 1 1 0;
+    min-width: 0;
+    padding: 10px 4px;
+    font-size: 14px;
+    width: auto;
+  }
+
+  /* 模式 chip 一行三等分 */
+  .pomo-presets { gap: 6px; flex-wrap: nowrap; margin-bottom: 10px; }
+  .pomo-presets .chip {
+    flex: 1 1 0;
+    min-width: 0;
+    padding: 8px 4px;
+    font-size: 13px;
+    text-align: center;
+  }
+
+  /* 时长设置 */
+  .pomo-settings { gap: 6px; font-size: 12px; }
+  .pomo-settings input { width: 44px; font-size: 12px; padding: 4px 4px; }
+
+  /* 任务单：标题 + 表格紧凑化 */
+  .task-title { font-size: 15px; margin-bottom: 8px; }
+  .task-table th, .task-table td {
+    padding: 6px 3px;
+    font-size: 13px;
+  }
+  .task-table th { font-size: 12px; }
+  .task-table .col-no { width: 28px; font-size: 12px; }
+  .task-table .col-time {
+    width: 70px;
+    white-space: nowrap;
+  }
+  .task-table .col-time-unit { font-size: 11px; margin-left: 2px; }
+  .task-table input[type="number"] {
+    width: 40px;
+    padding: 5px 4px;
+    font-size: 13px;
+  }
+  .task-table .col-run { width: 70px; }
+  .task-table .run-btn {
+    padding: 6px 6px;
+    font-size: 12px;
+    white-space: nowrap;
+  }
+  .task-table .col-done { width: 36px; }
+  .task-table input[type="text"] { padding: 5px 6px; font-size: 13px; }
+  .task-table input[type="checkbox"] { width: 18px; height: 18px; }
+
+  /* 顶部条字号微调 */
+  .topbar-title { font-size: 16px; }
+  .topbar-logo { width: 26px; height: 26px; }
+  .badge { font-size: 12px; padding: 3px 8px; }
+  .icon-btn { width: 34px; height: 34px; font-size: 18px; }
 }
