@@ -26,20 +26,52 @@ const MathModule = (() => {
     }
 
     if (ch.fraction) {
-      // 分数：分母 2..10
-      const d1 = rand(2, 8), n1 = rand(1, d1 - 1);
-      const d2 = rand(2, 8), n2 = rand(1, d2 - 1);
-      const lcm = (d1 * d2) / gcd(d1, d2);
-      let num, den;
-      if (op === "+") { num = n1 * (lcm / d1) + n2 * (lcm / d2); den = lcm; }
-      else { // '-'
-        let a = n1 * (lcm / d1), b = n2 * (lcm / d2);
-        if (b > a) [a, b] = [b, a];
-        num = a - b; den = lcm;
+      // 分数：分母 2..8。sameDenom=true 同分母（3 年级"分数的初步认识"用，结果限定 ≤ 1）
+      let d1 = rand(2, 8);
+      let d2 = ch.sameDenom ? d1 : rand(2, 8);
+      let n1 = rand(1, d1 - 1);
+      let n2 = rand(1, d2 - 1);
+      // 同分母 + 加法：限制 n1+n2 ≤ d1，避免出假分数
+      if (op === "+" && ch.sameDenom && n1 + n2 > d1) {
+        n1 = rand(1, d1 - 2);
+        n2 = rand(1, d1 - n1);
       }
+      const lcm = (d1 * d2) / gcd(d1, d2);
+      let v1 = n1 * (lcm / d1), v2 = n2 * (lcm / d2);
+      // 减法：保证显示 a/b - c/d 中第一项 >= 第二项（避免负数）
+      if (op === "-" && v2 > v1) {
+        [n1, n2] = [n2, n1];
+        [d1, d2] = [d2, d1];
+        [v1, v2] = [v2, v1];
+      }
+      const num = op === "+" ? v1 + v2 : v1 - v2;
+      const den = lcm;
       const [rn, rd] = reduce(num, den);
       const ansText = rn === 0 ? "0" : (rd === 1 ? `${rn}` : `${rn}/${rd}`);
       return { type: "oral", text: `${n1}/${d1} ${op} ${n2}/${d2} = `, answer: ansText, isFraction: true };
+    }
+
+    if (ch.mixed) {
+      // 两步四则混合（含括号），结果均为正整数，难度对应 4 下"四则混合运算"
+      const templates = [
+        () => { const a = rand(10, 60), b = rand(2, 9), c = rand(2, 9); return { t: `${a} + ${b} × ${c}`, v: a + b * c }; },
+        () => { const a = rand(20, 80), b = rand(2, 9), c = rand(2, 9); return { t: `${a} - ${b} × ${c}`, v: a - b * c, valid: a - b * c >= 0 }; },
+        () => { const a = rand(2, 9), b = rand(2, 12), c = rand(5, 30); return { t: `${a} × ${b} + ${c}`, v: a * b + c }; },
+        () => { const a = rand(3, 9), b = rand(3, 12), c = rand(1, 10); return { t: `${a} × ${b} - ${c}`, v: a * b - c, valid: a * b - c >= 0 }; },
+        () => { const a = rand(2, 30), b = rand(2, 30), c = rand(2, 9); return { t: `(${a} + ${b}) × ${c}`, v: (a + b) * c }; },
+        () => { const a = rand(10, 50), b = rand(2, a - 1), c = rand(2, 9); return { t: `(${a} - ${b}) × ${c}`, v: (a - b) * c }; },
+        () => { const a = rand(2, 9), b = rand(2, 12), c = rand(2, 12); return { t: `${a} × (${b} + ${c})`, v: a * (b + c) }; },
+        () => { const c = rand(2, 9), q = rand(3, 15), s = q * c, a = rand(2, s - 2), b = s - a; return { t: `(${a} + ${b}) ÷ ${c}`, v: q }; },
+        () => { const a = rand(10, 60), b = rand(2, 9), c = rand(2, 9); return { t: `${a} + ${b * c} ÷ ${c}`, v: a + b }; }
+      ];
+      for (let i = 0; i < 10; i++) {
+        const t = pick(templates)();
+        if (t.valid === false) continue;
+        return { type: "oral", text: `${t.t} = `, answer: t.v };
+      }
+      // 兜底
+      const a = rand(10, 60), b = rand(2, 9), c = rand(2, 9);
+      return { type: "oral", text: `${a} + ${b} × ${c} = `, answer: a + b * c };
     }
 
     let a, b, ans;

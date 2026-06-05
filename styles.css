@@ -840,6 +840,26 @@ html, body {
   margin-left: 6px;
 }
 
+/* 汉译英口语：题面下方的"听一听"按钮（不剧透答案，只播标准读音） */
+.listen-hint {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  margin: 8px 0 4px;
+}
+.listen-hint .speaker-btn {
+  margin-left: 0;
+  width: 36px;
+  height: 36px;
+  font-size: 16px;
+}
+.listen-hint-text {
+  font-size: 13px;
+  color: var(--ink-2);
+  font-weight: 600;
+}
+
 /* === 番茄钟 === */
 .pomo-card { text-align: center; padding: 24px 18px; }
 .pomo-task {

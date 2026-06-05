@@ -5,14 +5,15 @@ const EnglishModule = (() => {
   function shuffle(arr) { const a = arr.slice(); for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; }
 
   /* === 标准发音 === */
-  // 优先用有道在线 MP3（音色一致、不依赖手机自带 TTS），失败再 fallback 到 Web Speech API。
-  // 国行 Android 多数不预装英文 TTS 引擎，直接 speechSynthesis 静默无声，所以必须有 MP3 兜底。
+  // 在线 MP3 优先级：百度 fanyi → 有道 dictvoice → 系统 speechSynthesis。
+  // 关键原因：
+  //   1. 有道 dictvoice 对单词稳定，但对句子（即"口语"题）会返回 500 "returned null audio"，
+  //      于是国行 Android（无英文 TTS 包）就完全静音 → 必须换长句友好源。
+  //   2. 百度翻译 gettts 对单词和长句都返回 audio/mpeg，且能跨域作为媒体资源播放。
   let _enAudio = null;
-  function playEnAudio(text) {
+  function tryAudio(url, timeoutMs) {
     return new Promise((resolve, reject) => {
       try {
-        if (!text) { reject(new Error("empty")); return; }
-        const url = "https://dict.youdao.com/dictvoice?audio=" + encodeURIComponent(text) + "&type=2";
         if (!_enAudio) {
           _enAudio = new Audio();
           _enAudio.preload = "auto";
@@ -29,9 +30,15 @@ const EnglishModule = (() => {
         } else {
           fin(true);
         }
-        setTimeout(() => fin(false, new Error("audio timeout")), 2500);
+        setTimeout(() => fin(false, new Error("audio timeout")), timeoutMs || 2500);
       } catch (e) { reject(e); }
     });
+  }
+  function playEnAudio(text) {
+    if (!text) return Promise.reject(new Error("empty"));
+    const baiduUrl = "https://fanyi.baidu.com/gettts?lan=en&spd=3&source=web&text=" + encodeURIComponent(text);
+    const youdaoUrl = "https://dict.youdao.com/dictvoice?type=2&audio=" + encodeURIComponent(text);
+    return tryAudio(baiduUrl, 3500).catch(() => tryAudio(youdaoUrl, 2500));
   }
 
   let _enVoice = null;
@@ -131,7 +138,13 @@ const EnglishModule = (() => {
 
     const prompt = item.dir === "e2c" ? item.payload.en : item.payload.zh;
     const tagText = (item.kind === "word" ? "单词" : "口语") + " " + (idx + 1);
+    // e2c：题目本身就是英文，喇叭随题面显示
+    // c2e + 口语：题面是中文，但仍允许"听一听英文原句"（口语题首要目标是学读音，不是猜词）
+    //          单词的 c2e 仍隐藏喇叭，避免漏答案。
     const promptSpeaker = item.dir === "e2c" ? speakerHtml(item.payload.en) : "";
+    const listenHint = (item.dir === "c2e" && item.kind === "sent")
+      ? `<div class="listen-hint">${speakerHtml(item.payload.en)}<span class="listen-hint-text">听一听标准读音</span></div>`
+      : "";
 
     if (item.choiceMode === "choice") {
       const opts = item.options.map((o, i) => {
@@ -145,6 +158,7 @@ const EnglishModule = (() => {
         <div class="q-tag">${tagText}</div>
         <div class="q-prompt">${item.dir === "e2c" ? "请选择正确的中文意思" : "请选择正确的英文表达"}</div>
         <div class="q-text ${item.kind === "word" ? "huge" : "large"}">${escapeHtml(prompt)}${promptSpeaker}</div>
+        ${listenHint}
         <div class="options">${opts}</div>
         <div id="fb"></div>
       `;
@@ -159,6 +173,7 @@ const EnglishModule = (() => {
         <div class="q-tag">${tagText}</div>
         <div class="q-prompt">${item.dir === "e2c" ? "请翻译成中文" : "请翻译成英文"}</div>
         <div class="q-text ${item.kind === "word" ? "large" : ""}">${escapeHtml(prompt)}${promptSpeaker}</div>
+        ${listenHint}
         <div class="input-row">
           <input type="text" class="input-box" id="engAns" placeholder="${item.dir === "e2c" ? "输入中文翻译" : "type your answer"}" autocomplete="off" autocapitalize="off" autocorrect="off">
         </div>
