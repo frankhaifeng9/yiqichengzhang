@@ -5,12 +5,14 @@ const EnglishModule = (() => {
   function shuffle(arr) { const a = arr.slice(); for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; }
 
   /* === 标准发音 === */
-  // 在线 MP3 优先级：百度 fanyi → 有道 dictvoice → 系统 speechSynthesis。
-  // 关键原因：
-  //   1. 有道 dictvoice 对单词稳定，但对句子（即"口语"题）会返回 500 "returned null audio"，
-  //      于是国行 Android（无英文 TTS 包）就完全静音 → 必须换长句友好源。
-  //   2. 百度翻译 gettts 对单词和长句都返回 audio/mpeg，且能跨域作为媒体资源播放。
+  // 单词：有道 dictvoice（稳定）
+  // 句子：有道（短句 OK）→ Youdao 500 时拆词逐播 → 全失败 fallback 到 speechSynthesis
+  // 实测：百度 gettts 从 github.io 调用被 Referer 拦截返回 200/text/html 0 字节，不可用。
+  // 关键：tryAudio 的 resolve 时机改为 audio "ended" 事件（朗读完整播完），让上层能 await 完成，
+  //       否则提交后 700ms 自动切下一题会读到一半就被打断。
   let _enAudio = null;
+  let _currentPlayback = Promise.resolve();
+
   function tryAudio(url, timeoutMs) {
     return new Promise((resolve, reject) => {
       try {
@@ -24,21 +26,40 @@ const EnglishModule = (() => {
         let settled = false;
         const fin = (ok, err) => { if (settled) return; settled = true; ok ? resolve() : reject(err); };
         _enAudio.onerror = () => fin(false, new Error("audio error"));
+        _enAudio.onended = () => fin(true);                  // 完整播完才算 OK
         const p = _enAudio.play();
         if (p && typeof p.then === "function") {
-          p.then(() => fin(true)).catch(e => fin(false, e));
-        } else {
-          fin(true);
+          p.catch(e => fin(false, e));                       // 启动失败立即 reject；播放成功等 ended
         }
-        setTimeout(() => fin(false, new Error("audio timeout")), timeoutMs || 2500);
+        setTimeout(() => fin(false, new Error("audio timeout")), timeoutMs || 8000);
       } catch (e) { reject(e); }
     });
   }
+
+  function youdaoUrl(text) {
+    return "https://dict.youdao.com/dictvoice?type=2&audio=" + encodeURIComponent(text);
+  }
+
+  function playWordsSequentially(words) {
+    return new Promise(resolve => {
+      let i = 0;
+      const step = () => {
+        if (i >= words.length) { resolve(); return; }
+        const w = words[i++];
+        tryAudio(youdaoUrl(w), 4000).then(step, step);  // 单词失败也跳过，继续下一个
+      };
+      step();
+    });
+  }
+
   function playEnAudio(text) {
     if (!text) return Promise.reject(new Error("empty"));
-    const baiduUrl = "https://fanyi.baidu.com/gettts?lan=en&spd=3&source=web&text=" + encodeURIComponent(text);
-    const youdaoUrl = "https://dict.youdao.com/dictvoice?type=2&audio=" + encodeURIComponent(text);
-    return tryAudio(baiduUrl, 3500).catch(() => tryAudio(youdaoUrl, 2500));
+    // 一次性 Youdao；句子超过约 22 字符常返回 500 "returned null audio"，那时拆词
+    return tryAudio(youdaoUrl(text), 6000).catch(() => {
+      const words = text.replace(/[.,!?;:""''()\[\]{}\-]/g, " ").split(/\s+/).filter(Boolean);
+      if (words.length <= 1) return Promise.reject(new Error("cannot speak"));
+      return playWordsSequentially(words);
+    });
   }
 
   let _enVoice = null;
@@ -55,23 +76,31 @@ const EnglishModule = (() => {
     window.speechSynthesis.onvoiceschanged = () => { _enVoice = pickEnVoice(); };
   }
   function speakBySystem(text, rate) {
-    try {
-      if (!("speechSynthesis" in window) || !text) return;
-      window.speechSynthesis.cancel();
-      const u = new SpeechSynthesisUtterance(String(text));
-      u.lang = "en-US";
-      u.rate = rate || 0.9;     // 适合小学生
-      u.pitch = 1.0;
-      u.volume = 1.0;
-      if (!_enVoice) _enVoice = pickEnVoice();
-      if (_enVoice) u.voice = _enVoice;
-      window.speechSynthesis.speak(u);
-    } catch (e) { /* 静默 */ }
+    return new Promise(resolve => {
+      try {
+        if (!("speechSynthesis" in window) || !text) { resolve(); return; }
+        window.speechSynthesis.cancel();
+        const u = new SpeechSynthesisUtterance(String(text));
+        u.lang = "en-US";
+        u.rate = rate || 0.9;     // 适合小学生
+        u.pitch = 1.0;
+        u.volume = 1.0;
+        if (!_enVoice) _enVoice = pickEnVoice();
+        if (_enVoice) u.voice = _enVoice;
+        u.onend = () => resolve();
+        u.onerror = () => resolve();
+        window.speechSynthesis.speak(u);
+        setTimeout(resolve, 10000); // 兜底
+      } catch (e) { resolve(); }
+    });
   }
   function speakEn(text, rate) {
-    if (!text) return;
-    playEnAudio(text).catch(() => speakBySystem(text, rate));
+    if (!text) return Promise.resolve();
+    _currentPlayback = playEnAudio(text).catch(() => speakBySystem(text, rate));
+    return _currentPlayback;
   }
+  // 让外层（app.js submitCurrent）能等待"读完整再切下一题"
+  function whenSpeakDone() { return _currentPlayback || Promise.resolve(); }
   function speakerHtml(text, size) {
     const cls = size === "sm" ? "speaker-btn speaker-sm" : "speaker-btn";
     return `<button type="button" class="${cls}" data-speak="${escapeHtml(text)}" title="点击发音" aria-label="发音">🔊</button>`;
@@ -219,10 +248,11 @@ const EnglishModule = (() => {
       const lang = item.dir === "e2c" ? "zh" : "en";
       result = { ok: normalize(v, lang) === normalize(right, lang), you: v, right };
     }
-    // 提交时朗读标准英文：让小朋友听到正确读音
-    setTimeout(() => speakEn(item.payload.en), 80);
+    // 提交时朗读标准英文：让小朋友听到正确读音（同步触发，更新 _currentPlayback，
+    // 这样 app.js 的 whenSpeakDone() 拿到的就是本次提交的播放 Promise）
+    speakEn(item.payload.en);
     return result;
   }
 
-  return { buildSession, renderQuestion, checkAnswer, speakEn };
+  return { buildSession, renderQuestion, checkAnswer, speakEn, whenSpeakDone };
 })();

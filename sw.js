@@ -1,5 +1,5 @@
 /* 懿起成长 · Service Worker：离线缓存 */
-const VERSION = "20260605b";
+const VERSION = "20260605c";
 const CACHE = "yqcz-" + VERSION;
 const ASSETS = [
   "./",

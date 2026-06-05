@@ -384,14 +384,21 @@
 
     save();
     showFeedback(res.ok ? "答对啦！👍" : (res.reason || "再加油哦～"), res.ok, res.right);
-    setTimeout(() => {
+    const advance = () => {
       if (session.idx < session.items.length - 1) {
         session.idx++;
         renderCurrent();
       } else {
         finishSession();
       }
-    }, res.ok ? 700 : 1400);
+    };
+    // 英语题：朗读完整再切（旧版本 700/1400ms 自动切，会把口语句子读到一半切断）
+    const minDelay = res.ok ? 700 : 1400;
+    const minPromise = new Promise(r => setTimeout(r, minDelay));
+    const audioPromise = (sub === "english" && EnglishModule.whenSpeakDone)
+      ? EnglishModule.whenSpeakDone()
+      : Promise.resolve();
+    Promise.all([minPromise, audioPromise]).then(advance);
   }
 
   /* === 错题本 === */
